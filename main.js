@@ -12,50 +12,69 @@ var cashSpent = 0;
 var cashEarned = 0; 
 var lastTime = 0;
 
-var currentDrugs = {acid:0,coke:0};
+
+// store current drugs units you own
+
+var currentDrugs = 	{
+
+			acid:0,
+			coke:0
+
+
+					};
+
+
+
+// store cost and units of drugs on market
+
 var drugs = {
 
+		// store cost per unit
 		acid:0,
 		coke:0,
+
+		// amount of units
 		unit:function(){
 			return Math.floor((Math.random()*50)+1)}
 			}; // create new object 
 
 
 
+// turn num into an amount and var it 
 
 var coke_unit = drugs.unit();
 var acid_unit = drugs.unit();
 
+// set a total for the shark - NOT USED YET
 var shark = {capital:10000};
+
+// set locations for visiting 
 var locations = {ny: "nyc", lnd: "lnd"};  
 
+// Probably can delete, not used
 var acid = drugs.acid;
 var coke = drugs.coke;
 
+// hide divs
 $('#sell_Drugs').hide();
 $('#loanshark_div').hide();
 $('#buy_Drugs').hide();
-currentLocation = locations.ny; 
+
 
 
 
 // Setup for NYC
+currentLocation = locations.ny; 
 
 // change city title
 $('#market').append(' New York City');
 
-// cost in nyc
+// cost per unit in nyc
 drugs.acid = 700;
 drugs.coke = 1400;
 		
 
-
-
-
-
-
-
+// LETS GET STARTED
 
 var start = {
 
@@ -653,7 +672,7 @@ $('#choose_loan').click(function(event) {
 
 		
 
-		// add ability to bank money, but at a cost. 
+		// add more drugs and work out cleaner code for doing so. 
 		
 
 
