@@ -192,7 +192,7 @@ $('#choose_loan').click(function(event) {
 
 
 
-	// check if drug box got ticked
+	// check if drug box got ticked -
 
 	$('#acid_tick').click(function(event) {
 		
@@ -654,7 +654,7 @@ $('#choose_loan').click(function(event) {
 		
 
 		// add ability to bank money, but at a cost. 
-		// pay back the loan shark 
+		
 
 
 
