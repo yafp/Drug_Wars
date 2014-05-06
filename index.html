@@ -112,8 +112,21 @@
     <label class="checkbox-inline">
     <input type="checkbox" id="acid_tick" value="acid"> Acid
     </label>
+    
     <label class="checkbox-inline">
     <input type="checkbox" id="coke_tick" value="coke"> Coke
+    </label>
+
+    <label class="checkbox-inline">
+    <input type="checkbox" id="steroids_tick" value="steroids"> Steroids
+    </label>
+
+    <label class="checkbox-inline">
+    <input type="checkbox" id="meth_tick" value="meth"> Meth
+    </label>
+
+    <label class="checkbox-inline">
+    <input type="checkbox" id="heroin_tick" value="heroin"> Heroin
     </label>
 
 
@@ -144,8 +157,21 @@
     <label class="checkbox-inline">
     <input type="checkbox" id="s_acid_tick" value="acid"> Acid
     </label>
+    
     <label class="checkbox-inline">
     <input type="checkbox" id="s_coke_tick" value="coke"> Coke
+    </label>
+
+    <label class="checkbox-inline">
+    <input type="checkbox" id="s_steroids_tick" value="steroids"> Steroids
+    </label>
+
+    <label class="checkbox-inline">
+    <input type="checkbox" id="s_meth_tick" value="meth"> Meth
+    </label>
+
+    <label class="checkbox-inline">
+    <input type="checkbox" id="s_heroin_tick" value="heroin"> Heroin
     </label>
 
 
@@ -178,22 +204,50 @@
             <thead>
               <tr>
                 <th>Bank Account</th>
-                <th>Drugs</th>
                 <th>Debt</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td id="inBank"></td>
-                <td id="listDrugs"></td>
                 <td id="debt"></td>
               </tr>
-             
+            </tbody>
+          </table>
+
+
+    
+
+    <table class="table table-bordered">
+            
+            <thead>
+              <tr>
+                <th>Drugs</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td id="realAcid"></td>
+              </tr>
+              <tr>
+                <td id="realCoke"></td>
+              </tr>
+              <tr>
+                <td id="realSteroids"></td>
+              </tr>
+              <tr>
+                <td id="realMeth"></td>
+              </tr>
+              <tr>
+                <td id="realHeroin"></td>
+              </tr>
             </tbody>
           </table>
 
 
     <br>
+
+
 
     <!--THE MARKET -->
 
@@ -223,6 +277,27 @@
           <td id="cokeUnits"></td>
           <td id="cokePerUnit"></td>
           <td id="cokeSell"></td>
+        </tr>
+
+        <tr>
+          <td>Steroids</td>
+          <td id="steroidsUnits"></td>
+          <td id="steroidsPerUnit"></td>
+          <td id="steroidsSell"></td>
+        </tr>
+
+        <tr>
+          <td>Meth</td>
+          <td id="methUnits"></td>
+          <td id="methPerUnit"></td>
+          <td id="methSell"></td>
+        </tr>
+
+        <tr>
+          <td>Heroin</td>
+          <td id="heroinUnits"></td>
+          <td id="heroinPerUnit"></td>
+          <td id="heroinSell"></td>
         </tr>
        
       </tbody>
