@@ -24,12 +24,8 @@ var currentDrugs = 	{
 			heroin:0
 
 
-					};
+			};
 
-
-
-// get a random unit amount under 50
-function generateUnits(){ return Math.floor((Math.random()*50)+1) };
 
 // store cost and units of drugs on market
 
@@ -60,7 +56,8 @@ var heroin_unit = generateUnits();
 // set locations for visiting 
 var locations = {ny: "nyc", lnd: "lnd"};  
 
-
+// get a random unit amount under 50
+function generateUnits(){ return Math.floor((Math.random()*50)+1) };
 
 
 // hide divs
@@ -71,18 +68,6 @@ $('#buy_Drugs').hide();
 
 
 
-// Setup for NYC
-currentLocation = locations.ny; 
-
-// change city title
-$('#market').append(' New York City');
-
-// cost per unit in nyc
-drugs.acid = 700;
-drugs.coke = 1400;
-drugs.steroids = 300;
-drugs.meth = 50;
-drugs.heroin = 900;
 
 		
 
@@ -116,6 +101,20 @@ var start = {
 			$('#steroidsPerUnit').html("$"+drugs.steroids);
 			$('#methPerUnit').html("$"+drugs.meth);
 			$('#heroinPerUnit').html("$"+drugs.heroin);
+
+			// Setup for NYC
+			currentLocation = locations.ny; 
+
+			// change city title
+			$('#market').append(' New York City');
+
+			// cost per unit in nyc
+			drugs.acid = 700;
+			drugs.coke = 1400;
+			drugs.steroids = 300;
+			drugs.meth = 50;
+			drugs.heroin = 900;
+
 		
 		}, // play
 
@@ -144,7 +143,8 @@ start.setTimes();
 sellPrice(); 
 
 
-// 
+
+// hide section based on click:
 
 $('#choose_selld').click(function(event) {
 	
@@ -335,7 +335,6 @@ $('#choose_loan').click(function(event) {
 
 	});
 	
-
 
 
 
@@ -761,7 +760,6 @@ $('#choose_loan').click(function(event) {
 
 	// How to SELL drugs
 
-
 	$('#sellBtn').click(function(event) {
 	
 	// check that a tick box is selected
@@ -772,9 +770,6 @@ $('#choose_loan').click(function(event) {
 		&& pickedSteroids === false
 		&& pickedMeth === false
 		&& pickedHeroin === false
-
-
-
 
 		){
 
@@ -812,8 +807,8 @@ $('#choose_loan').click(function(event) {
 	s_insert_drugunit = $('#acidUnits').html(s_drugunit);
 	s_insert_drugiown = $('#realAcid').html("Acid: " + s_drugiown);
 
-	currentDrugs.acid = b_drugiown;
-	coke_acid = b_drugunit;    
+	currentDrugs.acid = s_drugiown;
+	coke_acid = s_drugunit;    
 
 
 	} // end of IF Picked Acid
@@ -829,8 +824,8 @@ $('#choose_loan').click(function(event) {
 	s_insert_drugunit = $('#cokeUnits').html(s_drugunit);
 	s_insert_drugiown = $('#realCoke').html("Coke: " + s_drugiown);
 
-	currentDrugs.coke = b_drugiown;
-	coke_unit = b_drugunit;    
+	currentDrugs.coke = s_drugiown;
+	coke_unit = s_drugunit;    
 
 
 	} // end of IF Picked Coke	
@@ -847,8 +842,8 @@ $('#choose_loan').click(function(event) {
 	s_insert_drugunit = $('#steroidsUnits').html(s_drugunit);
 	s_insert_drugiown = $('#realSteroids').html("Steroids: " + s_drugiown);
 
-	currentDrugs.steroids = b_drugiown;
-	steroids_unit = b_drugunit;    
+	currentDrugs.steroids = s_drugiown;
+	steroids_unit = s_drugunit;    
 
 
 	} // end of IF Picked steroids	
@@ -865,8 +860,8 @@ $('#choose_loan').click(function(event) {
 	s_insert_drugunit = $('#methUnits').html(s_drugunit);
 	s_insert_drugiown = $('#realMeth').html("Meth: " + s_drugiown);
 
-	currentDrugs.meth = b_drugiown;
-	meth_unit = b_drugunit;    
+	currentDrugs.meth = s_drugiown;
+	meth_unit = s_drugunit;    
 
 
 	} // end of IF Picked meth	
@@ -883,8 +878,8 @@ $('#choose_loan').click(function(event) {
 	s_insert_drugunit = $('#heroinUnits').html(s_drugunit);
 	s_insert_drugiown = $('#realHeroin').html("Heroin: " + s_drugiown);
 
-	currentDrugs.heroin = b_drugiown;
-	heroin_unit = b_drugunit;    
+	currentDrugs.heroin = s_drugiown;
+	heroin_unit = s_drugunit;    
 
 
 	} // end of IF Picked Heroin	
@@ -1120,10 +1115,7 @@ $('#choose_loan').click(function(event) {
 
 		
 
-		// add more drugs and work out cleaner code for doing so. 
-		
-
-
+		// the end 
 
 
 
