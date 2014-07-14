@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="docs-assets/ico/favicon.png">
 
-    <title>Thomas</title>
+    <title>Cae's Shop</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -38,7 +38,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Sell if ya got it</a>
+          <a class="navbar-brand" href="#">Loja de Cae</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -58,8 +58,8 @@
 
      <br><br>
 
-    <button type="button"  class="btn btn-default" id="choose_buyd">Buy Drugs</button>
-    <button type="button"  class="btn btn-default" id="choose_selld">Sell Drugs</button>
+    <button type="button"  class="btn btn-default" id="choose_buyd">Buy Stuff</button>
+    <button type="button"  class="btn btn-default" id="choose_selld">Sell Stuff</button>
     <button type="button"  class="btn btn-default" id="choose_loan">Loan Shark</button>
      <button type="button"  class="btn btn-default" id="choose_city">Change City</button>
 
@@ -107,38 +107,40 @@
     <form class="form-inline" role="form" id="buy_Drugs">
     <div class="form-group">
     
-    What drug do you want to buy?
+    What stuff do you want to buy?
 
+    <br><br>
     <label class="checkbox-inline">
-    <input type="checkbox" id="acid_tick" value="acid"> Acid
+    <input type="checkbox" id="acid_tick" value="acid"> Apples
     </label>
     
     <label class="checkbox-inline">
-    <input type="checkbox" id="coke_tick" value="coke"> Coke
+    <input type="checkbox" id="coke_tick" value="coke"> Bananas
     </label>
 
     <label class="checkbox-inline">
-    <input type="checkbox" id="steroids_tick" value="steroids"> Steroids
+    <input type="checkbox" id="steroids_tick" value="steroids"> Coffee
     </label>
 
     <label class="checkbox-inline">
-    <input type="checkbox" id="meth_tick" value="meth"> Meth
+    <input type="checkbox" id="meth_tick" value="meth"> Chocolate
     </label>
 
     <label class="checkbox-inline">
-    <input type="checkbox" id="heroin_tick" value="heroin"> Heroin
+    <input type="checkbox" id="heroin_tick" value="heroin"> Milk
     </label>
 
 
     <br><br>
     
-    <label for="buyDrugs">How many drugs do you want to buy?</label>
+    <label for="buyDrugs">How many do you want to buy?</label>
     <input type="number" class="form-control" id="buyDrugs" placeholder="How many units?">
   
-    </div>
+   
 
   
     <button type="button" id="drugBtn" class="btn btn-default">Request Units</button>
+     </div>
     </form>
 
     
@@ -152,38 +154,40 @@
     
     <div class="form-group">
     
-    What drug do you want to sell?
+    What stuff do you want to sell?
 
+    <br><br>
     <label class="checkbox-inline">
-    <input type="checkbox" id="s_acid_tick" value="acid"> Acid
+    <input type="checkbox" id="s_acid_tick" value="acid"> Apples
     </label>
     
     <label class="checkbox-inline">
-    <input type="checkbox" id="s_coke_tick" value="coke"> Coke
+    <input type="checkbox" id="s_coke_tick" value="coke"> Bananas
     </label>
 
     <label class="checkbox-inline">
-    <input type="checkbox" id="s_steroids_tick" value="steroids"> Steroids
+    <input type="checkbox" id="s_steroids_tick" value="steroids"> Coffee
     </label>
 
     <label class="checkbox-inline">
-    <input type="checkbox" id="s_meth_tick" value="meth"> Meth
+    <input type="checkbox" id="s_meth_tick" value="meth"> Chocolate
     </label>
 
     <label class="checkbox-inline">
-    <input type="checkbox" id="s_heroin_tick" value="heroin"> Heroin
+    <input type="checkbox" id="s_heroin_tick" value="heroin"> Milk
     </label>
 
 
     <br><br>
     
-    <label for="sellDrugs">How many drugs do you want to sell?</label>
+    <label for="sellDrugs">How many do you want to sell?</label>
     <input type="number" class="form-control" id="sellDrugs" placeholder="How many units?">
-  
-    </div> <!--END OF FORM GROUP -->
+    <br>
+    
 
   
     <button type="button" id="sellBtn" class="btn btn-default">Request Units</button>
+    </div> <!--END OF FORM GROUP -->
     </form>
 
 
@@ -222,7 +226,7 @@
             
             <thead>
               <tr>
-                <th>Drugs</th>
+                <th>Stuff</th>
               </tr>
             </thead>
             <tbody>
@@ -258,7 +262,7 @@
       
       <thead>
         <tr>
-          <th>Drug</th>
+          <th>Stuff</th>
           <th>Units</th>
           <th>Buy per Unit</th>
           <th>Sell $</th>
@@ -266,35 +270,35 @@
       </thead>
       <tbody>
         <tr>
-          <td>Acid</td>
+          <td>Apples</td>
           <td id="acidUnits"></td>
           <td id="acidPerUnit"></td>
           <td id="acidSell"></td>
         </tr>
 
         <tr>
-          <td>Coke</td>
+          <td>Bananas</td>
           <td id="cokeUnits"></td>
           <td id="cokePerUnit"></td>
           <td id="cokeSell"></td>
         </tr>
 
         <tr>
-          <td>Steroids</td>
+          <td>Coffee</td>
           <td id="steroidsUnits"></td>
           <td id="steroidsPerUnit"></td>
           <td id="steroidsSell"></td>
         </tr>
 
         <tr>
-          <td>Meth</td>
+          <td>Chocolate</td>
           <td id="methUnits"></td>
           <td id="methPerUnit"></td>
           <td id="methSell"></td>
         </tr>
 
         <tr>
-          <td>Heroin</td>
+          <td>Milk</td>
           <td id="heroinUnits"></td>
           <td id="heroinPerUnit"></td>
           <td id="heroinSell"></td>

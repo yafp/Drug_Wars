@@ -3,6 +3,12 @@
 - create all potential drugs
 - create events (mugged, police, etc)
 
+acid is apple
+coke is banana
+steroids is coffee
+meth is chocolate 
+heroin is milk
+
 */
 
 var bank = 0;
@@ -82,11 +88,11 @@ var start = {
 			$('#debt').html("$"+debt);
 			
 			// set list of drugs
-			$('#realAcid').html("Acid: " + currentDrugs.acid);
-			$('#realCoke').html("Coke: " + currentDrugs.coke);
-			$('#realSteroids').html("Steroids: " + currentDrugs.steroids);
-			$('#realMeth').html("Meth: " + currentDrugs.meth);
-			$('#realHeroin').html("Heroin: " + currentDrugs.heroin);
+			$('#realAcid').html("Apples: " + currentDrugs.acid);
+			$('#realCoke').html("Bananas: " + currentDrugs.coke);
+			$('#realSteroids').html("Coffee: " + currentDrugs.steroids);
+			$('#realMeth').html("Chocolate: " + currentDrugs.meth);
+			$('#realHeroin').html("Milk: " + currentDrugs.heroin);
 
 			// how many units available
 			$('#acidUnits').html(acid_unit);
@@ -528,7 +534,7 @@ $('#choose_loan').click(function(event) {
 	
 	IbuyDrugs();
 	b_insert_drugunit = $('#acidUnits').html(b_drugunit);
-	b_insert_drugiown = $('#realAcid').html("Acid: " + b_drugiown);
+	b_insert_drugiown = $('#realAcid').html("Apples: " + b_drugiown);
 	
 	currentDrugs.acid = b_drugiown;
 	acid_unit = b_drugunit;  
@@ -547,7 +553,7 @@ $('#choose_loan').click(function(event) {
 	
 	IbuyDrugs();
 	b_insert_drugunit = $('#cokeUnits').html(b_drugunit);
-	b_insert_drugiown = $('#realCoke').html("Coke: " + b_drugiown);
+	b_insert_drugiown = $('#realCoke').html("Bananas: " + b_drugiown);
 	
 	currentDrugs.coke = b_drugiown;
 	coke_unit = b_drugunit;  
@@ -567,7 +573,7 @@ $('#choose_loan').click(function(event) {
 	
 	IbuyDrugs();
 	b_insert_drugunit = $('#steroidsUnits').html(b_drugunit);
-	b_insert_drugiown = $('#realSteroids').html("Steroids: " + b_drugiown);
+	b_insert_drugiown = $('#realSteroids').html("Coffee: " + b_drugiown);
 	
 	currentDrugs.steroids = b_drugiown;
 	steroids_unit = b_drugunit;  
@@ -585,7 +591,7 @@ $('#choose_loan').click(function(event) {
 	
 	IbuyDrugs();
 	b_insert_drugunit = $('#methUnits').html(b_drugunit);
-	b_insert_drugiown = $('#realMeth').html("Meth: " + b_drugiown);
+	b_insert_drugiown = $('#realMeth').html("Chocolate: " + b_drugiown);
 	
 	currentDrugs.meth = b_drugiown;
 	meth_unit = b_drugunit;  
@@ -604,7 +610,7 @@ $('#choose_loan').click(function(event) {
 	
 	IbuyDrugs();
 	b_insert_drugunit = $('#heroinUnits').html(b_drugunit);
-	b_insert_drugiown = $('#realHeroin').html("Heroin: " + b_drugiown);
+	b_insert_drugiown = $('#realHeroin').html("Milk: " + b_drugiown);
 	
 	currentDrugs.heroin = b_drugiown;
 	heroin_unit = b_drugunit;  
@@ -805,7 +811,7 @@ $('#choose_loan').click(function(event) {
 	
 	IsellDrugs();
 	s_insert_drugunit = $('#acidUnits').html(s_drugunit);
-	s_insert_drugiown = $('#realAcid').html("Acid: " + s_drugiown);
+	s_insert_drugiown = $('#realAcid').html("Apples: " + s_drugiown);
 
 	currentDrugs.acid = s_drugiown;
 	coke_acid = s_drugunit;    
@@ -822,7 +828,7 @@ $('#choose_loan').click(function(event) {
 	
 	IsellDrugs();
 	s_insert_drugunit = $('#cokeUnits').html(s_drugunit);
-	s_insert_drugiown = $('#realCoke').html("Coke: " + s_drugiown);
+	s_insert_drugiown = $('#realCoke').html("Bananas: " + s_drugiown);
 
 	currentDrugs.coke = s_drugiown;
 	coke_unit = s_drugunit;    
@@ -840,7 +846,7 @@ $('#choose_loan').click(function(event) {
 	
 	IsellDrugs();
 	s_insert_drugunit = $('#steroidsUnits').html(s_drugunit);
-	s_insert_drugiown = $('#realSteroids').html("Steroids: " + s_drugiown);
+	s_insert_drugiown = $('#realSteroids').html("Coffee: " + s_drugiown);
 
 	currentDrugs.steroids = s_drugiown;
 	steroids_unit = s_drugunit;    
@@ -858,7 +864,7 @@ $('#choose_loan').click(function(event) {
 	
 	IsellDrugs();
 	s_insert_drugunit = $('#methUnits').html(s_drugunit);
-	s_insert_drugiown = $('#realMeth').html("Meth: " + s_drugiown);
+	s_insert_drugiown = $('#realMeth').html("Chocolate: " + s_drugiown);
 
 	currentDrugs.meth = s_drugiown;
 	meth_unit = s_drugunit;    
@@ -876,7 +882,7 @@ $('#choose_loan').click(function(event) {
 	
 	IsellDrugs();
 	s_insert_drugunit = $('#heroinUnits').html(s_drugunit);
-	s_insert_drugiown = $('#realHeroin').html("Heroin: " + s_drugiown);
+	s_insert_drugiown = $('#realHeroin').html("Milk: " + s_drugiown);
 
 	currentDrugs.heroin = s_drugiown;
 	heroin_unit = s_drugunit;    
@@ -1050,8 +1056,7 @@ $('#choose_loan').click(function(event) {
 				if (x === 1){
 
 					// run police function: lose drugs
-					alert("Yikes Pigs, dumping my stash");
-					console.log("you lost " +  currentDrugs.acid + " Acid and " + currentDrugs.coke + " Coke"); 
+					alert("Yikes little piggies, dumping my stash");
 					
 					currentDrugs.coke = 0;
 					currentDrugs.acid = 0;
@@ -1060,18 +1065,18 @@ $('#choose_loan').click(function(event) {
 					currentDrugs.heroin = 0;
 
 					// update drugs 
-					$('#realAcid').html("Acid: " + currentDrugs.acid);
-					$('#realCoke').html("Coke: " + currentDrugs.coke); 
-					$('#realSteroids').html("Steroids: " + currentDrugs.steroids); 
-					$('#realMeth').html("Meth: " + currentDrugs.meth); 
-					$('#realHeroin').html("Heroin: " + currentDrugs.heroin);  
+					$('#realAcid').html("Apples: " + currentDrugs.acid);
+					$('#realCoke').html("Bananas: " + currentDrugs.coke); 
+					$('#realSteroids').html("Coffee: " + currentDrugs.steroids); 
+					$('#realMeth').html("Chocolate: " + currentDrugs.meth); 
+					$('#realHeroin').html("Milk: " + currentDrugs.heroin);  
 
 				}
 
 				else if (x === 2){
 
 					// run got mugged function: lose money
-					alert("Dude with a gun, it's gunna cost me");
+					alert("bear with giant claws, it's gunna cost me");
 
 					// calculate money stolen
 					var stolen = Math.round(bank / 100 * 30);
@@ -1086,8 +1091,8 @@ $('#choose_loan').click(function(event) {
 				else { 
 
 					// run drugs super cheap: temp change in prices
-					alert("drug sale, buy now!");
-					console.log("acid was $" + drugs.acid + " and coke was $" + drugs.coke);  
+					alert("massive sale, buy now!");
+					
 
 					// new cost of drugs
 					drugs.acid = getRandomInt(300,700);
@@ -1112,6 +1117,8 @@ $('#choose_loan').click(function(event) {
 
 			);
 		
+			
+			
 
 		
 
