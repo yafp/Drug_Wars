@@ -377,6 +377,7 @@ $('#choose_loan').click(function(event) {
 	if (pickedAcid === false && pickedCoke === false){
 
 		alert("you need to pick a drug");
+		var n = noty({text: 'foo'});
 		return;
 
 	}
