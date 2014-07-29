@@ -114,6 +114,7 @@ function newDay()
 	
 	updateTradingButtons();	// enabling or disabling buy and or sell button
 	updateDebt();	// re-calculate debt
+	randomEventsOnDayChange();
 }
 
 
@@ -199,6 +200,7 @@ var start = {
 		setTimes: function(){
 
 			//
+			/*
 			setInterval(function()
 			{
 				console.log("1 min and 20 points later")
@@ -208,6 +210,9 @@ var start = {
 				$('#debt').html("$"+debt);
 
 			}, 60000);
+			
+			*/
+			
 		} // end of setTimes
 		}; // end start function
 
@@ -745,6 +750,64 @@ setInterval(function()
 	}
 }, getRandomInt(60000,180000) 
 );
+
+
+
+
+
+
+
+/*
+	Random Events
+*/
+function randomEventsOnDayChange()
+{
+	var shouldRandomHappen = getRandomInt(1,10);
+	if(shouldRandomHappen == 1)
+	{
+		// select 1 of the random events
+		var x = getRandomInt(1,3);
+		console.log(x); 
+
+		if (x === 1)
+		{
+			// run police function: lose drugs
+			var n = noty({text: 'Yikes pigs, dumping my stash'});
+			console.log("you lost " +  currentDrugs.acid + " Acid and " + currentDrugs.coke + " Coke"); 
+					
+			currentDrugs.coke = 0;
+			currentDrugs.acid = 0; 
+			$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke);  
+		}
+		else if (x === 2)
+		{
+			// run got mugged function: lose money
+			var n = noty({text: 'Dude with a gun, its gonna cost me'});
+
+			// calculate money stolen
+			var stolen = Math.round(bank / 100 * 30);
+			console.log("you lost $" + stolen); 
+			bank = bank - stolen; 
+					
+			// update my bank
+			$('#inBank').html("$"+bank); 
+		}
+		else 
+		{ 
+			// run drugs super cheap: temp change in prices
+			var n = noty({text: 'Drug SALE - buy now'});
+			console.log("acid was $" + drugs.acid + " and coke was $" + drugs.coke);  
+
+			// new cost of drugs
+			drugs.acid = getRandomInt(300,700);
+			drugs.coke = getRandomInt(400,1000);
+
+			// cost per unit
+			$('#acidPerUnit').html("$"+drugs.acid);
+			$('#cokePerUnit').html("$"+drugs.coke);
+		}	
+	}
+}
 
 
 
