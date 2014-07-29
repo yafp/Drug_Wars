@@ -103,6 +103,9 @@ function newDay()
 	if(curDay==maxDays) // last day
 	{
 		var n = noty({text: 'GAME OVER'});
+		// disable travel button
+		document.getElementById("choose_city").disabled = true;	// disable sell button
+		gameEnded();
 	}
 	else // normal day
 	{
@@ -115,6 +118,18 @@ function newDay()
 	updateTradingButtons();	// enabling or disabling buy and or sell button
 	updateDebt();	// re-calculate debt
 	randomEventsOnDayChange();
+}
+
+
+
+
+/*
+	Show final score
+*/
+function gameEnded()
+{
+	finalScore = bank - (3* debt)
+	alert("Final Score: "+finalScore);
 }
 
 
