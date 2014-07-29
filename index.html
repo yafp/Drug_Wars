@@ -11,10 +11,8 @@
 		
 		<!-- Bootstrap core CSS -->
 		<link href="css/bootstrap.css" rel="stylesheet">
-
 		<!-- Custom styles for this template -->
 		<link href="css/starter-template.css" rel="stylesheet">
-
 		<!-- font awesome -->
 		<link rel="stylesheet" href="css/font-awesome-4.1.0/css/font-awesome.min.css">
 	</head>
@@ -28,77 +26,73 @@
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 						<span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">DrugWars</a>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="index.html">Restart Game</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">DrugWars</a>
+				</div>
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="index.html">Restart Game</a></li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</div>
 
 
 
-    <div class="container">
-    <div class="row" id="decision">
-    <div class="col-md-6">
-     <br><br>
-    <button type="button"  class="btn btn-default" id="choose_buyd"><i class="fa fa-shopping-cart"> Buy Drugs</i></button>
-    <button type="button"  class="btn btn-default" id="choose_selld"><i class="fa fa-share-alt"> Sell Drugs</i></button>
-    <button type="button"  class="btn btn-default" id="choose_loan"><i class="fa fa-bank"> Loan Shark</i></button>
-     <button type="button"  class="btn btn-default" id="choose_city"><i class="fa fa-plane"> Change City</i></button>
-    <br><br>
+		<div class="container">
+			<div class="row" id="decision">
+				<div class="col-md-6">
+					<br><br>
+					<button type="button"  class="btn btn-default" id="choose_buyd"><i class="fa fa-shopping-cart"> Buy Drugs</i></button>
+					<button type="button"  class="btn btn-default" id="choose_selld"><i class="fa fa-share-alt"> Sell Drugs</i></button>
+					<button type="button"  class="btn btn-default" id="choose_loan"><i class="fa fa-bank"> Loan Shark</i></button>
+					<button type="button"  class="btn btn-default" id="choose_city"><i class="fa fa-plane"> Change City</i></button>
+					<br><br>
 
 
 
-    <!--LOAN SHARK BUTTON -->
-    <div id="loanshark_div">
-    <form class="form-inline" role="form">
-    <div class="form-group">
-    <label for="getCash">Ask the Loan Shark for $?</label>
-    <input type="number" class="form-control" id="getCash" placeholder="How much to borrow?">
-    </div>
-    <button type="button" id="btn" class="btn btn-default">Borrow $</button>
-    </form>
+					<!--LOAN SHARK BUTTON -->
+					<div id="loanshark_div">
+						<form class="form-inline" role="form">
+							<div class="form-group">
+								<label for="getCash">Ask the Loan Shark for $?</label>
+								<input type="number" class="form-control" id="getCash" placeholder="How much to borrow?">
+							</div>
+							<button type="button" id="btn" class="btn btn-default">Borrow $</button>
+						</form>
 
-      <!--LOAN SHARK PAY OFF DEBT -->
-    <br>
-    <form class="form-inline" role="form">
-    <div class="form-group">
-    <label for="getoffDept">Pay off your debt?</label>
-    <input type="number" class="form-control" id="payDebt" placeholder="How much to pay back?">
-    </div>
-    <button type="button" id="btn_payDebt" class="btn btn-default">Pay $</button>
-     </form>
-    </div> <!--END OF LOAN SHARK -->
-
-
+						<!--LOAN SHARK PAY OFF DEBT -->
+						<br>
+						<form class="form-inline" role="form">
+							<div class="form-group">
+								<label for="getoffDept">Pay off your debt?</label>
+								<input type="number" class="form-control" id="payDebt" placeholder="How much to pay back?">
+							</div>
+							<button type="button" id="btn_payDebt" class="btn btn-default">Pay $</button>
+						</form>
+					</div> <!--END OF LOAN SHARK -->
 
 
 
 
-    <!--BUY DRUGS BUTTON -->
-    <form class="form-inline" role="form" id="buy_Drugs">
-    <div class="form-group">
-    What drug do you want to buy?
-    <label class="checkbox-inline">
-    <input type="checkbox" id="acid_tick" value="acid"> Acid
-    </label>
-    <label class="checkbox-inline">
-    <input type="checkbox" id="coke_tick" value="coke"> Coke
-    </label>
-    <br><br>
-    <label for="buyDrugs">How many drugs do you want to buy?</label>
-    <input type="number" class="form-control" id="buyDrugs" placeholder="How many units?">
-    </div>
-    <button type="button" id="drugBtn" class="btn btn-default">Request Units</button>
-    </form>
+
+
+					<!--BUY DRUGS BUTTON -->
+					<form class="form-inline" role="form" id="buy_Drugs">
+					<div class="form-group">
+						What drug do you want to buy?
+						<label class="checkbox-inline"><input type="checkbox" id="acid_tick" value="acid"> Acid</label>
+						<label class="checkbox-inline"><input type="checkbox" id="coke_tick" value="coke"> Coke</label>
+						<br><br>
+						<label for="buyDrugs">How many drugs do you want to buy?</label>
+						<input type="number" class="form-control" id="buyDrugs" placeholder="How many units?">
+					</div>
+					<button type="button" id="drugBtn" class="btn btn-default">Request Units</button>
+					</form>
 
 
 
@@ -134,7 +128,7 @@
           <table class="table table-bordered">
             <thead>
               <tr>
-              	<th><i class="fa fa-calendar"></i> Days Left</th>
+              	<th><i class="fa fa-calendar"></i> Calendar</th>
                 <th><i class="fa fa-money"></i> Bank Account</th>
                 <th><i class="fa fa-archive"></i> Drugs</th>
                 <th><i class="fa fa-book"></i> Debt</th>
@@ -142,7 +136,7 @@
             </thead>
             <tbody>
               <tr>
-              	<td id="daysLeft">20</td>
+              	<td id="calendar"></td>
                 <td id="inBank"></td>
                 <td id="listDrugs"></td>
                 <td id="debt"></td>

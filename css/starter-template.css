@@ -1,19 +1,14 @@
 body {
-  padding-top: 50px;
+	padding-top: 50px;
   
-  
-  background-position: left bottom;
+	background-position: left bottom;
     background-repeat: no-repeat;
     background-image: url('../img/header.png');
-  
 }
 .starter-template {
   padding: 40px 15px;
   text-align: center;
 }
-
-
-
 
 
 
