@@ -31,6 +31,10 @@ function initGame()
 }
 
 
+
+
+
+
 /*
 	Check based on money if buttons needs to be enabled or disabled
 */
@@ -48,6 +52,11 @@ function checkMoney()
 
 
 
+
+
+/*
+	Check based on amount of drugs
+*/
 function checkDrugs()
 {
 	if ((currentDrugs.acid == 0) & (currentDrugs.coke == 0) )
@@ -59,6 +68,23 @@ function checkDrugs()
 	{
 		document.getElementById("choose_selld").disabled = false; // enable sell button
 	}
+}
+
+
+
+
+
+/*
+	Calculate debt
+*/
+function updateDebt()
+{
+	if(debt > 0)
+	{
+		debt = Math.round(debt * 1.05);	// calculate new debt
+		$('#debt').html("$"+debt);			// update UI
+	}
+	
 }
 
 
@@ -90,6 +116,7 @@ function newDay()
 	
 	checkMoney();
 	checkDrugs();
+	updateDebt();
 }
 
 
