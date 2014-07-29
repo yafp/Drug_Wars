@@ -35,11 +35,16 @@ function initGame()
 
 
 
+
+
+
 /*
-	Check based on money if buttons needs to be enabled or disabled
+	updateTradingButtons (enable or disable them based on the amount of money and/or drugs in pocket
 */
-function checkMoney()
+function updateTradingButtons()
 {
+	// buy button
+	//
 	if(bank>0) // player has money - enable buy button
 	{
 		document.getElementById("choose_buyd").disabled = false;	// enable buy button
@@ -48,17 +53,10 @@ function checkMoney()
 	{
 		document.getElementById("choose_buyd").disabled = true;	// disable buy buton
 	}
-}
-
-
-
-
-
-/*
-	Check based on amount of drugs
-*/
-function checkDrugs()
-{
+	
+	
+	// sell buttons
+	//
 	if ((currentDrugs.acid == 0) & (currentDrugs.coke == 0) )
 	{
 		
@@ -74,17 +72,20 @@ function checkDrugs()
 
 
 
+
+
+
 /*
-	Calculate debt
+	Calculate debt (happens on each new day)
 */
 function updateDebt()
 {
 	if(debt > 0)
 	{
+		console.log("Debt got re-calculated");
 		debt = Math.round(debt * 1.05);	// calculate new debt
 		$('#debt').html("$"+debt);			// update UI
 	}
-	
 }
 
 
@@ -99,24 +100,20 @@ function newDay()
 {
 	console.log("Starting a new day");
 	
-	// check if its the last day
 	if(curDay==maxDays) // last day
 	{
 		var n = noty({text: 'GAME OVER'});
-		
 	}
 	else // normal day
 	{
 		curDay=curDay+1;
 		leftDays=maxDays-curDay;
 	
-		// update cal view
-		$('#calendar').html("Day "+curDay+" of "+maxDays+" (Left "+leftDays+")");
+		$('#calendar').html("Day "+curDay+" of "+maxDays+" (Left "+leftDays+")");	// update cal view
 	}
 	
-	checkMoney();
-	checkDrugs();
-	updateDebt();
+	updateTradingButtons();	// enabling or disabling buy and or sell button
+	updateDebt();	// re-calculate debt
 }
 
 
@@ -128,9 +125,7 @@ function newDay()
 /*
 - create all potential drugs
 - create events (mugged, police, etc)
-
 */
-//alert("old game init");
 var bank = 0;
 var debt = Math.floor(0); 
 var currentLocation;
@@ -174,20 +169,16 @@ currentLocation = locations.ny;
 
 // Setup for NYC
 //
-// change city title
-$('#market').append(' New York City');
+$('#market').append(' New York City');	// change city title
 // cost in nyc
 drugs.acid = 700;
 drugs.coke = 1400;
 
 
 
-
-
 var start = {
-
-		play: function(){
-
+		play: function()
+		{
 			$('#inBank').html("$"+bank); 
 			$('#debt').html("$"+debt);
 			$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke);
@@ -291,8 +282,7 @@ $('#choose_loan').click(function(event)
 		debt = debt + b;
 		$('#debt').html("$"+debt);
 	
-		checkMoney(); // update UI buttons based on money
-		checkDrugs(); // update UI buttons based on drugs
+		updateTradingButtons();
 	});
 
 
@@ -325,11 +315,8 @@ $('#choose_loan').click(function(event)
 
 
 
-
 	var pickedAcid = false;
 	var pickedCoke = false; 
-	
-
 
 
 
@@ -394,124 +381,118 @@ $('#choose_loan').click(function(event)
 
 
 
-	// Buy Drugs Click Func
-	//
-	$('#drugBtn').click(function(event) 
-	{
+// BUTTON PRESS: Buy Drugs Click Func
+//
+$('#drugBtn').click(function(event) 
+{
 	// check that a tick box is selected
 	if (pickedAcid === false && pickedCoke === false)
 	{
 		var n = noty({text: 'You need to pick a drug'});
 		return;
 	}
-
 	
 	// turn number of units into a number 
 	var xUnits = $('input[id="buyDrugs"]').val(); 
 	console.log("you want to buy " + xUnits + " units");
 	var numUnits = parseInt(xUnits); 
 
-	
-
-
 	// depending on your selection
 	if (pickedAcid === true)
 	{
-	cashSpent = drugs.acid * numUnits;
-	console.log("you spent " + cashSpent);
+		cashSpent = drugs.acid * numUnits;
+		console.log("you spent " + cashSpent);
 
-	// check to see if you can afford it
-	if (bank - cashSpent < 0)
-	{
-		var n = noty({text: 'You cant afford that!'});
-		return;
-	}
+		// check to see if you can afford it
+		if (bank - cashSpent < 0)
+		{
+			var n = noty({text: 'You cant afford that!'});
+			return;
+		}
 
-	// check to see if have enough units
-	if (acid_unit < numUnits)
-	{
-		var n = noty({text: 'Not enough units, select less!'});
-		return;
-	}
+		// check to see if have enough units
+		if (acid_unit < numUnits)
+		{
+			var n = noty({text: 'Not enough units, select less!'});
+			return;
+		}
 
-	// update units of drugs you own
-	currentDrugs.acid = currentDrugs.acid + numUnits;
-	$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke); 
+		// update units of drugs you own
+		currentDrugs.acid = currentDrugs.acid + numUnits;
+		$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke); 
 
-	// remove units once bought 
-	console.log("acid_unit is at " + acid_unit); 
-	acid_unit = acid_unit - numUnits;
-	console.log("num acid left is " + acid_unit); 
-	$('#acidUnits').html(acid_unit); 
+		// remove units once bought 
+		console.log("acid_unit is at " + acid_unit); 
+		acid_unit = acid_unit - numUnits;
+		console.log("num acid left is " + acid_unit); 
+		$('#acidUnits').html(acid_unit); 
 
-	// work out new bank balance
-	bank = bank - cashSpent;
-	console.log(bank);
+		// work out new bank balance
+		bank = bank - cashSpent;
+		console.log(bank);
 
-	// update my bank
-	$('#inBank').html("$"+bank); 
+		// update my bank
+		$('#inBank').html("$"+bank); 
 
 	} // end of IF Picked Acid
 
 
-
 	else if (pickedCoke === true)
 	{
-	cashSpent = drugs.coke * numUnits;
-	console.log(cashSpent);
+		cashSpent = drugs.coke * numUnits;
+		console.log(cashSpent);
 
-	// check to see if you can afford it
-	if (bank - cashSpent < 0)
-	{
-		var n = noty({text: 'You cant afford that!'});
-		return;
-	}
+		// check to see if you can afford it
+		if (bank - cashSpent < 0)
+		{
+			var n = noty({text: 'You cant afford that!'});
+			return;
+		}
 
-	// check to see if have enough units
-	if (coke_unit < numUnits)
-	{
-		var n = noty({text: 'Not enough units, select less!'});
-		return;
-	}
+		// check to see if have enough units
+		if (coke_unit < numUnits)
+		{
+			var n = noty({text: 'Not enough units, select less!'});
+			return;
+		}
 
-	// update units of drugs you own
-	currentDrugs.coke = currentDrugs.coke + numUnits;
-	$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke);
+		// update units of drugs you own
+		currentDrugs.coke = currentDrugs.coke + numUnits;
+		$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke);
 
-	// remove units once bought 
-	console.log("coke_unit is at " + coke_unit); 
-	coke_unit = coke_unit - numUnits;
-	console.log("num coke left is " + coke_unit); 
-	$('#cokeUnits').html(coke_unit);  
+		// remove units once bought 
+		console.log("coke_unit is at " + coke_unit); 
+		coke_unit = coke_unit - numUnits;
+		console.log("num coke left is " + coke_unit); 
+		$('#cokeUnits').html(coke_unit);  
 
-	// work out new bank balance
-	bank = bank - cashSpent;
-	console.log(bank);
+		// work out new bank balance
+		bank = bank - cashSpent;
+		console.log(bank);
 
-	// update my bank
-	$('#inBank').html("$"+bank); 
+		// update my bank
+		$('#inBank').html("$"+bank); 
 
 	} // End of else if	
-	}); // buy drugs button
-		
+}); // buy drugs button
 
 
 
 
-	// How to SELL drugs
-	//
-	$('#sellBtn').click(function(event) 
-	{
+
+
+/*
+// BUTTON PRESSED: How to SELL drugs
+*/
+$('#sellBtn').click(function(event) 
+{
 	// check that a tick box is selected
 	if (pickedAcid === false && pickedCoke === false)
 	{
-		//alert("you need to pick a drug");
 		var n = noty({text: 'You need to pick a drug'});
 		return;
-
 	}
 
-	
 	// turn number of units into a number 
 	var xUnits = $('input[id="sellDrugs"]').val(); 
 	console.log("you want to sell " + xUnits + " units");
@@ -520,87 +501,73 @@ $('#choose_loan').click(function(event)
 	// depending on your selection
 	if (pickedAcid === true)
 	{
-	cashEarned = drugs.acid * numUnits;
-	console.log("you made " + cashEarned);
+		cashEarned = drugs.acid * numUnits;
+		console.log("you made " + cashEarned);
 
-	// check to see if you have enough units
-	if (numUnits > currentDrugs.acid)
-	{
-		//alert("sell what you have, not what you don't!");
-		var n = noty({text: 'Sell what you have, not what you dont'});
-		return;
-	}
+		// check to see if you have enough units
+		if (numUnits > currentDrugs.acid)
+		{
+			var n = noty({text: 'Sell what you have, not what you dont'});
+			return;
+		}
 
+		// update units of drugs you own
+		currentDrugs.acid = currentDrugs.acid - numUnits;
+		$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke); 
 
+		// add back units once sold 
+		console.log("acid_unit is at " + acid_unit); 
+		acid_unit = acid_unit + numUnits;
+		console.log("num acid is now " + acid_unit); 
+		$('#acidUnits').html(acid_unit); 
 
+		// work out new bank balance
+		bank = bank + cashEarned;
+		console.log(bank);
 
-
-	// update units of drugs you own
-	currentDrugs.acid = currentDrugs.acid - numUnits;
-	$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke); 
-
-
-	// add back units once sold 
-	console.log("acid_unit is at " + acid_unit); 
-	acid_unit = acid_unit + numUnits;
-	console.log("num acid is now " + acid_unit); 
-	$('#acidUnits').html(acid_unit); 
-
-
-	// work out new bank balance
-	bank = bank + cashEarned;
-	console.log(bank);
-
-	// update my bank
-	$('#inBank').html("$"+bank); 
+		// update my bank
+		$('#inBank').html("$"+bank); 
 
 	} // end of IF Picked Acid
-
-
-
-
 
 	// NOW LET'S DO FOR COKE
 	else if (pickedCoke === true)
 	{
-	cashEarned = drugs.coke * numUnits;
-	console.log("you made " + cashEarned);
+		cashEarned = drugs.coke * numUnits;
+		console.log("you made " + cashEarned);
 
-	// check to see if have enough units
-	if (numUnits > currentDrugs.coke)
-	{
-		var n = noty({text: 'Sell what you have, not what you dont'});
-		return;
-	}
+		// check to see if have enough units
+		if (numUnits > currentDrugs.coke)
+		{
+			var n = noty({text: 'Sell what you have, not what you dont'});
+			return;
+		}
 
-	// update units of drugs you own
-	currentDrugs.coke = currentDrugs.coke - numUnits;
-	$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke);
+		// update units of drugs you own
+		currentDrugs.coke = currentDrugs.coke - numUnits;
+		$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke);
 
+		// add back units once sold  
+		console.log("coke_unit is at " + coke_unit); 
+		coke_unit = coke_unit + numUnits;
+		console.log("num coke left is " + coke_unit); 
+		$('#cokeUnits').html(coke_unit);  
 
+		// work out new bank balance
+		bank = bank + cashEarned;
+		console.log(bank);
 
-	// add back units once sold  
-	console.log("coke_unit is at " + coke_unit); 
-	coke_unit = coke_unit + numUnits;
-	console.log("num coke left is " + coke_unit); 
-	$('#cokeUnits').html(coke_unit);  
-
-	// work out new bank balance
-	bank = bank + cashEarned;
-	console.log(bank);
-
-	// update my bank
-	$('#inBank').html("$"+bank); 
+		// update my bank
+		$('#inBank').html("$"+bank); 
 
 	} // End of else if
-	}); // buy drugs button
+}); // buy drugs button
 
 
 
-	
-	
-	
-	
+
+
+
 /*
 	Calculate Sales Price
 */
@@ -643,12 +610,9 @@ function getRandomInt(min, max)
 
 
 
-	
-	
-	
-	
+
 /*	
-	change city button pressed
+	BUTTON PRESS: change city
 */
 $('#choose_city').click(function(event) 
 {
@@ -677,7 +641,7 @@ function ChangeCity()
 
 		// change city title
 		$('#market').empty();
-		$('#market').append('The Market: New York City');
+		$('#market').append('<i class="fa fa-map-marker"></i> The Market: New York City');
 
 		// cost in nyc
 		drugs.acid = getRandomInt(600,1300);
@@ -696,92 +660,93 @@ function ChangeCity()
 		$('#cokePerUnit').html("$"+drugs.coke);
 
 		sellPrice(); 
-		} // end of IF
+	} // end of IF
 
-		else if (currentLocation === 'nyc')
-		{
-			// change city
-			currentLocation = locations.lnd;
-			console.log(currentLocation);
+	else if (currentLocation === 'nyc')
+	{
+		// change city
+		currentLocation = locations.lnd;
+		console.log(currentLocation);
 
-			// change city title
-			$('#market').empty();
-			$('#market').append("The Market: London"); 
+		// change city title
+		$('#market').empty();
+		$('#market').append("<i class='fa fa-map-marker'></i> The Market: London"); 
 	
-			// cost in lnd
-			drugs.acid = getRandomInt(700,1500);
-			drugs.coke = getRandomInt(900,1700);
+		// cost in lnd
+		drugs.acid = getRandomInt(700,1500);
+		drugs.coke = getRandomInt(900,1700);
 
-			// change units to represent time passed
-			coke_unit = drugs.unit();
-			acid_unit = drugs.unit();
+		// change units to represent time passed
+		coke_unit = drugs.unit();
+		acid_unit = drugs.unit();
 
-			// how many units available
-			$('#acidUnits').html(acid_unit);
-			$('#cokeUnits').html(coke_unit);
+		// how many units available
+		$('#acidUnits').html(acid_unit);
+		$('#cokeUnits').html(coke_unit);
 				
-			// cost per unit
-			$('#acidPerUnit').html("$"+drugs.acid);
-			$('#cokePerUnit').html("$"+drugs.coke);
+		// cost per unit
+		$('#acidPerUnit').html("$"+drugs.acid);
+		$('#cokePerUnit').html("$"+drugs.coke);
 
-			sellPrice(); 	
-		} // else if  
-	} // change city
+		sellPrice(); 	
+	} // else if  
+} // change city
 
 
 
-	
-	
-	
-		// time interval events that go wrong or right!
-		//
-		setInterval(function()
-		{
-				var x = getRandomInt(1,3);
-				console.log(x); 
 
-				if (x === 1)
-				{
-					// run police function: lose drugs
-					var n = noty({text: 'Yikes pigs, dumping my stash'});
-					console.log("you lost " +  currentDrugs.acid + " Acid and " + currentDrugs.coke + " Coke"); 
+
+
+
+/* 
+	time interval events that go wrong or right!
+*/
+setInterval(function()
+{
+	var x = getRandomInt(1,3);
+	console.log(x); 
+
+	if (x === 1)
+	{
+		// run police function: lose drugs
+		var n = noty({text: 'Yikes pigs, dumping my stash'});
+		console.log("you lost " +  currentDrugs.acid + " Acid and " + currentDrugs.coke + " Coke"); 
 					
-					currentDrugs.coke = 0;
-					currentDrugs.acid = 0; 
-					$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke);  
-				}
-				else if (x === 2)
-				{
-					// run got mugged function: lose money
-					var n = noty({text: 'Dude with a gun, its gonna cost me'});
+		currentDrugs.coke = 0;
+		currentDrugs.acid = 0; 
+		$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke);  
+	}
+	else if (x === 2)
+	{
+		// run got mugged function: lose money
+		var n = noty({text: 'Dude with a gun, its gonna cost me'});
 
-					// calculate money stolen
-					var stolen = Math.round(bank / 100 * 30);
-					console.log("you lost $" + stolen); 
-					bank = bank - stolen; 
+		// calculate money stolen
+		var stolen = Math.round(bank / 100 * 30);
+		console.log("you lost $" + stolen); 
+		bank = bank - stolen; 
 					
-					// update my bank
-					$('#inBank').html("$"+bank); 
-				}
-				else 
-				{ 
-					// run drugs super cheap: temp change in prices
-					var n = noty({text: 'Drug SALE - buy now'});
-					console.log("acid was $" + drugs.acid + " and coke was $" + drugs.coke);  
+		// update my bank
+		$('#inBank').html("$"+bank); 
+	}
+	else 
+	{ 
+		// run drugs super cheap: temp change in prices
+		var n = noty({text: 'Drug SALE - buy now'});
+		console.log("acid was $" + drugs.acid + " and coke was $" + drugs.coke);  
 
-					// new cost of drugs
-					drugs.acid = getRandomInt(300,700);
-					drugs.coke = getRandomInt(400,1000);
+		// new cost of drugs
+		drugs.acid = getRandomInt(300,700);
+		drugs.coke = getRandomInt(400,1000);
 
-					
-					// cost per unit
-					$('#acidPerUnit').html("$"+drugs.acid);
-					$('#cokePerUnit').html("$"+drugs.coke);
-				}
-			}, getRandomInt(60000,180000) 
-			);
-		
+		// cost per unit
+		$('#acidPerUnit').html("$"+drugs.acid);
+		$('#cokePerUnit').html("$"+drugs.coke);
+	}
+}, getRandomInt(60000,180000) 
+);
 
-		
+
+
 
 		// add ability to bank money, but at a cost. 
