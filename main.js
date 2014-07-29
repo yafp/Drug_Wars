@@ -762,27 +762,27 @@ setInterval(function()
 */
 function randomEventsOnDayChange()
 {
-	var shouldRandomHappen = getRandomInt(1,10);
-	if(shouldRandomHappen == 1)
+	var shouldRandomHappen = getRandomInt(1,10); // calculate chance for a random event
+	if(shouldRandomHappen == 1) // random event happens
 	{
 		// select 1 of the random events
 		var x = getRandomInt(1,3);
 		console.log(x); 
 
-		if (x === 1)
+		if (x === 1)		// Event 1: run police function: lose drugs
 		{
-			// run police function: lose drugs
-			var n = noty({text: 'Yikes pigs, dumping my stash'});
+			var n = noty({text: 'The cops .... dumping my stash'});
 			console.log("you lost " +  currentDrugs.acid + " Acid and " + currentDrugs.coke + " Coke"); 
 					
 			currentDrugs.coke = 0;
 			currentDrugs.acid = 0; 
 			$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke);  
 		}
-		else if (x === 2)
+		
+		
+		else if (x === 2)			// Event 2: run got mugged function: lose money
 		{
-			// run got mugged function: lose money
-			var n = noty({text: 'Dude with a gun, its gonna cost me'});
+			var n = noty({text: 'A dude with a gun robbed you'});
 
 			// calculate money stolen
 			var stolen = Math.round(bank / 100 * 30);
@@ -792,10 +792,12 @@ function randomEventsOnDayChange()
 			// update my bank
 			$('#inBank').html("$"+bank); 
 		}
-		else 
+		
+		
+		
+		else 			// Event 3: run drugs super cheap: temp change in prices
 		{ 
-			// run drugs super cheap: temp change in prices
-			var n = noty({text: 'Drug SALE - buy now'});
+			var n = noty({text: 'Drug sale - buy now as much as possible'});
 			console.log("acid was $" + drugs.acid + " and coke was $" + drugs.coke);  
 
 			// new cost of drugs
