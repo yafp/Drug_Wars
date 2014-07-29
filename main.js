@@ -1,12 +1,11 @@
-
 /*
 	On game start
 */
 $( document ).ready(function() 
 {
 	console.log("Starting the game");
+	var n = noty({text: 'Welcome to DrugWars - The Heisenberg Edition'});
 	
-	//alert("Welcome to DrugWars");
 	$('#calendar').html("Day "+1+" of X (Left Y)");
 	initGame();
 });
@@ -39,13 +38,11 @@ function checkMoney()
 {
 	if(bank>0) // player has money - enable buy button
 	{
-		// enable buy button
-		document.getElementById("choose_buyd").disabled = false;
+		document.getElementById("choose_buyd").disabled = false;	// enable buy button
 	}
 	else
 	{
-		// disable buy buton
-		document.getElementById("choose_buyd").disabled = true;
+		document.getElementById("choose_buyd").disabled = true;	// disable buy buton
 	}
 }
 
@@ -55,13 +52,12 @@ function checkDrugs()
 {
 	if ((currentDrugs.acid == 0) & (currentDrugs.coke == 0) )
 	{
-		// enable sell button
-		document.getElementById("choose_selld").disabled = true;
+		
+		document.getElementById("choose_selld").disabled = true;	// disable sell button
 	}
 	else
 	{
-		// enable sell button
-		document.getElementById("choose_selld").disabled = false;
+		document.getElementById("choose_selld").disabled = false; // enable sell button
 	}
 }
 
@@ -80,7 +76,8 @@ function newDay()
 	// check if its the last day
 	if(curDay==maxDays) // last day
 	{
-		alert("Game ended");
+		var n = noty({text: 'GAME OVER'});
+		
 	}
 	else // normal day
 	{
@@ -155,7 +152,7 @@ $('#market').append(' New York City');
 // cost in nyc
 drugs.acid = 700;
 drugs.coke = 1400;
-		
+
 
 
 
@@ -196,10 +193,17 @@ var start = {
 		} // end of setTimes
 		}; // end start function
 
-		
+
+
+
+
+
 start.play();
 start.setTimes();
 sellPrice(); 
+
+
+
 
 
 // Sell-Button
@@ -212,6 +216,8 @@ $('#choose_selld').click(function(event)
 });
 
 
+
+
 // Buy-Button
 //
 $('#choose_buyd').click(function(event) 
@@ -220,6 +226,9 @@ $('#choose_buyd').click(function(event)
 	$('#loanshark_div').hide();
 	$('#buy_Drugs').toggle(400); 
 });
+
+
+
 
 // Visit Loan shark
 //
@@ -260,8 +269,10 @@ $('#choose_loan').click(function(event)
 	});
 
 
-	
-	
+
+
+
+
 	// Pay Back Money 
 	$('#btn_payDebt').click(function(event) {
 	
@@ -297,35 +308,33 @@ $('#choose_loan').click(function(event)
 
 
 	// check if drug box got ticked -
-
-	$('#acid_tick').click(function(event) {
-		
-		if (this.checked){
-
+	$('#acid_tick').click(function(event) 
+	{
+		if (this.checked)
+		{
 			console.log("you want acid");
 			$('#coke_tick').prop('checked', false);
 			pickedAcid = true;
 			pickedCoke = false; 
 		}	
-
 	});
 
-	$('#coke_tick').click(function(event) {
-		
-		if (this.checked){
 
+
+	$('#coke_tick').click(function(event) 
+	{
+		if (this.checked)
+		{
 			console.log("you want coke");
 			$('#acid_tick').prop('checked', false);
 			pickedCoke = true;
 			pickedAcid = false;
 		}	
-
 	});
 	
 
-	
-	// check if SELL drug box got ticked
 
+	// check if SELL drug box got ticked
 	$('#s_acid_tick').click(function(event) 
 	{	
 		if (this.checked)
@@ -335,8 +344,9 @@ $('#choose_loan').click(function(event)
 			pickedAcid = true;
 			pickedCoke = false; 
 		}	
-
 	});
+
+
 
 	$('#s_coke_tick').click(function(event) 
 	{	
@@ -347,7 +357,6 @@ $('#choose_loan').click(function(event)
 			pickedCoke = true;
 			pickedAcid = false;
 		}	
-
 	});
 
 
@@ -360,12 +369,12 @@ $('#choose_loan').click(function(event)
 
 	// Buy Drugs Click Func
 	//
-	$('#drugBtn').click(function(event) {
-	
+	$('#drugBtn').click(function(event) 
+	{
 	// check that a tick box is selected
 	if (pickedAcid === false && pickedCoke === false)
 	{
-		alert("you need to pick a drug");
+		var n = noty({text: 'You need to pick a drug'});
 		return;
 	}
 
@@ -387,15 +396,14 @@ $('#choose_loan').click(function(event)
 	// check to see if you can afford it
 	if (bank - cashSpent < 0)
 	{
-		alert("you can't afford that!");
+		var n = noty({text: 'You cant afford that!'});
 		return;
 	}
 
 	// check to see if have enough units
-
 	if (acid_unit < numUnits)
 	{
-		alert("not enough units, select less!");
+		var n = noty({text: 'Not enough units, select less!'});
 		return;
 	}
 
@@ -420,7 +428,6 @@ $('#choose_loan').click(function(event)
 
 
 
-
 	else if (pickedCoke === true)
 	{
 	cashSpent = drugs.coke * numUnits;
@@ -429,14 +436,14 @@ $('#choose_loan').click(function(event)
 	// check to see if you can afford it
 	if (bank - cashSpent < 0)
 	{
-		alert("you can't afford that!");
+		var n = noty({text: 'You cant afford that!'});
 		return;
 	}
 
 	// check to see if have enough units
 	if (coke_unit < numUnits)
 	{
-		alert("not enough units, select less!");
+		var n = noty({text: 'Not enough units, select less!'});
 		return;
 	}
 
@@ -461,19 +468,18 @@ $('#choose_loan').click(function(event)
 	}); // buy drugs button
 		
 
-		
-		
-		
+
 
 
 	// How to SELL drugs
 	//
-	$('#sellBtn').click(function(event) {
-	
+	$('#sellBtn').click(function(event) 
+	{
 	// check that a tick box is selected
 	if (pickedAcid === false && pickedCoke === false)
 	{
-		alert("you need to pick a drug");
+		//alert("you need to pick a drug");
+		var n = noty({text: 'You need to pick a drug'});
 		return;
 
 	}
@@ -493,9 +499,13 @@ $('#choose_loan').click(function(event)
 	// check to see if you have enough units
 	if (numUnits > currentDrugs.acid)
 	{
-		alert("sell what you have, not what you don't!");
+		//alert("sell what you have, not what you don't!");
+		var n = noty({text: 'Sell what you have, not what you dont'});
 		return;
 	}
+
+
+
 
 
 	// update units of drugs you own
@@ -519,7 +529,9 @@ $('#choose_loan').click(function(event)
 
 	} // end of IF Picked Acid
 
-	
+
+
+
 
 	// NOW LET'S DO FOR COKE
 	else if (pickedCoke === true)
@@ -530,12 +542,11 @@ $('#choose_loan').click(function(event)
 	// check to see if have enough units
 	if (numUnits > currentDrugs.coke)
 	{
-		alert("sell what you have, not what you don't!");
+		var n = noty({text: 'Sell what you have, not what you dont'});
 		return;
 	}
 
 	// update units of drugs you own
-
 	currentDrugs.coke = currentDrugs.coke - numUnits;
 	$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke);
 
@@ -554,10 +565,7 @@ $('#choose_loan').click(function(event)
 	// update my bank
 	$('#inBank').html("$"+bank); 
 
-	
 	} // End of else if
-
-	
 	}); // buy drugs button
 
 
@@ -588,7 +596,6 @@ function sellPrice()
 	else { sell_Coke = Math.round(drugs.coke / 100 * 3 + drugs.coke); }
 
 	// sell per unit
-
 	$('#acidSell').html("$"+sell_Acid);
 	$('#cokeSell').html("$"+sell_Coke);  
 } // end of sales price function
@@ -614,7 +621,7 @@ function getRandomInt(min, max)
 	
 	
 /*	
-// change city button pressed
+	change city button pressed
 */
 $('#choose_city').click(function(event) 
 {
@@ -631,7 +638,7 @@ $('#choose_city').click(function(event)
 
 
 /*
-CHANGE CITY
+	CHANGE CITY
 */
 function ChangeCity()
 {
@@ -709,7 +716,7 @@ function ChangeCity()
 				if (x === 1)
 				{
 					// run police function: lose drugs
-					alert("Yikes Pigs, dumping my stash");
+					var n = noty({text: 'Yikes pigs, dumping my stash'});
 					console.log("you lost " +  currentDrugs.acid + " Acid and " + currentDrugs.coke + " Coke"); 
 					
 					currentDrugs.coke = 0;
@@ -719,7 +726,7 @@ function ChangeCity()
 				else if (x === 2)
 				{
 					// run got mugged function: lose money
-					alert("Dude with a gun, it's gunna cost me");
+					var n = noty({text: 'Dude with a gun, its gonna cost me'});
 
 					// calculate money stolen
 					var stolen = Math.round(bank / 100 * 30);
@@ -732,7 +739,7 @@ function ChangeCity()
 				else 
 				{ 
 					// run drugs super cheap: temp change in prices
-					alert("drug sale, buy now!");
+					var n = noty({text: 'Drug SALE - buy now'});
 					console.log("acid was $" + drugs.acid + " and coke was $" + drugs.coke);  
 
 					// new cost of drugs
