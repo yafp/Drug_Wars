@@ -26,6 +26,11 @@ function initGame()
 	maxDays=30;
 	leftDays=maxDays-curDay;
 	
+	maxPockets=100;
+	usedPockets=0;
+	freePockets=maxPockets - usedPockets;
+	pockets=usedPockets+ " of "+maxPockets+" used";
+	
 	// start a new day
 	newDay();
 }
@@ -59,7 +64,6 @@ function updateTradingButtons()
 	//
 	if ((currentDrugs.acid == 0) & (currentDrugs.coke == 0) )
 	{
-		
 		document.getElementById("choose_selld").disabled = true;	// disable sell button
 	}
 	else
@@ -103,15 +107,18 @@ function newDay()
 	if(curDay==maxDays) // last day
 	{
 		var n = noty({text: 'GAME OVER'});
-		// disable travel button
-		document.getElementById("choose_city").disabled = true;	// disable sell button
+		
+		// disable main buttons
+		document.getElementById("choose_buyd").disabled = true;		// disable buy button
+		document.getElementById("choose_selld").disabled = true;	// disable sell shark
+		document.getElementById("choose_city").disabled = true;		// disable travel button
+		document.getElementById("choose_loan").disabled = true;		// disable loan shark
 		gameEnded();
 	}
 	else // normal day
 	{
 		curDay=curDay+1;
 		leftDays=maxDays-curDay;
-	
 		$('#calendar').html("Day "+curDay+" of "+maxDays+" (Left "+leftDays+")");	// update cal view
 	}
 	
@@ -148,6 +155,9 @@ var currentLocation;
 var cashSpent = 0; 
 var cashEarned = 0; 
 var lastTime = 0;
+var maxPockets = 100;
+var usedPockets = 0;
+var pockets = usedPockets + " of "+maxPockets+" used";
 
 var currentDrugs = {acid:0,coke:0};
 var drugs = 
@@ -198,7 +208,7 @@ var start = {
 			$('#inBank').html("$"+bank); 
 			$('#debt').html("$"+debt);
 			$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke);
-
+			$('#pockets').html(pockets);
 
 			// how many units available
 			$('#acidUnits').html(acid_unit);
@@ -212,7 +222,8 @@ var start = {
 
 
 		// Create Debt with Time
-		setTimes: function(){
+		setTimes: function()
+		{
 			
 		} // end of setTimes
 		}; // end start function
@@ -258,7 +269,6 @@ $('#choose_loan').click(function(event)
 	$('#sell_Drugs').hide();
 	$('#buy_Drugs').hide();
 	$('#loanshark_div').toggle(400); 
-	
 });
 
 
@@ -294,25 +304,22 @@ $('#choose_loan').click(function(event)
 
 
 	// Pay Back Money 
-	$('#btn_payDebt').click(function(event) {
-	
-	var amount = $('#payDebt').val();
-	console.log(amount);
-	var b = parseInt(amount); 
+	$('#btn_payDebt').click(function(event) 
+	{
+		var amount = $('#payDebt').val();
+		console.log(amount);
+		var b = parseInt(amount); 
 	 
+		// work out new bank balance
+		bank = bank - b;
+		console.log("your new balance is " + bank);
 
-	// work out new bank balance
-	bank = bank - b;
-	console.log("your new balance is " + bank);
+		// update my bank
+		$('#inBank').html("$"+bank);
 
-	// update my bank
-	$('#inBank').html("$"+bank);
-
-
-	// update the debt
-	debt = debt - b;
-	$('#debt').html("$"+debt);
-
+		// update the debt
+		debt = debt - b;
+		$('#debt').html("$"+debt);
 	});
 
 
@@ -416,14 +423,28 @@ $('#drugBtn').click(function(event)
 		// check to see if have enough units
 		if (acid_unit < numUnits)
 		{
-			var n = noty({text: 'Not enough units, select less!'});
+			var n = noty({text: 'Not enough units available, select less!'});
+			return;
+		}
+		
+		// check to see if have enough units
+		if (freePockets < numUnits)
+		{
+			var n = noty({text: 'You dont have enough free pockets. You cant buy more then '+freePockets+' units.'});
 			return;
 		}
 
 		// update units of drugs you own
 		currentDrugs.acid = currentDrugs.acid + numUnits;
 		$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke); 
-
+		
+		// update pockets
+		usedPockets = usedPockets+ numUnits;
+		freePockets = maxPockets - usedPockets;
+		pockets = usedPockets + " of "+maxPockets+" used";
+		
+		$('#pockets').html(pockets);
+		
 		// remove units once bought 
 		console.log("acid_unit is at " + acid_unit); 
 		acid_unit = acid_unit - numUnits;
@@ -455,13 +476,26 @@ $('#drugBtn').click(function(event)
 		// check to see if have enough units
 		if (coke_unit < numUnits)
 		{
-			var n = noty({text: 'Not enough units, select less!'});
+			var n = noty({text: 'Not enough units available, select less!'});
+			return;
+		}
+		
+		// check to see if have enough units
+		if (freePockets < numUnits)
+		{
+			var n = noty({text: 'You dont have enough free pockets. You cant buy more then '+freePockets+' units.'});
 			return;
 		}
 
 		// update units of drugs you own
 		currentDrugs.coke = currentDrugs.coke + numUnits;
 		$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke);
+		
+		// update pockets
+		usedPockets = usedPockets+ numUnits;
+		freePockets = maxPockets - usedPockets;
+		pockets = usedPockets + " of "+maxPockets+" used";
+		$('#pockets').html(pockets);
 
 		// remove units once bought 
 		console.log("coke_unit is at " + coke_unit); 
@@ -518,6 +552,11 @@ $('#sellBtn').click(function(event)
 		currentDrugs.acid = currentDrugs.acid - numUnits;
 		$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke); 
 
+		// update pockets
+		usedPockets = usedPockets - numUnits; // update pocket calculation
+		pockets = usedPockets + " of "+maxPockets+" used";
+		$('#pockets').html(pockets);
+		
 		// add back units once sold 
 		console.log("acid_unit is at " + acid_unit); 
 		acid_unit = acid_unit + numUnits;
@@ -549,6 +588,11 @@ $('#sellBtn').click(function(event)
 		// update units of drugs you own
 		currentDrugs.coke = currentDrugs.coke - numUnits;
 		$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke);
+		
+		// update pockets
+		usedPockets = usedPockets - numUnits; // update pocket calculation
+		pockets = usedPockets + " of "+maxPockets+" used";
+		$('#pockets').html(pockets);
 
 		// add back units once sold  
 		console.log("coke_unit is at " + coke_unit); 
@@ -716,36 +760,135 @@ function randomEventsOnDayChange()
 		if(shouldRandomHappen == 1) // random event happens
 		{
 			// select 1 of the random events
-			var x = getRandomInt(1,3);
+			//
+			// 1 = police
+			// 2 = getting robbed
+			// 3 = found drugs
+			// 4 = meet jessie
+			// 5 = buy extra pockets
+			// 6 = cheap drugs on market
+			//
+			var x = getRandomInt(1,5);
 			console.log(x); 
-
-			if (x === 1)		// Event 1: run police function: lose drugs
+				
+			// Event 1: run police function: lose drugs
+			//
+			if (x === 1)		
 			{
-				var n = noty({text: 'The cops .... dumping my stash'});
-				console.log("you lost " +  currentDrugs.acid + " Acid and " + currentDrugs.coke + " Coke"); 
+				if( freePockets == maxPockets) // we dont have any drug
+				{
+					var n = noty({text: 'Lucky you - cops controlled you - but you had empty pockets.'});
+				}
+				else // we do have drugs - cops will rip us
+				{
+					var n = noty({text: 'The cops .... dumping my stash'});
+					console.log("you lost " +  currentDrugs.acid + " Acid and " + currentDrugs.coke + " Coke"); 
 					
-				currentDrugs.coke = 0;
-				currentDrugs.acid = 0; 
-				$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke);  
+					currentDrugs.coke = 0;
+					currentDrugs.acid = 0; 
+					$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke);
+				}  
+			}
+		
+			// Event 2: run got mugged function: lose money
+			//
+			else if (x === 2)			
+			{
+				if(bank = 0) // if there is no money at all
+				{
+					var n = noty({text: 'Someone tried to rob you but you had no money anyways.'}); 
+					return;
+				}
+				
+				if(bank > 500) // we dont rob poor ppl
+				{
+					// calculate money stolen
+					var stolen = Math.round(bank / 100 * 30);
+					console.log("you lost $" + stolen); 
+					bank = bank - stolen; 
+				
+					var n = noty({text: 'You got robbed. Loss '+stolen+' $.'}); 
+				
+					// update my bank
+					$('#inBank').html("$"+bank); 
+				}
+			}
+			
+			
+			
+			// Event 3: found drugs on the streets (always acid so far)
+			//
+			else if (x === 3)			
+			{				
+				foundDrugs = getRandomInt(1,50); // get random number
+				if(foundDrugs <= freePockets)
+				{
+					var n = noty({text: 'You found '+foundDrugs+' acid on the streets'}); 
+				}
+				else // not enough pockets
+				{			
+					var n = noty({text: 'You found '+foundDrugs+' acid on the streets but could take only '+freePockets+' cause of pocket size.'}); 
+					foundDrugs = freePockets;
+				}
+						
+				// add drugs to drug-list
+				currentDrugs.acid = currentDrugs.acid+ foundDrugs; 
+				$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke); // update ui
+					
+				// update pockets
+				usedPockets= usedPockets+foundDrugs;
+				freePockets = maxPockets - usedPockets;
+				pockets=usedPockets+ " of "+maxPockets+" used";
+				$('#pockets').html(pockets);	// update UI
+						
+				return;
+			}
+			
+			
+			
+			
+			
+			// Event 4: meet jessie
+			//
+			else if (x === 4)			
+			{
+				var n = noty({text: 'You met Jessi on the streets. He called you a biatch and went away.'});
 			}
 		
 		
-			else if (x === 2)			// Event 2: run got mugged function: lose money
+		
+		
+		
+			// Event 5: buy extra pockets
+			//
+			else if (x === 5)			
 			{
-				var n = noty({text: 'A dude with a gun robbed you'});
-
-				// calculate money stolen
-				var stolen = Math.round(bank / 100 * 30);
-				console.log("you lost $" + stolen); 
-				bank = bank - stolen; 
+				extraPockets = getRandomInt(10,50); // get random number
+				calcExtraPocketPrice = extraPockets * 15;
+				if(bank >= calcExtraPocketPrice) // if we have enough money for the extra-pockets
+				{
+					var n = noty({text: 'You just got '+extraPockets+' extra pockets for '+calcExtraPocketPrice+' $.'});
 					
-				// update my bank
-				$('#inBank').html("$"+bank); 
+					// update pockets
+					maxPockets = maxPockets + extraPockets;
+					pockets=usedPockets+ " of "+maxPockets+" used";
+					$('#pockets').html(pockets);
+					
+					// update bank
+					bank = bank - calcExtraPocketPrice;
+					$('#inBank').html(bank);		
+				}
+				else
+				{
+					var n = noty({text: 'The dude offered you '+extraPockets+' extra pockets for '+calcExtraPocketPrice+' $ but you had no money.'});
+				}
 			}
 		
 		
 		
-			else 			// Event 3: run drugs super cheap: temp change in prices
+			// Event 6: run drugs super cheap: temp change in prices
+			//
+			else 			
 			{ 
 				var n = noty({text: 'Drug sale - buy now as much as possible'});
 				console.log("acid was $" + drugs.acid + " and coke was $" + drugs.coke);  
