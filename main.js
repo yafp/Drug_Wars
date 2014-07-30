@@ -3,7 +3,7 @@
 */
 $( document ).ready(function() 
 {
-	console.log("Starting the game");
+	log.info("Starting game")
 	var n = noty({text: 'Welcome to DrugWars - The Heisenberg Edition'});
 	
 	$('#calendar').html("Day "+1+" of X (Left Y)");
@@ -19,12 +19,12 @@ $( document ).ready(function()
 */
 function initGame()
 {
-	console.log("Initializing the game");
+	log.info("Initializing the game")
 	
 	// init values
 	curDay=0;
 	maxDays=30;
-	leftDays=maxDays-curDay;
+	//leftDays=maxDays-curDay;
 	
 	maxPockets=100;
 	usedPockets=0;
@@ -48,6 +48,8 @@ function initGame()
 */
 function updateTradingButtons()
 {
+	log.info("Updating trade buttons")
+	
 	// buy button
 	//
 	if(bank>0) // player has money - enable buy button
@@ -84,6 +86,8 @@ function updateTradingButtons()
 */
 function updateDebt()
 {
+	log.info("Update debt")
+	
 	if(debt > 0)
 	{
 		console.log("Debt got re-calculated");
@@ -102,7 +106,7 @@ function updateDebt()
 */
 function newDay()
 {
-	console.log("Starting a new day");
+	log.info("New Day")
 	
 	if(curDay==maxDays) // last day
 	{
@@ -118,8 +122,8 @@ function newDay()
 	else // normal day
 	{
 		curDay=curDay+1;
-		leftDays=maxDays-curDay;
-		$('#calendar').html("Day "+curDay+" of "+maxDays+" (Left "+leftDays+")");	// update cal view
+		//leftDays=maxDays-curDay;
+		$('#calendar').html("Day "+curDay+" of "+maxDays);	// update cal view
 	}
 	
 	updateTradingButtons();	// enabling or disabling buy and or sell button
@@ -130,14 +134,7 @@ function newDay()
 
 
 
-/*
-	Show final score
-*/
-function gameEnded()
-{
-	finalScore = bank - (3* debt)
-	alert("Final Score: "+finalScore);
-}
+
 
 
 
@@ -647,13 +644,7 @@ function sellPrice()
 
 
 
-/*
- get randon int for drugs costs. 
-*/
-function getRandomInt(min, max) 
-{
-	return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+
 
 
 
@@ -680,6 +671,8 @@ $('#choose_city').click(function(event)
 */
 function ChangeCity()
 {
+	log.info("Changing city")
+	
 	if (currentLocation === 'lnd')
 	{
 		// change city
@@ -754,6 +747,8 @@ function ChangeCity()
 */
 function randomEventsOnDayChange()
 {
+	log.info("Check for random events")
+	
 	if(curDay >= 2) // not on the first day
 	{
 		var shouldRandomHappen = getRandomInt(1,10); // calculate chance for a random event
@@ -764,12 +759,13 @@ function randomEventsOnDayChange()
 			// 1 = police
 			// 2 = getting robbed
 			// 3 = found drugs
-			// 4 = meet jessie
+			// 4 = meet jesse
 			// 5 = buy extra pockets
 			// 6 = cheap drugs on market
 			//
 			var x = getRandomInt(1,5);
-			console.log(x); 
+			console.log("Random Event: "+x);
+			
 				
 			// Event 1: run police function: lose drugs
 			//
@@ -787,6 +783,12 @@ function randomEventsOnDayChange()
 					currentDrugs.coke = 0;
 					currentDrugs.acid = 0; 
 					$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke);
+					
+					usedPockets = 0;
+					freePockets = maxPockets;
+					pockets=usedPockets+ " of "+maxPockets+" used";
+					$('#pockets').html(pockets);	// update UI
+					
 				}  
 			}
 		
@@ -835,12 +837,14 @@ function randomEventsOnDayChange()
 				currentDrugs.acid = currentDrugs.acid+ foundDrugs; 
 				$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke); // update ui
 					
-				// update pockets
+				// calculate new values
 				usedPockets= usedPockets+foundDrugs;
 				freePockets = maxPockets - usedPockets;
 				pockets=usedPockets+ " of "+maxPockets+" used";
-				$('#pockets').html(pockets);	// update UI
-						
+				$('#pockets').html(pockets);
+
+				updateTradingButtons();
+				
 				return;
 			}
 			
@@ -848,11 +852,64 @@ function randomEventsOnDayChange()
 			
 			
 			
-			// Event 4: meet jessie
+			// Event 4: meet jesse
 			//
-			else if (x === 4)			
+			else if (x === 4)
 			{
-				var n = noty({text: 'You met Jessi on the streets. He called you a biatch and went away.'});
+				var n = noty({text: 'You met Jesse Pinkman on the streets. He called you bitch and went away.'});
+				//
+				// adding a random pinkman quote:
+				//var n = noty({text: 'You met Jesse Pinkman on the streets. He called you bitch and went away.'});
+				
+				
+				
+				
+/*
+1. Look, I like making cherry product, but let’s keep it real, alright? We make poison for people who don’t care. We probably have the most unpicky customers in the world.
+
+2. Yeah. Totally Kafkaesque.
+
+3. You don’t need a criminal lawyer. You need a criminal lawyer
+
+
+
+
+4. Oh well, heil Hitler, bitch. And let me tell you something else. We flipped a coin, okay? You and me. You and me! Coin flip is sacred! Your job is waiting for you in that basement, as per the coin!
+5. You either run from things, or you face them, Mr. White.
+6. Like I came to you, begging to cook meth. ‘Oh, hey, nerdiest old dude I know, you wanna come cook crystal?’ Please. I’d ask my diaper-wearing granny, but her wheelchair wouldn’t fit in the RV.
+7. Yeah Mr. White! You really do have a plan! Yeah science!
+8. You know what? Why I’m here in the first place? Is to sell you meth. You’re nothing to me but customers! I made you my bitch. You okay with that?
+9. Possum. Big, freaky, lookin’ bitch. Since when did they change it to opossum? When I was comin’ up it was just possum. Opossum makes it sound like he’s irish or something. Why do they gotta go changing everything?
+				
+		
+		10. So no matter what I do, hooray for me because I’m a great guy? It’s all good? No matter how many dogs I kill, I just do an inventory and accept?
+11. I’m supposed to promise, cross my heart, to like straighten up and fly right, or toe the line, or some other crap I’m not going to say?
+12. I uh… I eat a lot of frozen stuff… It’s usually pretty bad, I mean the pictures are always so awesome, you know? It’s like “hell yeah, I’m starved for this lasagna!” and then you nuke it and the cheese gets all scabby on top and it’s like… it’s like you’re eating a scab… I mean, seriously, what’s that about? It’s like “Yo! What ever happened to truth in advertising?” You know?
+		
+				
+				
+				13. Look… look, you two guys are just… guys, okay? Mr. White… he’s the devil. You know, he is… he is smarter than you, he is luckier than you. Whatever… whatever you think is supposed to happen… I’m telling you, the exact reverse opposite of that is gonna happen, okay?
+14. Are we in the meth business, or the money business?
+15. Nah come on… man, some straight like you giant stick up his ass all of a sudden at age what 60 he’s just going to break bad?
+16. What if this is like math, or algebra? And you add a plus douchebag to a minus douchebag, and you get, like, zero douchebags?
+17. Hey, you girls want to meet my fat stack?
+				
+				18. I am not turning down the money! I am turning down you! You get it? I want NOTHING to do with you! Ever since I met you, everything I ever cared about is gone! Ruined, turned to shit, dead, ever since I hooked up with the great Heisenberg! I have never been more alone! I HAVE NOTHING! NO ONE! ALRIGHT, IT’S ALL GONE, GET IT? No, no, no, why… why would you get it? What do you even care, as long as you get what you want, right? You don’t give a shit about me! You said I was no good. I’m nothing! Why would you want me, huh? You said my meth is inferior, right? Right? Hey! You said my cook was GARBAGE! Hey, screw you, man! Screw you!
+19. You can’t admit, just for once, that I’m right. Come on. That O’Keeffe lady kept trying over and over until that stupid door was perfect.
+
+
+20. I got two dudes that turned into raspberry slushie then flushed down my toilet. I can’t even take a proper dump in there. I mean, the whole damn house has got to be haunted by now.
+21. Right on. New Zealand. That’s where they made Lord of the Rings. I say we just move there, yo. I mean, you can do your art, right? Like, you can paint the local castles and shit. And I can be a bush pilot.
+22. What good is being an outlaw when you have responsibilities?
+23. I’M A BLOWFISH! BLOWFISH! YEEEAAAH! BLOWFISHIN’ THIS UP!
+24. You got me riding shotgun to every dark anal recess of this state. It’d be nice if you clued me in a little.
+
+25. What happens now? I’ll tell you what happens now. Your scumbag brother-in-law is finished. Done. You understand? I will own him when this is over. Every cent he earns, every cent his wife earns is mine. Any place he goes, anywhere he turns, I’m gonna be there grabbing my share. He’ll be scrubbing toilets in Tijuana for pennies and I’ll be standing over him to get my cut. He’ll see me when he wakes up in the morning and when he crawls to sleep in whatever rat hole is left for him after I shred his house down. I will haunt his crusty ass forever until the day he sticks a gun up his mouth and pulls the trigger just to get me out of his head. That’s what happens next.
+26. Yeah, bitch! Magnets!
+27. Yo 148, 3-to-the-3-to-the-6-to-the-9. Representin’ the ABQ. What up, biatch? Leave it at the tone!
+*/
+				
+				
 			}
 		
 		
@@ -864,25 +921,27 @@ function randomEventsOnDayChange()
 			else if (x === 5)			
 			{
 				extraPockets = getRandomInt(10,50); // get random number
-				calcExtraPocketPrice = extraPockets * 15;
+				pocketPrice = getRandomInt(5,20); // get random number
+				calcExtraPocketPrice = extraPockets * pocketPrice;
 				if(bank >= calcExtraPocketPrice) // if we have enough money for the extra-pockets
 				{
 					var n = noty({text: 'You just got '+extraPockets+' extra pockets for '+calcExtraPocketPrice+' $.'});
 					
-					// update pockets
+					// calculate new values
 					maxPockets = maxPockets + extraPockets;
 					pockets=usedPockets+ " of "+maxPockets+" used";
-					$('#pockets').html(pockets);
-					
-					// update bank
 					bank = bank - calcExtraPocketPrice;
-					$('#inBank').html(bank);		
+					
+					// update UI-items
+					$('#pockets').html(pockets);
+					$('#inBank').html("$"+bank); 
 				}
 				else
 				{
 					var n = noty({text: 'The dude offered you '+extraPockets+' extra pockets for '+calcExtraPocketPrice+' $ but you had no money.'});
 				}
 			}
+		
 		
 		
 		
@@ -908,4 +967,29 @@ function randomEventsOnDayChange()
 
 
 
-		// add ability to bank money, but at a cost. 
+
+
+
+/*
+ get randon int for drugs costs. 
+*/
+function getRandomInt(min, max) 
+{
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+
+
+
+
+/*
+	Show final score
+*/
+function gameEnded()
+{
+	log.info("Game ended")
+	
+	finalScore = bank - (3* debt)
+	alert("Final Score: "+finalScore);
+}

@@ -10,18 +10,3 @@ LIST OF TODOS
 - add doctor?? (buy health - loose drugs)
 - optimize end game
 
-
-
-DONE
-####
-- Add Pockets
-
-- Optimized existing events
---- extra events - robbed - only if we do have money - otherwise change notification text
---- optimized cops (depends on drug amount)
-
-- new events:
---- meet jessie (reason/usage? - maybe adding new drugs to market ;))
---- find drugs on street
---- buy extra pockets
-
