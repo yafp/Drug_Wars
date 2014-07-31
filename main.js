@@ -27,7 +27,7 @@ function initGame()
 	
 	// init values
 	curDay=0;
-	maxDays=30;
+	maxDays=5;
 	//leftDays=maxDays-curDay;
 	
 	maxPockets=100;
@@ -36,6 +36,8 @@ function initGame()
 	pockets=usedPockets+ " of "+maxPockets+" used";
 	
 	$('#gameResult').hide();
+	$('#div_Info').hide();
+	$('#div_Highscore').hide();
 	
 	// get start-timestamp
 	var startTime = new Date().getTime();
@@ -80,7 +82,6 @@ function newDay()
 */
 function gameEnded()
 {	
-	var n = noty({text: 'GAME OVER'});
 	log.info("GAME OVER")
 	
 	// disable main buttons	
@@ -93,20 +94,19 @@ function gameEnded()
 	$('#sell_Drugs').hide();
 	$('#loanshark_div').hide();
 	$('#buy_Drugs').hide();
+	
 
 	// calculate some values:
-	finalMoney = bank;
-	finalDebt = debt;
-	finalScore = bank - (3* debt); // calc final score
-	//log.info("Game ended - score:"+finalScore) 
-	
-	
-	
+	var finalMoney = bank;
+	var finalDebt = debt;
+	var finalScore = bank - (3* debt); // calc final score
+
 	// get end-timestamp
 	var endTime = new Date().getTime();
-	//alert(startTime);
-	//alert(endTime);
-	
+	log.debug(startTime);
+	log.debug(endTime);
+
+	// write values to endgame div
 	$('#finalMoneyCount').html(+finalMoney);
 	$('#finalDebtCount').html(+finalDebt);
 	$('#finalScoreCount').html(+finalScore);	

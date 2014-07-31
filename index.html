@@ -37,8 +37,8 @@
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="#"><i class="fa fa-home"></i> Home</a></li>
-						<li><a href="#"><i class="fa fa-info"></i> Info</a></li>
-						<li><a href="#"><i class="fa fa-graduation-cap"></i> Highscore</a></li>
+						<li><a href="#" onclick="$('#div_Info').toggle();"><i class="fa fa-info"></i> Info</a></li>
+						<li><a href="#" onclick="$('#div_Highscore').toggle();"><i class="fa fa-sitemap"></i> Highscore</a></li>
 						<li><a href="index.html"><i class="fa fa-refresh"></i> Restart Game</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
@@ -50,9 +50,7 @@
 		<div class="container">
 			<div class="row" id="decision">
 				<div class="col-md-6">
-				
 					
-				
 					<br><br>
 					<button type="button"  class="btn btn-default" id="choose_buyd"><i class="fa fa-shopping-cart"> Buy Drugs</i></button>
 					<button type="button"  class="btn btn-default" id="choose_selld"><i class="fa fa-share-alt"> Sell Drugs</i></button>
@@ -61,11 +59,6 @@
 					<br><br>
 					
 					
-					
-					
-
-
-
 					<!--LOAN SHARK BUTTON -->
 					<div id="loanshark_div">
 						<form class="form-inline" role="form">
@@ -90,8 +83,6 @@
 
 
 
-
-
 					<!--BUY DRUGS BUTTON -->
 					<form class="form-inline" role="form" id="buy_Drugs">
 					<div class="form-group">
@@ -107,178 +98,206 @@
 
 
 
-					
+					<!--SELL DRUGS-->
+					<form class="form-inline" role="form" id="sell_Drugs">
+					<div class="form-group">    
+						What drug do you want to sell?
+						<label class="checkbox-inline"><input type="checkbox" id="s_acid_tick" value="acid"> Acid</label>
+						<label class="checkbox-inline"><input type="checkbox" id="s_coke_tick" value="coke"> Coke</label>
+						<br><br>
+						<label for="sellDrugs">How many drugs do you want to sell?</label>
+						<input type="number" class="form-control" id="sellDrugs" placeholder="How many units?">
+					</div> <!--END OF FORM GROUP -->
+					<button type="button" id="sellBtn" class="btn btn-default">Sell</button>
+					</form>
+	
+	
+	
+					<!-- GAME OVER - RESULT -->
+					<div id="gameResult">
+						<h2><i class="fa fa-flag-checkered"></i> GAME OVER</h2>
+						Money:
+						<p id="finalMoneyCount">0</p>
+						
+						Debt:
+						<p id="finalDebtCount">0</p>
+						
+						Your final score is:
+						<p id="finalScoreCount">0</p>
+					</div>
+	
+	
+	
+	
+					<!-- HIGHSCORE -->
+					<div id="div_Highscore">
+						<h2><i class="fa fa-sitemap"></i> Highscore</h2>
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>No.</th>
+									<th>Name</th>
+									<th>Score</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1.</td>
+									<td>ueber dummy</td>
+									<td>1.000.000.000</td>
+								</tr>
+								<tr>
+									<td>2.</td>
+									<td>another dummy</td>
+									<td>5.000.000</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+	
+	
+	
+	
+					<!-- INFO -->
+					<div id="div_Info">
+						<h2><i class="fa fa-info"></i> Info</h2>
+						<h3>Keyboard</h3>
+						<ul>
+							<li>F2 - Toggle Blackbird window</li>
+							<li>F2 + Shift - Toggle Blackbird window position</li>
+						</ul>
+					</div>
+	
+	
+				</div> <!--END OF COL -->
+    
+				<br><br>
+
+	
+	
+	
 
 
-    <!--SELL DRUGS-->
-    <form class="form-inline" role="form" id="sell_Drugs">
-    <div class="form-group">    
-    What drug do you want to sell?
-    <label class="checkbox-inline">
-    <input type="checkbox" id="s_acid_tick" value="acid"> Acid
-    </label>
-    <label class="checkbox-inline">
-    <input type="checkbox" id="s_coke_tick" value="coke"> Coke
-    </label>
-    <br><br>
-    <label for="sellDrugs">How many drugs do you want to sell?</label>
-    <input type="number" class="form-control" id="sellDrugs" placeholder="How many units?">
-    </div> <!--END OF FORM GROUP -->
-    <button type="button" id="sellBtn" class="btn btn-default">Sell</button>
-    </form>
-	
-	
-	
-	<!-- GAME OVER - RESULT -->
-	<div id="gameResult">
-		<h2><i class="fa fa-flag-checkered"></i> GAME OVER</h2>
-		Money:
-		<p id="finalMoneyCount">0</p>
+
+
+				<div class="col-md-6"> <!--YOUR SCORE -->
+				<!--BANK ACCOUNT -->
+					<table class="table table-bordered">
+						<thead>
+						  <tr>
+							<th><i class="fa fa-calendar"></i> Calendar</th>
+							<th><i class="fa fa-money"></i> Bank</th>
+							<th><i class="fa fa-archive"></i> Drugs</th>
+							<th><i class="fa fa-briefcase"></i> Pockets</th>
+							<th><i class="fa fa-book"></i> Debt</th>
+						  </tr>
+						</thead>
+						<tbody>
+						  <tr>
+							<td id="calendar"></td>
+							<td id="inBank"></td>
+							<td id="listDrugs"></td>
+								<td id="pockets"></td>
+							<td id="debt"></td>
+						  </tr>
+						 
+						</tbody>
+					 </table>
+				
+					<br>
+
+
+
+
+
+
+					<!--THE MARKET -->
+					<h2 id="market"><i class="fa fa-map-marker"></i> The Market:</h2>
+					<br>
+					<table class="table table-bordered">
+					  <thead>
+						<tr>
+						  <th>Drug</th>
+						  <th>Units</th>
+						  <th>Buy per Unit</th>
+						  <th>Sell $</th>
+						</tr>
+					  </thead>
+					  <tbody>
+						<tr>
+						  <td>Acid</td>
+						  <td id="acidUnits"></td>
+						  <td id="acidPerUnit"></td>
+						  <td id="acidSell"></td>
+						</tr>
+						<tr>
+						  <td>Coke</td>
+						  <td id="cokeUnits"></td>
+						  <td id="cokePerUnit"></td>
+						  <td id="cokeSell"></td>
+						</tr>
+					  </tbody>
+					</table>
+    
+    
+    
+    
+				</div> <!--END OF COL -->
+			</div> <!--END OF ROW -->
+    
+			<br><br>
+    
+		</div><!-- /.container -->
+    
+    
+		<!-- FOOTER -->
+		<div id="footer">
+			<a href="https://github.com/macfidelity/Drug_Wars"><i class="fa fa-github"></i> Github Repository</a>
+		</div>
+
+
+		<!-- Bootstrap core JavaScript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="js/jquery-2.1.0.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="main.js"></script>
 		
-		Debt:
-		<p id="finalDebtCount">0</p>
-		
-		Your final score is:
-		<p id="finalScoreCount">0</p>
-	</div>
-	
-	
-	
-	
-    </div> <!--END OF COL -->
-    <br><br>
-
-	
-	
-	
-
-
-
-
-    <div class="col-md-6"> <!--YOUR SCORE -->
-    <!--BANK ACCOUNT -->
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-              	<th><i class="fa fa-calendar"></i> Calendar</th>
-                <th><i class="fa fa-money"></i> Bank</th>
-                <th><i class="fa fa-archive"></i> Drugs</th>
-				<th><i class="fa fa-briefcase"></i> Pockets</th>
-                <th><i class="fa fa-book"></i> Debt</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-              	<td id="calendar"></td>
-                <td id="inBank"></td>
-                <td id="listDrugs"></td>
-					<td id="pockets"></td>
-                <td id="debt"></td>
-              </tr>
-             
-            </tbody>
-          </table>
-    <br>
-
-
-
-
-
-
-    <!--THE MARKET -->
-    <h2 id="market"><i class="fa fa-map-marker"></i> The Market:</h2>
-    <br>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Drug</th>
-          <th>Units</th>
-          <th>Buy per Unit</th>
-          <th>Sell $</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Acid</td>
-          <td id="acidUnits"></td>
-          <td id="acidPerUnit"></td>
-          <td id="acidSell"></td>
-        </tr>
-        <tr>
-          <td>Coke</td>
-          <td id="cokeUnits"></td>
-          <td id="cokePerUnit"></td>
-          <td id="cokeSell"></td>
-        </tr>
-      </tbody>
-    </table>
-    
-    
-    
-    
-    </div> <!--END OF COL -->
-    </div> <!--END OF ROW -->
-    <br><br>
-    
-    
-    
-
-
-
-
-
-
-    </div><!-- /.container -->
-    
-    
-    <!-- FOOTER -->
-	<div id="footer">
-		<a href="https://github.com/macfidelity/Drug_Wars"><i class="fa fa-github"></i> Github Repository</a>
-	</div>
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery-2.1.0.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="main.js"></script>
-    
-    <!-- blackbird -->
+		<!-- blackbird -->
 		<script type="text/javascript" charset="utf-8" src="js/blackbird-js-master/blackbird.js"></script>
-    
-    <!-- noty -->
+		
+		<!-- noty -->
 		<script type="text/javascript" charset="utf-8" src="js/noty-2.2.4/js/noty/packaged/jquery.noty.packaged.min.js"></script>
 		<script type="text/javascript" charset="utf-8" src="js/noty-2.2.4/js/noty/layouts/top.js"></script>
 		<script type="text/javascript" charset="utf-8" src="js/noty-2.2.4/js/noty/layouts/bottom.js"></script>
 		<script type="text/javascript" charset="utf-8" src="js/noty-2.2.4/js/noty/js/noty/themes/default.js"></script>
 		<!-- init noty -->
 		<script>
-		$.noty.defaults = {
-		  layout: 'bottom',
-		  theme: 'defaultTheme',
-		  type: 'alert',
-		  text: '',
-		  dismissQueue: true, // If you want to use queue feature set this true
-		  template: '<div class="noty_message"><span class="noty_text"></span><div class="noty_close"></div></div>',
-		  animation: {
-		    open: {height: 'toggle'},
-		    close: {height: 'toggle'},
-		    easing: 'swing',
-		    speed: 500 // opening & closing animation speed
-		  },
-		  timeout: 5000, // delay for closing event. Set false for sticky notifications
-		  force: false, // adds notification to the beginning of queue when set to true
-		  modal: false,
-		  closeWith: ['click'], // ['click', 'button', 'hover']
-		  callback: {
-		    onShow: function() {},
-		    afterShow: function() {},
-		    onClose: function() {},
-		    afterClose: function() {}
-		  },
-		  buttons: false // an array of buttons
-		};
+			$.noty.defaults = {
+			  layout: 'bottom',
+			  theme: 'defaultTheme',
+			  type: 'alert',
+			  text: '',
+			  dismissQueue: true, // If you want to use queue feature set this true
+			  template: '<div class="noty_message"><span class="noty_text"></span><div class="noty_close"></div></div>',
+			  animation: {
+				open: {height: 'toggle'},
+				close: {height: 'toggle'},
+				easing: 'swing',
+				speed: 500 // opening & closing animation speed
+			  },
+			  timeout: 5000, // delay for closing event. Set false for sticky notifications
+			  force: false, // adds notification to the beginning of queue when set to true
+			  modal: false,
+			  closeWith: ['click'], // ['click', 'button', 'hover']
+			  callback: {
+				onShow: function() {},
+				afterShow: function() {},
+				onClose: function() {},
+				afterClose: function() {}
+			  },
+			  buttons: false // an array of buttons
+			};
 		</script>
-</body>
+	</body>
 </html>
