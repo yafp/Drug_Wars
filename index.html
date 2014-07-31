@@ -38,6 +38,7 @@
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="#"><i class="fa fa-home"></i> Home</a></li>
 						<li><a href="#"><i class="fa fa-info"></i> Info</a></li>
+						<li><a href="#"><i class="fa fa-graduation-cap"></i> Highscore</a></li>
 						<li><a href="index.html"><i class="fa fa-refresh"></i> Restart Game</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
@@ -49,12 +50,19 @@
 		<div class="container">
 			<div class="row" id="decision">
 				<div class="col-md-6">
+				
+					
+				
 					<br><br>
 					<button type="button"  class="btn btn-default" id="choose_buyd"><i class="fa fa-shopping-cart"> Buy Drugs</i></button>
 					<button type="button"  class="btn btn-default" id="choose_selld"><i class="fa fa-share-alt"> Sell Drugs</i></button>
 					<button type="button"  class="btn btn-default" id="choose_loan"><i class="fa fa-bank"> Loan Shark</i></button>
 					<button type="button"  class="btn btn-default" id="choose_city"><i class="fa fa-plane"> Change City</i></button>
 					<br><br>
+					
+					
+					
+					
 
 
 
@@ -94,12 +102,12 @@
 						<label for="buyDrugs">How many drugs do you want to buy?</label>
 						<input type="number" class="form-control" id="buyDrugs" placeholder="How many units?">
 					</div>
-					<button type="button" id="drugBtn" class="btn btn-default">Request Units</button>
+					<button type="button" id="drugBtn" class="btn btn-default">Buy</button>
 					</form>
 
 
 
-
+					
 
 
     <!--SELL DRUGS-->
@@ -116,11 +124,33 @@
     <label for="sellDrugs">How many drugs do you want to sell?</label>
     <input type="number" class="form-control" id="sellDrugs" placeholder="How many units?">
     </div> <!--END OF FORM GROUP -->
-    <button type="button" id="sellBtn" class="btn btn-default">Request Units</button>
+    <button type="button" id="sellBtn" class="btn btn-default">Sell</button>
     </form>
+	
+	
+	
+	<!-- GAME OVER - RESULT -->
+	<div id="gameResult">
+		<h2><i class="fa fa-flag-checkered"></i> GAME OVER</h2>
+		Money:
+		<p id="finalMoneyCount">0</p>
+		
+		Debt:
+		<p id="finalDebtCount">0</p>
+		
+		Your final score is:
+		<p id="finalScoreCount">0</p>
+	</div>
+	
+	
+	
+	
     </div> <!--END OF COL -->
     <br><br>
 
+	
+	
+	
 
 
 
