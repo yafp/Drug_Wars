@@ -37,8 +37,8 @@
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="#"><i class="fa fa-home"></i> Home</a></li>
-						<li><a href="#" onclick="$('#div_Info').toggle();"><i class="fa fa-info"></i> Info</a></li>
-						<li><a href="#" onclick="$('#div_Highscore').toggle();"><i class="fa fa-sitemap"></i> Highscore</a></li>
+						<li><a href="#" onclick="$('#div_Info').toggle();$('#div_Highscore').hide();"><i class="fa fa-info"></i> Info</a></li>
+						<li><a href="#" onclick="$('#div_Highscore').toggle();$('#div_Info').hide();"><i class="fa fa-sitemap"></i> Highscore</a></li>
 						<li><a href="index.html"><i class="fa fa-refresh"></i> Restart Game</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
@@ -76,7 +76,7 @@
 								<label for="getoffDept">Pay off your debt?</label>
 								<input type="number" class="form-control" id="payDebt" placeholder="How much to pay back?">
 							</div>
-							<button type="button" id="btn_payDebt" class="btn btn-default">Pay $</button>
+							<button type="button" id="btn_payDebt" class="btn btn-default">Payback $</button>
 						</form>
 					</div> <!--END OF LOAN SHARK -->
 
@@ -114,7 +114,7 @@
 	
 	
 					<!-- GAME OVER - RESULT -->
-					<div id="gameResult">
+					<div id="div_Gameresult">
 						<h2><i class="fa fa-flag-checkered"></i> GAME OVER</h2>
 						Money:
 						<p id="finalMoneyCount">0</p>
@@ -124,6 +124,9 @@
 						
 						Your final score is:
 						<p id="finalScoreCount">0</p>
+						
+						<br><br>
+						<p>Want more? If so <a href="index.html">start a new game</a>.</p>
 					</div>
 	
 	
@@ -161,6 +164,8 @@
 					<!-- INFO -->
 					<div id="div_Info">
 						<h2><i class="fa fa-info"></i> Info</h2>
+						<h3>About the game</h3>
+						foo
 						<h3>Keyboard</h3>
 						<ul>
 							<li>F2 - Toggle Blackbird window</li>
@@ -186,7 +191,7 @@
 						<thead>
 						  <tr>
 							<th><i class="fa fa-calendar"></i> Calendar</th>
-							<th><i class="fa fa-money"></i> Bank</th>
+							<th><i class="fa fa-money"></i> Money</th>
 							<th><i class="fa fa-archive"></i> Drugs</th>
 							<th><i class="fa fa-briefcase"></i> Pockets</th>
 							<th><i class="fa fa-book"></i> Debt</th>

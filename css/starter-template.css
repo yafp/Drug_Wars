@@ -19,7 +19,7 @@ body {
 /*
 	GAME OVER SCREEN
 */
-#gameResult
+#div_Gameresult
 {
 	margin-top: 30px;
 	text-align: center;
