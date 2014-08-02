@@ -17,7 +17,8 @@
 		<link rel="stylesheet" href="css/font-awesome-4.1.0/css/font-awesome.min.css">
 		<!-- blackbird -->
 		<link rel="stylesheet" href="js/blackbird-js-master/blackbird.css">
-		
+		<!-- jquery -->
+		<script src="js/jquery-2.1.0.js"></script>
 	</head>
 
 
@@ -136,33 +137,60 @@
 	
 	
 	
+	
+	
+	
 					<!-- HIGHSCORE -->
 					<div id="div_Highscore">
 						<h2><i class="fa fa-sitemap"></i> Highscore</h2>
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th>No.</th>
-									<th>Name</th>
-									<th>Score</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1.</td>
-									<td>ueber dummy</td>
-									<td>1.000.000.000</td>
-								</tr>
-								<tr>
-									<td>2.</td>
-									<td>another dummy</td>
-									<td>5.000.000</td>
-								</tr>
-							</tbody>
-						</table>
+						<!-- 5 Days -->
+						<h3>5 Days</h3>
+						<span id="score_5">Score:</span>
+						<span id="player_5">Player:</span>
+						<script>
+							highscore_5_score = localStorage.getItem("highscore_5");
+							$('#score_5').html("<b>"+highscore_5_score+"</b>");
+							
+							highscore_5_name = localStorage.getItem("player_5");
+							$('#player_5').html("by "+highscore_5_name);
+						</script>
+						
+						<!-- 15 Days -->
+						<h3>15 Days</h3>
+						<span id="score_15">Score:</span>
+						<span id="player_15">Player:</span>
+						<script>
+							highscore_15_score = localStorage.getItem("highscore_15");
+							$('#score_15').html("<b>"+highscore_15_score+"</b>");
+							
+							highscore_15_name = localStorage.getItem("player_15");
+							$('#player_15').html("by "+highscore_15_name);
+						</script>
+						
+						<!-- 30 Days -->
+						<h3>30 Days</h3>
+						<span id="score_30">Score:</span>
+						<span id="player_30">Player:</span>
+						<script>
+							highscore_30_score = localStorage.getItem("highscore_30");
+							$('#score_30').html("<b>"+highscore_30_score+"</b>");
+							
+							highscore_30_name = localStorage.getItem("player_30");
+							$('#player_30').html("by "+highscore_30_name);
+						</script>
+						
+						<!-- 45 Days -->
+						<h3>45 Days</h3>
+						<span id="score_45">Score:</span>
+						<span id="player_45">Player:</span>
+						<script>
+							highscore_45_score = localStorage.getItem("highscore_45");
+							$('#score_45').html("<b>"+highscore_45_score+"</b>");
+							
+							highscore_45_name = localStorage.getItem("player_45");
+							$('#player_45').html("by "+highscore_45_name);
+						</script>
 					</div>
-	
-	
 	
 	
 					<!-- INFO -->
@@ -253,7 +281,7 @@
 							<td id="calendar"></td>
 							<td id="inBank"></td>
 							<td id="listDrugs"></td>
-								<td id="pockets"></td>
+							<td id="pockets"></td>
 							<td id="debt"></td>
 						  </tr>
 						 
@@ -318,8 +346,7 @@
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<!-- jquery -->
-		<script src="js/jquery-2.1.0.js"></script>
+		
 		<script src="js/bootstrap.min.js"></script>
 		<script src="main.js"></script>
 		

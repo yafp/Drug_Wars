@@ -28,7 +28,6 @@ $( document ).ready(function()
 	if(typeof(Storage) !== "undefined") 
 	{
 		document.getElementById("fname").innerHTML = localStorage.getItem("playersName"); 
-		
 		lastName = localStorage.getItem("playersName"); 	// get the last name used in this game from local storage
 		
 		// set the name into the settings dialog
@@ -116,6 +115,7 @@ function newDay()
 	if(curDay==maxDays) // last day
 	{
 		gameEnded();
+		return;
 	}
 	else // normal day
 	{
@@ -261,12 +261,64 @@ function gameEnded()
 	// get end-timestamp
 	var endTime = new Date().getTime();
 	//log.debug(startTime);
-	log.debug(endTime);
+	log.debug("End Time: "+endTime);
+	
+	
+	
+	
+	// check highscore arrays - depends on maxDays
+	//
+	log.debug("Max Days: "+maxDays);
+	
+	switch(maxDays) 
+	{		
+		case "5":
+			log.debug("highscore_5");
+			if (finalScore > localStorage.getItem("highscore_5")) 
+			{
+				localStorage.setItem("highscore_5", finalScore);
+				localStorage.setItem("player_5", playersName);
+				log.debug("New highscore_5 written");
+			}
+		break;
 
+		case "15":
+			log.debug("highscore_15");
+			if (finalScore > localStorage.getItem("highscore_15")) 
+			{
+				localStorage.setItem("highscore_15", finalScore);
+				localStorage.setItem("player_15", playersName);
+				log.debug("New highscore_15 written");
+			}
+		break;
+		
+		case "30":
+			log.debug("highscore_30");
+			if (finalScore > localStorage.getItem("highscore_30")) 
+			{
+				localStorage.setItem("highscore_30", finalScore);
+				localStorage.setItem("player_30", playersName);
+				log.debug("New highscore_30 written");
+			}
+		break;
+		
+		case "45":
+			log.debug("highscore_45");
+			if (finalScore > localStorage.getItem("highscore_45")) 
+			{
+				localStorage.setItem("highscore_45", finalScore);
+				localStorage.setItem("player_45", playersName);
+				log.debug("New highscore_45 written");
+			}
+		break;
+	} 
+	
+	
 	// write values to endgame div
 	$('#finalMoneyCount').html(+finalMoney);
 	$('#finalDebtCount').html(+finalDebt);
 	$('#finalScoreCount').html(+finalScore);	
+	
 	
 	$('#div_Gameresult').show();	// show result div
 }
