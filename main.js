@@ -8,6 +8,11 @@ $( document ).ready(function()
 	$('#div_Info').hide();
 	$('#div_Highscore').hide();
 	
+	$('#div_ActionButtons').hide();
+	$('#div_StatusTable').hide();
+	$('#div_Market').hide();
+	
+	
 	// disable main buttons	
 	document.getElementById("choose_buyd").disabled = true;		// disable buy button
 	document.getElementById("choose_selld").disabled = true;	// disable sell shark
@@ -62,6 +67,11 @@ function initGame()
 	document.getElementById("choose_selld").disabled = false;	// disable sell shark
 	document.getElementById("choose_city").disabled = false;		// disable travel button
 	document.getElementById("choose_loan").disabled = false;		// disable loan shark
+	
+	// show some divs
+	$('#div_ActionButtons').show();
+	$('#div_StatusTable').show();
+	$('#div_Market').show();
 	
 	// get start-timestamp
 	var startTime = new Date().getTime();
@@ -199,11 +209,18 @@ function gameEnded()
 	document.getElementById("choose_selld").disabled = true;	// disable sell shark
 	document.getElementById("choose_city").disabled = true;		// disable travel button
 	document.getElementById("choose_loan").disabled = true;		// disable loan shark
+	
+	
 		
 	// hide input menues
 	$('#sell_Drugs').hide();
 	$('#loanshark_div').hide();
 	$('#buy_Drugs').hide();
+	
+	// hide main game-divs
+	$('#div_ActionButtons').hide();
+	$('#div_StatusTable').hide();
+	$('#div_Market').hide();
 	
 
 	// calculate some values:
