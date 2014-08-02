@@ -17,6 +17,7 @@
 		<link rel="stylesheet" href="css/font-awesome-4.1.0/css/font-awesome.min.css">
 		<!-- blackbird -->
 		<link rel="stylesheet" href="js/blackbird-js-master/blackbird.css">
+		
 	</head>
 
 
@@ -37,8 +38,9 @@
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="#"><i class="fa fa-home"></i> Home</a></li>
-						<li><a href="#" onclick="$('#div_Info').toggle();$('#div_Highscore').hide();"><i class="fa fa-info"></i> Info</a></li>
-						<li><a href="#" onclick="$('#div_Highscore').toggle();$('#div_Info').hide();"><i class="fa fa-sitemap"></i> Highscore</a></li>
+						<li><a href="#" onclick="$('#div_Info').toggle();$('#div_Highscore').hide();$('#div_Settings').hide();"><i class="fa fa-info"></i> Info</a></li>
+						<li><a href="#" onclick="$('#div_Highscore').toggle();$('#div_Info').hide();$('#div_Settings').hide();"><i class="fa fa-sitemap"></i> Highscore</a></li>
+						<li><a href="#" onclick="$('#div_Settings').toggle();$('#div_Highscore').hide();$('#div_Info').hide();"><i class="fa fa-cog"></i> Settings</a></li>
 						<li><a href="index.html"><i class="fa fa-refresh"></i> Restart Game</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
@@ -165,13 +167,57 @@
 					<div id="div_Info">
 						<h2><i class="fa fa-info"></i> Info</h2>
 						<h3>About the game</h3>
-						foo
+						<p>Drugwars is a turn-based strategy computer game in which the player assumes the role of a drug dealer engaged in arbitrage. </p>
+						<p>The object of the game is to deal the most drugs to pay off the "loan shark" (who charges interest) by the end of the game and make a profit. </p>
+						<p>Drugwars was originally a DOS program created by John E. Dell in 1984.</p>
 						<h3>Keyboard</h3>
 						<ul>
 							<li>F2 - Toggle Blackbird window</li>
 							<li>F2 + Shift - Toggle Blackbird window position</li>
 						</ul>
 					</div>
+	
+	
+	
+					<!-- SETTINGS -->
+					<div id="div_Settings">
+						<h2><i class="fa fa-cog"></i> Settings</h2>
+							<form action="#">
+								Name <input type="text" id="fname" name="fname" placeholder="Playername" value="Heisenberg">
+								<br>
+								<br>
+								Days&nbsp;&nbsp;
+								<select id="gameLength">
+									<option value="5">5 Days</option>
+									<option value="15" selected>15 Days</option>
+									<option value="30">30 Days</option>
+									<option value="45">45 Days</option>
+								</select> 
+								<br>
+								<br>
+								<a class="btn btn-primary btn-lg" role="button" onclick="initGame();">Start Game</a>
+							</form> 
+					</div>
+					
+					
+					
+					<!-- Day Progress Meter -->
+					<br>
+					<br>
+					Game Progress
+					<div class="progress">
+						<div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+							<span class="sr-only">0% Complete</span>
+						</div>
+					</div>
+					
+					
+					
+					
+					
+
+					
+					
 	
 	
 				</div> <!--END OF COL -->
@@ -264,6 +310,7 @@
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
+		<!-- jquery -->
 		<script src="js/jquery-2.1.0.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="main.js"></script>

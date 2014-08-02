@@ -3,11 +3,18 @@
 */
 $( document ).ready(function() 
 {
-	log.info("Starting game")
-	var n = noty({text: 'Welcome to DrugWars - The Heisenberg Edition'});
+	// preparing the game - should show settings dialog and hide everything else
+	$('#div_Gameresult').hide();
+	$('#div_Info').hide();
+	$('#div_Highscore').hide();
 	
-	$('#calendar').html("Day "+1+" of X (Left Y)");
-	initGame();
+	// disable main buttons	
+	document.getElementById("choose_buyd").disabled = true;		// disable buy button
+	document.getElementById("choose_selld").disabled = true;	// disable sell shark
+	document.getElementById("choose_city").disabled = true;		// disable travel button
+	document.getElementById("choose_loan").disabled = true;		// disable loan shark
+	
+	$('#div_Settings').show();
 });
 
 
@@ -23,21 +30,38 @@ $( document ).ready(function()
 */
 function initGame()
 {
-	log.info("Initializing the game")
+	log.info("Initializing the game");
+	
+	// get player name
+	var nameObject = document.getElementById("fname");
+	playersName = nameObject.value;
+	
+	var n = noty({text: 'Welcome '+playersName+' to DrugWars - The Heisenberg Edition'});
+	
+	// define game length
+	var daysObject = document.getElementById("gameLength");
+	maxDays = (daysObject.value);
+	curDay=0;
+	
+	$('#calendar').html("Day "+1+" of X (Left Y)");
 	
 	// init values
-	curDay=0;
-	maxDays=5;
-	//leftDays=maxDays-curDay;
-	
 	maxPockets=100;
 	usedPockets=0;
 	freePockets=maxPockets - usedPockets;
 	pockets=usedPockets+ " of "+maxPockets+" used";
 	
+	// hide several content divs
 	$('#div_Gameresult').hide();
 	$('#div_Info').hide();
 	$('#div_Highscore').hide();
+	$('#div_Settings').hide();
+	
+	// enable main buttons	
+	document.getElementById("choose_buyd").disabled = false;		// disable buy button
+	document.getElementById("choose_selld").disabled = false;	// disable sell shark
+	document.getElementById("choose_city").disabled = false;		// disable travel button
+	document.getElementById("choose_loan").disabled = false;		// disable loan shark
 	
 	// get start-timestamp
 	var startTime = new Date().getTime();
@@ -65,14 +89,20 @@ function newDay()
 		$('#calendar').html("Day "+curDay+" of "+maxDays);	// update cal view
 	}
 	
-	log.info("Day: "+curDay)
-	
 	updateTradingButtons();	// enabling or disabling buy and or sell button
 	updateDebt();	// re-calculate debt
 	randomEventsOnDayChange();
 	
+	log.debug("Day: "+curDay)
 	log.debug("InBank: "+bank);
 	log.debug("Debt: "+debt);
+	
+	progressRatio = (curDay / maxDays) * 100;
+	log.debug("Progress: "+progressRatio);
+	
+	// update day-progress-o-meter
+	document.getElementById('progressBar').style.width= (progressRatio) +'%';
+	
 }
 
 

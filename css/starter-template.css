@@ -1,9 +1,11 @@
 body {
 	padding-top: 50px;
 
+	/*
 	background-position: left bottom;
 	background-repeat: no-repeat;
 	background-image: url('../img/header_50_trans.png');
+	*/
 	
 	background-color: white;
 }
@@ -15,7 +17,6 @@ body {
 }
 
 
-
 /*
 	GAME OVER SCREEN
 */
@@ -23,10 +24,11 @@ body {
 {
 	margin-top: 30px;
 	text-align: center;
-	background-color: grey;
+	background-color: #B0B0B0;
 	padding: 15px;
 	border-radius: 15px;	
 }
+
 
 #finalScoreCount
 {
@@ -34,6 +36,29 @@ body {
 	font-size: 30px;
 }
 
+
+#div_Info
+{
+	padding: 15px;
+	background-color: #B0B0B0; 
+	border-radius: 15px;
+}
+
+
+#div_Highscore
+{
+	padding: 15px;
+	background-color: #B0B0B0; 
+	border-radius: 15px;
+}
+
+
+#div_Settings
+{
+	padding: 15px;
+	background-color: #B0B0B0; 
+	border-radius: 15px;
+}
 
 
 
@@ -49,10 +74,10 @@ body {
 	width: 100%;
 }
 
+
 #footer a
 {
 	color: grey;
 	text-decoration: none;
 	font-size: 10px;
 }
-
