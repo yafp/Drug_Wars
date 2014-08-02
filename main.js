@@ -785,46 +785,42 @@ function randomEventsOnDayChange()
 			// 4 = meet jesse
 			// 5 = buy extra pockets
 			// 6 = cheap drugs on market
+			// 7 = meet Hank
 			//
-			var x = getRandomInt(1,6); // what random event should happen?
+			var x = getRandomInt(1,7); // what random event should happen?
 			log.debug("Random Event: "+x)
 			
-			
 			// Execute Random Event: Police
-			if (x == 1)
+			switch(x)
 			{
-				randomEvent_Police();
-			}
-			
-			// Execute Random Event: Robbery
-			if (x == 2)
-			{
-				randomEvent_Robbery();
-			}
-			
-			// Execute Random Event: FindDrugs
-			if (x == 3)
-			{
-				randomEvent_FindDrugs();
-			}
-			
-			// Execute Random Event: JesseQuote
-			if (x == 4)
-			{
-				randomEvent_JesseQuote();
-			}
-			
-			// Execute Random Event: ExtraPockets
-			if (x == 5)
-			{
-				randomEvent_ExtraPockets();
-			}
-			
-			// Execute Random Event: CheapDrugs
-			if (x == 6)
-			{
-				randomEvent_CheapDrugs();
-			}	
+				case 1:
+					randomEvent_Police();
+				break;
+
+				case 2:
+					randomEvent_Robbery();
+				break;
+				
+				case 3:
+					randomEvent_FindDrugs();
+				break;
+
+				case 4:
+					randomEvent_JesseQuote();
+				break;
+				
+				case 5:
+					randomEvent_ExtraPockets();
+				break;
+
+				case 6:
+					randomEvent_CheapDrugs();
+				break;
+				
+				case 7:
+					randomEvent_HankQuote();
+				break;
+			} // end case
 		}
 	}
 }
@@ -994,6 +990,28 @@ function randomEvent_CheapDrugs()
 	$('#acidPerUnit').html("$"+drugs.acid);
 	$('#cokePerUnit').html("$"+drugs.coke);
 }
+
+
+
+
+
+function randomEvent_HankQuote()
+{
+	// random jesse pinkman quote:
+	var hankQuotes = [
+					"You're the smartest guy I ever met... but you're too stupid to see... He made up his mind ten minutes ago.", 
+					"My name is ASAC Schrader and you can go fuck yourself.",
+					"Hey, white boy. My name's Tortuga. You know what that means? Well, if I had to guess, I'd say that's Spanish for asshole.",
+					"Do what you're gonna do."
+				];
+				
+	// pick random quote from array
+	var randomQuote = hankQuotes[Math.floor(Math.random()*hankQuotes.length)];
+				
+	// output random quote
+	var n = noty({text: "Hank Schrader: "+randomQuote});
+}
+
 
 
 
