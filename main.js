@@ -11,6 +11,7 @@ $( document ).ready(function()
 	$('#div_ActionButtons').hide();
 	$('#div_StatusTable').hide();
 	$('#div_Market').hide();
+	$('#div_GameProgress').hide();
 	
 	
 	// disable main buttons	
@@ -20,6 +21,25 @@ $( document ).ready(function()
 	document.getElementById("choose_loan").disabled = true;		// disable loan shark
 	
 	$('#div_Settings').show();
+	
+	
+	// LocalStorage
+	//
+	if(typeof(Storage) !== "undefined") 
+	{
+		document.getElementById("fname").innerHTML = localStorage.getItem("playersName"); 
+		
+		lastName = localStorage.getItem("playersName"); 	// get the last name used in this game from local storage
+		
+		// set the name into the settings dialog
+		var elem = document.getElementById("fname");
+		elem.value = lastName;
+	} 
+	else 
+	{
+		alert("No support for Local storage found. This means: No highscore management possible.");
+	}
+	
 });
 
 
@@ -42,6 +62,10 @@ function initGame()
 	playersName = nameObject.value;
 	
 	var n = noty({text: 'Welcome '+playersName+' to DrugWars - The Heisenberg Edition'});
+	
+	// Save name to local storage
+	localStorage.setItem("playersName", playersName);
+	log.info("Playername "+playersName+" stored to local Storage");
 	
 	// define game length
 	var daysObject = document.getElementById("gameLength");
@@ -72,6 +96,7 @@ function initGame()
 	$('#div_ActionButtons').show();
 	$('#div_StatusTable').show();
 	$('#div_Market').show();
+	$('#div_GameProgress').show();
 	
 	// get start-timestamp
 	var startTime = new Date().getTime();
@@ -103,12 +128,12 @@ function newDay()
 	updateDebt();	// re-calculate debt
 	randomEventsOnDayChange();
 	
-	log.debug("Day: "+curDay)
-	log.debug("InBank: "+bank);
-	log.debug("Debt: "+debt);
+	//log.debug("Day: "+curDay)
+	//log.debug("InBank: "+bank);
+	//log.debug("Debt: "+debt);
 	
 	progressRatio = (curDay / maxDays) * 100;
-	log.debug("Progress: "+progressRatio);
+	//log.debug("Progress: "+progressRatio);
 	
 	// update day-progress-o-meter
 	document.getElementById('progressBar').style.width= (progressRatio) +'%';
@@ -221,6 +246,7 @@ function gameEnded()
 	$('#div_ActionButtons').hide();
 	$('#div_StatusTable').hide();
 	$('#div_Market').hide();
+	$('#div_GameProgress').hide();
 	
 
 	// calculate some values:
@@ -976,10 +1002,6 @@ function randomEvent_CheapDrugs()
 
 
 
-
-
-
-
 /*	###########################################
 	UNSORTED
 	########################################### */
@@ -1031,8 +1053,6 @@ currentLocation = locations.ny;
 
 
 
-
-
 // Setup for NYC
 //
 $('#market').append(' New York City');	// change city title
@@ -1063,48 +1083,8 @@ var start =
 start.play();
 sellPrice(); 
 
-
-	
 var pickedAcid = false;
 var pickedCoke = false; 
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
