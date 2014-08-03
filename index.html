@@ -39,9 +39,11 @@
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="#"><i class="fa fa-home"></i> Home</a></li>
-						<li><a href="#" onclick="$('#div_Info').toggle();$('#div_Highscore').hide();$('#div_Settings').hide();"><i class="fa fa-info"></i> Info</a></li>
-						<li><a href="#" onclick="$('#div_Highscore').toggle();$('#div_Info').hide();$('#div_Settings').hide();"><i class="fa fa-sitemap"></i> Highscore</a></li>
-						<li><a href="#" onclick="$('#div_Settings').toggle();$('#div_Highscore').hide();$('#div_Info').hide();"><i class="fa fa-cog"></i> Settings</a></li>
+						<li><a href="#" onclick="$('#div_Info').toggle();$('#div_Highscore').hide();$('#div_Settings').hide();$('#div_Gameresult').hide();"><i class="fa fa-info"></i> Info</a></li>
+						<li><a href="#" onclick="$('#div_Highscore').toggle();$('#div_Info').hide();$('#div_Settings').hide();$('#div_Gameresult').hide();"><i class="fa fa-sitemap"></i> Highscore</a></li>
+						<!--
+						<li><a href="#" onclick="$('#div_Settings').toggle();$('#div_Highscore').hide();$('#div_Info').hide();$('#div_Gameresult').hide();"><i class="fa fa-cog"></i> Settings</a></li>
+						-->
 						<li><a href="index.html"><i class="fa fa-refresh"></i> Restart Game</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
@@ -149,56 +151,26 @@
 						<span id="score_5"></span>
 						<span id="player_5"></span>
 						<span id="date_5"></span>
-						<script>
-							highscore_5_score = localStorage.getItem("highscore_5");
-							$('#score_5').html("<b>"+highscore_5_score+"</b>");
-							
-							highscore_5_name = localStorage.getItem("player_5");
-							$('#player_5').html("by "+highscore_5_name);
-							
-							highscore_5_date = localStorage.getItem("date_5");
-							$('#date_5').html("at "+highscore_5_date);
-						</script>
 						
 						<!-- 15 Days -->
 						<h3>15 Days</h3>
-						<span id="score_15">Score:</span>
-						<span id="player_15">Player:</span>
-						<script>
-							highscore_15_score = localStorage.getItem("highscore_15");
-							$('#score_15').html("<b>"+highscore_15_score+"</b>");
-							
-							highscore_15_name = localStorage.getItem("player_15");
-							$('#player_15').html("by "+highscore_15_name);
-						</script>
+						<span id="score_15"></span>
+						<span id="player_15"></span>
+						<span id="date_15"></span>
+						
 						
 						<!-- 30 Days -->
 						<h3>30 Days</h3>
-						<span id="score_30">Score:</span>
-						<span id="player_30">Player:</span>
-						<script>
-							highscore_30_score = localStorage.getItem("highscore_30");
-							$('#score_30').html("<b>"+highscore_30_score+"</b>");
-							
-							highscore_30_name = localStorage.getItem("player_30");
-							$('#player_30').html("by "+highscore_30_name);
-						</script>
+						<span id="score_30"></span>
+						<span id="player_30"></span>
+						<span id="date_30"></span>
+						
 						
 						<!-- 45 Days -->
 						<h3>45 Days</h3>
 						<span id="score_45"></span>
 						<span id="player_45"></span>
 						<span id="date_45"></span>
-						<script>
-							highscore_45_score = localStorage.getItem("highscore_45");
-							$('#score_45').html("<b>"+highscore_45_score+"</b>");
-							
-							highscore_45_name = localStorage.getItem("player_45");
-							$('#player_45').html("by "+highscore_45_name);
-							
-							highscore_45_date = localStorage.getItem("date_45");
-							$('#date_45').html("at "+highscore_45_date);
-						</script>
 					</div>
 	
 	

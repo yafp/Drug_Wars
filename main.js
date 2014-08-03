@@ -36,6 +36,8 @@ $( document ).ready(function()
 	{
 		alert("No support for Local storage found. This means: No highscore management possible.");
 	}
+	
+	loadHighscore();
 });
 
 
@@ -300,6 +302,8 @@ function gameEnded()
 			}
 		break;
 	} 
+	
+	loadHighscore(); // updates the highscore
 	
 	// write values to endgame div
 	$('#finalMoneyCount').html(+finalMoney);
@@ -687,6 +691,58 @@ $('#s_coke_tick').click(function(event)
 /*	###########################################
 	HELPERS
 	########################################### */
+
+
+/*
+	HELPER: updateHighscore
+*/
+function loadHighscore() 
+{
+	// 5 Days
+	highscore_5_score = localStorage.getItem("highscore_5");
+	$('#score_5').html("<b>"+highscore_5_score+"</b>");
+							
+	highscore_5_name = localStorage.getItem("player_5");
+	$('#player_5').html("by "+highscore_5_name);
+							
+	highscore_5_date = localStorage.getItem("date_5");
+	$('#date_5').html("at "+highscore_5_date);
+	
+	
+	// 15 Days
+	highscore_15_score = localStorage.getItem("highscore_15");
+	$('#score_15').html("<b>"+highscore_15_score+"</b>");
+							
+	highscore_15_name = localStorage.getItem("player_15");
+	$('#player_15').html("by "+highscore_15_name);
+							
+	highscore_15_date = localStorage.getItem("date_15");
+	$('#date_15').html("at "+highscore_15_date);
+	
+	
+	// 30 Days
+	highscore_30_score = localStorage.getItem("highscore_30");
+	$('#score_30').html("<b>"+highscore_30_score+"</b>");
+							
+	highscore_30_name = localStorage.getItem("player_30");
+	$('#player_30').html("by "+highscore_30_name);
+							
+	highscore_30_date = localStorage.getItem("date_30");
+	$('#date_30').html("at "+highscore_30_date);
+	
+	
+	// 45 Days
+	highscore_45_score = localStorage.getItem("highscore_45");
+	$('#score_45').html("<b>"+highscore_45_score+"</b>");
+							
+	highscore_45_name = localStorage.getItem("player_45");
+	$('#player_45').html("by "+highscore_45_name);
+							
+	highscore_45_date = localStorage.getItem("date_45");
+	$('#date_45').html("at "+highscore_45_date);
+}
+
+
 
 /*
 	HELPER: get randon int 
