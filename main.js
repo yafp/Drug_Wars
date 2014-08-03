@@ -96,6 +96,11 @@ function initGame()
 	$('#div_Market').show();
 	$('#div_GameProgress').show();
 	
+	// score modifier
+	luckEvents = 0;
+	bacLuckEvents = 0;
+	
+	
 	// get start-timestamp
 	var startTime = new Date().getTime();
 	log.debug("Start-Time: "+startTime);
@@ -242,6 +247,13 @@ function gameEnded()
 	var finalMoney = bank;
 	var finalDebt = debt;
 	var finalScore = bank - (3* debt); // calc final score
+	// add luck and badLuck modifiers to score
+	badLuckModifier =  (badLuckEvents * 5000);
+	log.debug("BadLuckModifier: "+badLuckModifier)
+	luckModifier =  (luckEvents * 5000);
+	log.debug("LuckModifier: "+luckModifier)
+	finalScore = finalScore + badLuckModifier -luckModifier;
+	
 	if (finalScore < 1) // negative final score is not possible
 	{
 		finalScore = 0;
@@ -965,6 +977,8 @@ function randomEventsOnDayChange()
 	########################################### */
 function randomEvent_Police()
 {
+	badLuckEvents = bacLuckEvents + 1;
+
 	if( freePockets == maxPockets) // we dont have any drug
 	{
 		var n = noty({text: 'Lucky you - cops controlled you - but you had empty pockets.'});
@@ -987,6 +1001,8 @@ function randomEvent_Police()
 
 function randomEvent_Robbery()
 {
+	badLuckEvents = badLuckEvents + 1;
+
 	if(bank == 0) // if there is no money at all
 	{
 		var n = noty({text: 'Someone tried to rob you but you had no money anyways.'}); 
@@ -1010,6 +1026,8 @@ function randomEvent_Robbery()
 
 function randomEvent_FindDrugs()
 {
+	luckEvents = luckEvents + 1;
+
 	foundDrugs = getRandomInt(1,50); // get random number
 	if(foundDrugs <= freePockets)
 	{
@@ -1107,6 +1125,8 @@ function randomEvent_ExtraPockets()
 
 function randomEvent_CheapDrugs()
 {
+	luckEvents = luckEvents + 1;
+
 	var n = noty({text: 'Drug sale - buy now as much as possible'});
 	log.info("Cheap drugs on the market")
 
@@ -1118,8 +1138,6 @@ function randomEvent_CheapDrugs()
 	$('#acidPerUnit').html("$"+drugs.acid);
 	$('#cokePerUnit').html("$"+drugs.coke);
 }
-
-
 
 
 
