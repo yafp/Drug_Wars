@@ -1,7 +1,0 @@
-LIST OF TODOS/IDEAS
-####################
-- Add money to bank -> Should give extra-money
-- Add Warehouse -> buy weapon
-- add health??
-- add doctor?? (buy health - loose drugs)
-- optimize end game
