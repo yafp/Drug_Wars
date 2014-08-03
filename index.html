@@ -22,8 +22,6 @@
 	</head>
 
 
-
-
 	<body>
 		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			<div class="container">
@@ -41,9 +39,6 @@
 						<li class="active"><a href="#"><i class="fa fa-home"></i> Home</a></li>
 						<li><a href="#" onclick="$('#div_Info').toggle();$('#div_Highscore').hide();$('#div_Settings').hide();$('#div_Gameresult').hide();"><i class="fa fa-info"></i> Info</a></li>
 						<li><a href="#" onclick="$('#div_Highscore').toggle();$('#div_Info').hide();$('#div_Settings').hide();$('#div_Gameresult').hide();"><i class="fa fa-sitemap"></i> Highscore</a></li>
-						<!--
-						<li><a href="#" onclick="$('#div_Settings').toggle();$('#div_Highscore').hide();$('#div_Info').hide();$('#div_Gameresult').hide();"><i class="fa fa-cog"></i> Settings</a></li>
-						-->
 						<li><a href="index.html"><i class="fa fa-refresh"></i> Restart Game</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
@@ -96,7 +91,8 @@
 						What drug do you want to buy?
 						<label class="checkbox-inline"><input type="checkbox" id="acid_tick" value="acid"> Acid</label>
 						<label class="checkbox-inline"><input type="checkbox" id="coke_tick" value="coke"> Coke</label>
-						<br><br>
+						<br>
+						<br>
 						<label for="buyDrugs">How many drugs do you want to buy?</label>
 						<input type="number" class="form-control" id="buyDrugs" placeholder="How many units?">
 					</div>
@@ -201,9 +197,7 @@
 						<hr>
 							<form action="#">
 								Name <input type="text" id="fname" name="fname" placeholder="Playername" value="Heisenberg">
-								<br>
-								<br>
-								Days&nbsp;&nbsp;
+								&nbsp;&nbsp;Days 
 								<select id="gameLength">
 									<option value="5">5 Days</option>
 									<option value="15" selected>15 Days</option>
@@ -212,15 +206,14 @@
 								</select> 
 								<br>
 								<br>
-								<a class="btn btn-primary btn-lg" role="button" onclick="initGame();">Start Game</a>
+								<a class="btn btn-primary btn-lg" role="button" onclick="initGame();"><i class="fa fa-play-circle"></i> Start Game</a>
 							</form> 
 					</div>
 					
 					
 					
 					<!-- Day Progress Meter -->
-					<br>
-					<br>
+					<!--
 					<div id="div_GameProgress">
 					Game Progress
 					<div class="progress">
@@ -228,7 +221,9 @@
 							<span class="sr-only">0% Complete</span>
 						</div>
 					</div>
-					</div> <!-- game progress -->
+					
+					</div> 
+					-->
 						
 				</div> <!--END OF COL -->
 				<br><br>
@@ -236,76 +231,77 @@
 	
 	
 
-				<div class="col-md-6"> <!--YOUR SCORE -->
-				<!--BANK ACCOUNT -->
+				<div class="col-md-6">
+					
+					<!--STATUS-TABLE -->
 					<div id="div_StatusTable">
-					<table class="table table-bordered">
-						<thead>
-						  <tr>
-							<th><i class="fa fa-calendar"></i> Calendar</th>
-							<th><i class="fa fa-money"></i> Money</th>
-							<th><i class="fa fa-archive"></i> Drugs</th>
-							<th><i class="fa fa-briefcase"></i> Pockets</th>
-							<th><i class="fa fa-book"></i> Debt</th>
-						  </tr>
-						</thead>
-						<tbody>
-						  <tr>
-							<td id="calendar"></td>
-							<td id="inBank"></td>
-							<td id="listDrugs"></td>
-							<td id="pockets"></td>
-							<td id="debt"></td>
-						  </tr>
-						 
-						</tbody>
-					 </table>
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th><i class="fa fa-calendar"></i> Calendar</th>
+									<th><i class="fa fa-money"></i> Money</th>
+									<th><i class="fa fa-archive"></i> Drugs</th>
+									<th><i class="fa fa-briefcase"></i> Pockets</th>
+									<th><i class="fa fa-book"></i> Debt</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td id="calendar"></td>
+									<td id="inBank"></td>
+									<td id="listDrugs"></td>
+									<td id="pockets"></td>
+									<td id="debt"></td>
+								</tr>
+							</tbody>
+						</table>
 					 </div>
 				
-					<br>
 
-
-
-
-
+					<!-- Day Progress Meter -->
+					<div id="div_GameProgress">
+						Game Progress
+						<div class="progress">
+							<div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+								<span class="sr-only">0% Complete</span>
+							</div>
+						</div>
+					</div> <!-- game progress -->
 
 					<!--THE MARKET -->
 					<div id="div_Market">
-					<h2 id="market"><i class="fa fa-map-marker"></i> The Market:</h2>
-					<br>
-					<table class="table table-bordered">
-					  <thead>
-						<tr>
-						  <th>Drug</th>
-						  <th>Units</th>
-						  <th>Buy per Unit</th>
-						  <th>Sell $</th>
-						</tr>
-					  </thead>
-					  <tbody>
-						<tr>
-						  <td>Acid</td>
-						  <td id="acidUnits"></td>
-						  <td id="acidPerUnit"></td>
-						  <td id="acidSell"></td>
-						</tr>
-						<tr>
-						  <td>Coke</td>
-						  <td id="cokeUnits"></td>
-						  <td id="cokePerUnit"></td>
-						  <td id="cokeSell"></td>
-						</tr>
-					  </tbody>
-					</table>
+						<h2 id="market"><i class="fa fa-map-marker"></i> The Market:</h2>
+						<br>
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Drug</th>
+									<th>Units</th>
+									<th>Buy per Unit</th>
+									<th>Sell $</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Acid</td>
+									<td id="acidUnits"></td>
+									<td id="acidPerUnit"></td>
+									<td id="acidSell"></td>
+								</tr>
+								<tr>
+									<td>Coke</td>
+									<td id="cokeUnits"></td>
+									<td id="cokePerUnit"></td>
+									<td id="cokeSell"></td>
+								</tr>
+							</tbody>
+						</table>
 					</div> <!-- market -->
-    
-    
-    
-    
+   
 				</div> <!--END OF COL -->
 			</div> <!--END OF ROW -->
     
-			<br><br>
+
     
 		</div><!-- /.container -->
     

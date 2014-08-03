@@ -20,9 +20,7 @@ $( document ).ready(function()
 	
 	$('#div_Settings').show();
 	
-	
 	// LocalStorage
-	//
 	if(typeof(Storage) !== "undefined") 
 	{
 		document.getElementById("fname").innerHTML = localStorage.getItem("playersName"); 
@@ -39,9 +37,6 @@ $( document ).ready(function()
 	
 	loadHighscore();
 });
-
-
-
 
 
 /*	###########################################
@@ -63,7 +58,7 @@ function initGame()
 	
 	// Save name to local storage
 	localStorage.setItem("playersName", playersName);
-	log.info("Playername "+playersName+" stored to local Storage");
+	log.info("Player name: "+playersName+" stored to local Storage");
 	
 	// define game length
 	var daysObject = document.getElementById("gameLength");
@@ -98,8 +93,7 @@ function initGame()
 	
 	// score modifier
 	luckEvents = 0;
-	bacLuckEvents = 0;
-	
+	badLuckEvents = 0;
 	
 	// get start-timestamp
 	var startTime = new Date().getTime();
@@ -131,16 +125,10 @@ function newDay()
 	randomEventsOnDayChange();
 	
 	progressRatio = (curDay / maxDays) * 100;
-	
-	//log.debug("Day: "+curDay)
-	//log.debug("InBank: "+bank);
-	//log.debug("Debt: "+debt);
-	//log.debug("Progress: "+progressRatio);
-	
+		
 	// update day-progress-o-meter
 	document.getElementById('progressBar').style.width= (progressRatio) +'%';
 }
-
 
 
 /*
@@ -216,9 +204,6 @@ function ChangeCity()
 } // change city
 
 
-
-
-
 /*
 	Show final score
 */
@@ -247,11 +232,14 @@ function gameEnded()
 	var finalMoney = bank;
 	var finalDebt = debt;
 	var finalScore = bank - (3* debt); // calc final score
+	
 	// add luck and badLuck modifiers to score
 	badLuckModifier =  (badLuckEvents * 5000);
 	log.debug("BadLuckModifier: "+badLuckModifier)
+	
 	luckModifier =  (luckEvents * 5000);
 	log.debug("LuckModifier: "+luckModifier)
+	
 	finalScore = finalScore + badLuckModifier -luckModifier;
 	
 	if (finalScore < 1) // negative final score is not possible
@@ -265,9 +253,7 @@ function gameEnded()
 	//log.debug(startTime);
 	log.debug("End Time: "+endTime);
 	
-	
-	// check highscore arrays - depends on maxDays
-	//
+	// check highscore - depends on maxDays
 	log.debug("Max Days: "+maxDays);
 	
 	switch(maxDays) 
@@ -324,11 +310,6 @@ function gameEnded()
 	
 	$('#div_Gameresult').show();	// show result div
 }
-
-
-
-
-
 
 
 
@@ -393,7 +374,6 @@ $('#btn').click(function(event)
 });
 
 
-	
 /*	
 	BUTTON PRESS: change city
 */
@@ -470,8 +450,6 @@ $('#drugBtn').click(function(event)
 		
 		updateTradingButtons();
 	} // end of IF Picked Acid
-
-
 	else if (pickedCoke === true)
 	{
 		cashSpent = drugs.coke * numUnits;
@@ -524,7 +502,6 @@ $('#drugBtn').click(function(event)
 	} // End of else if	
 }); // buy drugs button
 	
-
 
 /*
 	BUTTON PRESSED: SELL drugs
@@ -612,8 +589,7 @@ $('#sellBtn').click(function(event)
 	} // End of else if
 }); // buy drugs button
 	
-	
-	
+		
 /*	
 	BUTTON PRESS: Pay Back Money
 */	
@@ -668,7 +644,6 @@ $('#coke_tick').click(function(event)
 });
 	
 
-
 // check if sell acid-drug box got ticked
 $('#s_acid_tick').click(function(event) 
 {	
@@ -695,15 +670,10 @@ $('#s_coke_tick').click(function(event)
 
 
 
-
-
-
-
 	
 /*	###########################################
 	HELPERS
 	########################################### */
-
 
 /*
 	HELPER: updateHighscore
@@ -712,44 +682,33 @@ function loadHighscore()
 {
 	// 5 Days
 	highscore_5_score = localStorage.getItem("highscore_5");
-	$('#score_5').html("<b>"+highscore_5_score+"</b>");
-							
+	$('#score_5').html("<b>"+highscore_5_score+"</b>");							
 	highscore_5_name = localStorage.getItem("player_5");
 	$('#player_5').html("by "+highscore_5_name);
-							
 	highscore_5_date = localStorage.getItem("date_5");
 	$('#date_5').html("at "+highscore_5_date);
-	
 	
 	// 15 Days
 	highscore_15_score = localStorage.getItem("highscore_15");
 	$('#score_15').html("<b>"+highscore_15_score+"</b>");
-							
 	highscore_15_name = localStorage.getItem("player_15");
 	$('#player_15').html("by "+highscore_15_name);
-							
 	highscore_15_date = localStorage.getItem("date_15");
 	$('#date_15').html("at "+highscore_15_date);
-	
 	
 	// 30 Days
 	highscore_30_score = localStorage.getItem("highscore_30");
 	$('#score_30').html("<b>"+highscore_30_score+"</b>");
-							
 	highscore_30_name = localStorage.getItem("player_30");
 	$('#player_30').html("by "+highscore_30_name);
-							
 	highscore_30_date = localStorage.getItem("date_30");
 	$('#date_30').html("at "+highscore_30_date);
 	
-	
 	// 45 Days
 	highscore_45_score = localStorage.getItem("highscore_45");
-	$('#score_45').html("<b>"+highscore_45_score+"</b>");
-							
+	$('#score_45').html("<b>"+highscore_45_score+"</b>");						
 	highscore_45_name = localStorage.getItem("player_45");
 	$('#player_45').html("by "+highscore_45_name);
-							
 	highscore_45_date = localStorage.getItem("date_45");
 	$('#date_45').html("at "+highscore_45_date);
 }
@@ -808,8 +767,6 @@ function updateTradingButtons()
 	}
 	
 	
-	
-	
 	// Sell-Area buttons
 	//
 	if ((currentDrugs.acid == 0) & (currentDrugs.coke == 0) )
@@ -859,22 +816,18 @@ function updateTradingButtons()
 }
 
 
-
-
 /*
 	HELPER: Calculate debt (happens on each new day)
 */
 function updateDebt()
 {
-	if(debt > 0)
+	if(debt > 0) // only if player has debt
 	{
 		log.info("Update debt (adding 10%")
 		debt = Math.round(debt * 1.1);	// calculate new debt
 		$('#debt').html("$"+debt);			// update UI
 	}
 }
-
-
 
 
 /*
@@ -918,16 +871,6 @@ function randomEventsOnDayChange()
 		var shouldRandomHappen = getRandomInt(1,10); // calculate chance for a random event
 		if(shouldRandomHappen <= 2) // random event happens
 		{
-			// select 1 of the random events
-			//
-			// 1 = police
-			// 2 = getting robbed
-			// 3 = found drugs
-			// 4 = meet jesse
-			// 5 = buy extra pockets
-			// 6 = cheap drugs on market
-			// 7 = meet Hank
-			//
 			var x = getRandomInt(1,7); // what random event should happen?
 			log.debug("Random Event: "+x)
 			
@@ -977,7 +920,7 @@ function randomEventsOnDayChange()
 	########################################### */
 function randomEvent_Police()
 {
-	badLuckEvents = bacLuckEvents + 1;
+	badLuckEvents = badLuckEvents + 1;
 
 	if( freePockets == maxPockets) // we dont have any drug
 	{
