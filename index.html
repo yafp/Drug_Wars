@@ -143,16 +143,21 @@
 					<!-- HIGHSCORE -->
 					<div id="div_Highscore">
 						<h2><i class="fa fa-sitemap"></i> Highscore</h2>
+						<hr>
 						<!-- 5 Days -->
 						<h3>5 Days</h3>
-						<span id="score_5">Score:</span>
-						<span id="player_5">Player:</span>
+						<span id="score_5"></span>
+						<span id="player_5"></span>
+						<span id="date_5"></span>
 						<script>
 							highscore_5_score = localStorage.getItem("highscore_5");
 							$('#score_5').html("<b>"+highscore_5_score+"</b>");
 							
 							highscore_5_name = localStorage.getItem("player_5");
 							$('#player_5').html("by "+highscore_5_name);
+							
+							highscore_5_date = localStorage.getItem("date_5");
+							$('#date_5').html("at "+highscore_5_date);
 						</script>
 						
 						<!-- 15 Days -->
@@ -181,25 +186,31 @@
 						
 						<!-- 45 Days -->
 						<h3>45 Days</h3>
-						<span id="score_45">Score:</span>
-						<span id="player_45">Player:</span>
+						<span id="score_45"></span>
+						<span id="player_45"></span>
+						<span id="date_45"></span>
 						<script>
 							highscore_45_score = localStorage.getItem("highscore_45");
 							$('#score_45').html("<b>"+highscore_45_score+"</b>");
 							
 							highscore_45_name = localStorage.getItem("player_45");
 							$('#player_45').html("by "+highscore_45_name);
+							
+							highscore_45_date = localStorage.getItem("date_45");
+							$('#date_45').html("at "+highscore_45_date);
 						</script>
 					</div>
 	
 	
-					<!-- INFO -->
 					<div id="div_Info">
 						<h2><i class="fa fa-info"></i> Info</h2>
+						<hr>
 						<h3>About the game</h3>
 						<p>Drugwars is a turn-based strategy computer game in which the player assumes the role of a drug dealer engaged in arbitrage. </p>
 						<p>The object of the game is to deal the most drugs to pay off the "loan shark" (who charges interest) by the end of the game and make a profit. </p>
 						<p>Drugwars was originally a DOS program created by John E. Dell in 1984.</p>
+						<h3>Highscore</h3>
+						The scores are stored locally using <a href="http://en.wikipedia.org/wiki/Web_storage#Local_and_session_storage">localStorage</a>.
 						<h3>Keyboard</h3>
 						<ul>
 							<li>F2 - Toggle Blackbird window</li>
@@ -212,6 +223,7 @@
 					<!-- SETTINGS -->
 					<div id="div_Settings">
 						<h2><i class="fa fa-cog"></i> Settings</h2>
+						<hr>
 							<form action="#">
 								Name <input type="text" id="fname" name="fname" placeholder="Playername" value="Heisenberg">
 								<br>
@@ -242,26 +254,12 @@
 						</div>
 					</div>
 					</div> <!-- game progress -->
-					
-					
-					
-					
-					
-
-					
-					
-	
-	
+						
 				</div> <!--END OF COL -->
-    
 				<br><br>
-
 	
 	
 	
-
-
-
 
 				<div class="col-md-6"> <!--YOUR SCORE -->
 				<!--BANK ACCOUNT -->

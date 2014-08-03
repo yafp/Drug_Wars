@@ -7,12 +7,10 @@ $( document ).ready(function()
 	$('#div_Gameresult').hide();
 	$('#div_Info').hide();
 	$('#div_Highscore').hide();
-	
 	$('#div_ActionButtons').hide();
 	$('#div_StatusTable').hide();
 	$('#div_Market').hide();
 	$('#div_GameProgress').hide();
-	
 	
 	// disable main buttons	
 	document.getElementById("choose_buyd").disabled = true;		// disable buy button
@@ -38,7 +36,6 @@ $( document ).ready(function()
 	{
 		alert("No support for Local storage found. This means: No highscore management possible.");
 	}
-	
 });
 
 
@@ -100,7 +97,6 @@ function initGame()
 	// get start-timestamp
 	var startTime = new Date().getTime();
 	log.debug("Start-Time: "+startTime);
-	//alert(startTime);
 	
 	// start a new day
 	newDay();
@@ -120,7 +116,6 @@ function newDay()
 	else // normal day
 	{
 		curDay=curDay+1;
-		//leftDays=maxDays-curDay;
 		$('#calendar').html("Day "+curDay+" of "+maxDays);	// update cal view
 	}
 	
@@ -128,19 +123,16 @@ function newDay()
 	updateDebt();	// re-calculate debt
 	randomEventsOnDayChange();
 	
+	progressRatio = (curDay / maxDays) * 100;
+	
 	//log.debug("Day: "+curDay)
 	//log.debug("InBank: "+bank);
 	//log.debug("Debt: "+debt);
-	
-	progressRatio = (curDay / maxDays) * 100;
 	//log.debug("Progress: "+progressRatio);
 	
 	// update day-progress-o-meter
 	document.getElementById('progressBar').style.width= (progressRatio) +'%';
-	
 }
-
-
 
 
 
@@ -184,7 +176,6 @@ function ChangeCity()
 
 		sellPrice(); 
 	} // end of IF
-
 	else if (currentLocation === 'nyc')
 	{
 		// change city
@@ -221,7 +212,6 @@ function ChangeCity()
 
 
 
-
 /*
 	Show final score
 */
@@ -235,8 +225,6 @@ function gameEnded()
 	document.getElementById("choose_city").disabled = true;		// disable travel button
 	document.getElementById("choose_loan").disabled = true;		// disable loan shark
 	
-	
-		
 	// hide input menues
 	$('#sell_Drugs').hide();
 	$('#loanshark_div').hide();
@@ -248,7 +236,6 @@ function gameEnded()
 	$('#div_Market').hide();
 	$('#div_GameProgress').hide();
 	
-
 	// calculate some values:
 	var finalMoney = bank;
 	var finalDebt = debt;
@@ -260,10 +247,9 @@ function gameEnded()
 
 	// get end-timestamp
 	var endTime = new Date().getTime();
+	
 	//log.debug(startTime);
 	log.debug("End Time: "+endTime);
-	
-	
 	
 	
 	// check highscore arrays - depends on maxDays
@@ -278,6 +264,7 @@ function gameEnded()
 			{
 				localStorage.setItem("highscore_5", finalScore);
 				localStorage.setItem("player_5", playersName);
+				localStorage.setItem("date_5", Date.now());
 				log.debug("New highscore_5 written");
 			}
 		break;
@@ -308,17 +295,16 @@ function gameEnded()
 			{
 				localStorage.setItem("highscore_45", finalScore);
 				localStorage.setItem("player_45", playersName);
+				localStorage.setItem("date_45", Date.now());
 				log.debug("New highscore_45 written");
 			}
 		break;
 	} 
 	
-	
 	// write values to endgame div
 	$('#finalMoneyCount').html(+finalMoney);
 	$('#finalDebtCount').html(+finalDebt);
 	$('#finalScoreCount').html(+finalScore);	
-	
 	
 	$('#div_Gameresult').show();	// show result div
 }
@@ -342,9 +328,6 @@ $('#choose_buyd').click(function(event)
 	$('#sell_Drugs').hide();
 	$('#loanshark_div').hide();
 	$('#buy_Drugs').toggle(400); 
-	
-	// todo
-	// - disable all drug-checkboxes which arent available
 });
 
 
@@ -356,10 +339,6 @@ $('#choose_selld').click(function(event)
 	$('#loanshark_div').hide();
 	$('#buy_Drugs').hide();
 	$('#sell_Drugs').toggle(400); 
-	
-	// todo:
-	// - disable all drug-checkboxes we dont have
-	
 });
 
 
@@ -371,9 +350,6 @@ $('#choose_loan').click(function(event)
 	$('#sell_Drugs').hide();
 	$('#buy_Drugs').hide();
 	$('#loanshark_div').toggle(400); 
-	
-	// todo
-	// - disable payback button if debt = 0
 });
 
 
@@ -425,7 +401,6 @@ $('#drugBtn').click(function(event)
 	
 	// turn number of units into a number 
 	var xUnits = $('input[id="buyDrugs"]').val(); 
-	//console.log("you want to buy " + xUnits + " units");
 	var numUnits = parseInt(xUnits); 
 
 	// depending on your selection
@@ -468,27 +443,22 @@ $('#drugBtn').click(function(event)
 		$('#pockets').html(pockets);
 		
 		// remove units once bought 
-		//console.log("acid_unit is at " + acid_unit); 
 		acid_unit = acid_unit - numUnits;
-		//console.log("num acid left is " + acid_unit); 
 		$('#acidUnits').html(acid_unit); 
 
 		// work out new bank balance
 		bank = bank - cashSpent;
-		//console.log(bank);
 
 		// update my bank
 		$('#inBank').html("$"+bank);
 		
 		updateTradingButtons();
-
 	} // end of IF Picked Acid
 
 
 	else if (pickedCoke === true)
 	{
 		cashSpent = drugs.coke * numUnits;
-		//console.log(cashSpent);
 
 		// check to see if you can afford it
 		if (bank - cashSpent < 0)
@@ -524,24 +494,18 @@ $('#drugBtn').click(function(event)
 		$('#pockets').html(pockets);
 
 		// remove units once bought 
-		//console.log("coke_unit is at " + coke_unit); 
 		coke_unit = coke_unit - numUnits;
-		//console.log("num coke left is " + coke_unit); 
 		$('#cokeUnits').html(coke_unit);  
 
 		// work out new bank balance
 		bank = bank - cashSpent;
-		//console.log(bank);
 		log.info("Bank "+bank)
 
 		// update my bank
 		$('#inBank').html("$"+bank); 
 		
 		updateTradingButtons();
-
 	} // End of else if	
-	
-	
 }); // buy drugs button
 	
 
@@ -560,14 +524,12 @@ $('#sellBtn').click(function(event)
 
 	// turn number of units into a number 
 	var xUnits = $('input[id="sellDrugs"]').val(); 
-	//console.log("you want to sell " + xUnits + " units");
 	var numUnits = parseInt(xUnits); 
 
 	// depending on your selection
 	if (pickedAcid === true)
 	{
 		cashEarned = drugs.acid * numUnits;
-		//console.log("you made " + cashEarned);
 		log.info("You earned "+cashEarned+" $")
 
 		// check to see if you have enough units
@@ -597,9 +559,7 @@ $('#sellBtn').click(function(event)
 		$('#inBank').html("$"+bank); 
 		
 		updateTradingButtons();
-
 	} // end of IF Picked Acid
-
 	// NOW LET'S DO FOR COKE
 	else if (pickedCoke === true)
 	{
@@ -633,10 +593,8 @@ $('#sellBtn').click(function(event)
 		$('#inBank').html("$"+bank); 
 		
 		updateTradingButtons();
-
 	} // End of else if
 }); // buy drugs button
-
 	
 	
 	
@@ -757,6 +715,33 @@ function updateTradingButtons()
 		document.getElementById("choose_buyd").disabled = true;	// disable buy buton
 	}
 	
+	// BUY - disable all drug-checkboxes which arent available
+	//
+	// acid
+	if(acid_unit == 0)
+	{
+		document.getElementById("acid_tick").disabled = true; 
+		$('#acid_tick').attr('checked', false);
+	}
+	else
+	{
+		document.getElementById("acid_tick").disabled = false
+	}
+	//
+	// coke
+	if(coke_unit == 0)
+	{
+		document.getElementById("coke_tick").disabled = true; 
+		$('#coke_tick').attr('checked', false);
+	}
+	else
+	{
+		document.getElementById("coke_tick").disabled = false
+	}
+	
+	
+	
+	
 	// Sell-Area buttons
 	//
 	if ((currentDrugs.acid == 0) & (currentDrugs.coke == 0) )
@@ -766,6 +751,42 @@ function updateTradingButtons()
 	else
 	{
 		document.getElementById("choose_selld").disabled = false; // enable sell button
+	}
+	
+	// SELL - disable all drug-checkboxes we dont have
+	//
+	// acid
+	if(currentDrugs.acid == 0)
+	{
+		document.getElementById("s_acid_tick").disabled = true;  
+		$('#s_acid_tick').attr('checked', false);
+	}
+	else
+	{
+		document.getElementById("s_acid_tick").disabled = false
+	}
+	//
+	// coke
+	if(currentDrugs.coke == 0)
+	{
+		document.getElementById("s_coke_tick").disabled = true; 
+		$('#s_coke_tick').attr('checked', false); 
+	}
+	else
+	{
+		document.getElementById("s_coke_tick").disabled = false
+	}
+	
+	// payback
+	if(debt == 0)
+	{
+		document.getElementById("btn_payDebt").disabled = true;
+		document.getElementById("payDebt").disabled = true;  
+	}
+	else
+	{
+		document.getElementById("btn_payDebt").disabled = false;
+		document.getElementById("payDebt").disabled = false;  
 	}
 }
 
@@ -895,7 +916,6 @@ function randomEvent_Police()
 	else // we do have drugs - cops will rip us
 	{
 		var n = noty({text: 'The cops .... dumping my stash'});
-		//console.log("you lost " +  currentDrugs.acid + " Acid and " + currentDrugs.coke + " Coke"); 
 					
 		currentDrugs.coke = 0;
 		currentDrugs.acid = 0; 
@@ -1155,6 +1175,3 @@ sellPrice();
 
 var pickedAcid = false;
 var pickedCoke = false; 
-
-
-

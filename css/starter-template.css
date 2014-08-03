@@ -22,7 +22,7 @@ body {
 */
 #div_Gameresult
 {
-	margin-top: 30px;
+	margin: 10px;
 	text-align: center;
 	background-color: #B0B0B0;
 	padding: 15px;
@@ -39,6 +39,7 @@ body {
 
 #div_Info
 {
+	margin: 10px;
 	padding: 15px;
 	background-color: #B0B0B0; 
 	border-radius: 15px;
@@ -47,6 +48,7 @@ body {
 
 #div_Highscore
 {
+	margin: 10px;
 	padding: 15px;
 	background-color: #B0B0B0; 
 	border-radius: 15px;
@@ -55,6 +57,7 @@ body {
 
 #div_Settings
 {
+	margin: 10px;
 	padding: 15px;
 	background-color: #B0B0B0; 
 	border-radius: 15px;
