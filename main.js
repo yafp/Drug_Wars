@@ -4,12 +4,6 @@
 $( document ).ready(function() 
 {
 
-
-
-
-
-
-
 	// preparing the game - should show settings dialog and hide everything else
 	$('#div_Gameresult').hide();
 	$('#div_Info').hide();
@@ -132,8 +126,9 @@ function newDay()
 		$('#calendar').html("Day "+curDay+" of "+maxDays);	// update cal view
 	}
 	
-	updateTradingButtons();	// enabling or disabling buy and or sell button
+
 	updateDebt();	// re-calculate debt
+	updateAllUIElements();
 	randomEventsOnDayChange();
 	
 	progressRatio = (curDay / maxDays) * 100;
@@ -396,7 +391,7 @@ $('#btn').click(function(event)
 	$('#debt').html("$"+debt);
 	
 	updateLoansharkUI();
-	updateTradingButtons();
+	updateAllUIElements();
 });
 
 
@@ -474,7 +469,7 @@ $('#drugBtn').click(function(event)
 		// update my bank
 		$('#inBank').html("$"+bank);
 		
-		updateTradingButtons();
+		updateAllUIElements();
 	} // end of IF Picked Acid
 	else if (pickedCoke === true)
 	{
@@ -524,7 +519,7 @@ $('#drugBtn').click(function(event)
 		// update my bank
 		$('#inBank').html("$"+bank); 
 		
-		updateTradingButtons();
+		updateAllUIElements();
 	} // End of else if	
 }); // buy drugs button
 	
@@ -574,10 +569,9 @@ $('#sellBtn').click(function(event)
 		// work out new bank balance
 		bank = bank + cashEarned;
 
-		// update my bank
-		$('#inBank').html("$"+bank); 
 		
-		updateTradingButtons();
+		updateAllUIElements();
+		
 	} // end of IF Picked Acid
 	// NOW LET'S DO FOR COKE
 	else if (pickedCoke === true)
@@ -607,11 +601,8 @@ $('#sellBtn').click(function(event)
 
 		// work out new bank balance
 		bank = bank + cashEarned;
-
-		// update my bank
-		$('#inBank').html("$"+bank); 
 		
-		updateTradingButtons();
+		updateAllUIElements();
 	} // End of else if
 }); // buy drugs button
 	
@@ -724,10 +715,33 @@ $('#s_coke_tick').click(function(event)
 
 
 
-	
+
+
+
+
+
 /*	###########################################
 	HELPERS
 	########################################### */
+
+// not yet in use
+function updateAllUIElements()
+{
+	// action buttons
+	updateTradingButtons();
+
+	
+	// status menues
+	$('#calendar').html("Day "+curDay+" of "+maxDays);	//
+	$('#inBank').html("$"+bank); 
+	$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke);
+	$('#pockets').html(pockets); 
+	$('#debt').html("$"+debt); 
+	$('#health').html(health); 
+	
+	
+}
+
 
 
 /*
@@ -865,8 +879,6 @@ function updateTradingButtons()
 	}
 	
 	// BUY - disable all drug-checkboxes which arent available
-	//
-	// acid
 	if(acid_unit == 0)
 	{
 		document.getElementById("acid_tick").disabled = true; 
@@ -876,7 +888,6 @@ function updateTradingButtons()
 	{
 		document.getElementById("acid_tick").disabled = false
 	}
-	//
 	// coke
 	if(coke_unit == 0)
 	{
@@ -890,7 +901,6 @@ function updateTradingButtons()
 	
 	
 	// Sell-Area buttons
-	//
 	if ((currentDrugs.acid == 0) & (currentDrugs.coke == 0) )
 	{
 		document.getElementById("choose_selld").disabled = true;	// disable sell button
@@ -901,8 +911,6 @@ function updateTradingButtons()
 	}
 	
 	// SELL - disable all drug-checkboxes we dont have
-	//
-	// acid
 	if(currentDrugs.acid == 0)
 	{
 		document.getElementById("s_acid_tick").disabled = true;  
@@ -912,7 +920,6 @@ function updateTradingButtons()
 	{
 		document.getElementById("s_acid_tick").disabled = false
 	}
-	//
 	// coke
 	if(currentDrugs.coke == 0)
 	{
@@ -947,7 +954,7 @@ function updateDebt()
 	{
 		log.info("Update debt (adding 10%")
 		debt = Math.round(debt * 1.1);	// calculate new debt
-		$('#debt').html("$"+debt);			// update UI
+		updateAllUIElements();
 	}
 }
 
@@ -1112,9 +1119,9 @@ function randomEvent_FindDrugs()
 	usedPockets= usedPockets+foundDrugs;
 	freePockets = maxPockets - usedPockets;
 	pockets=usedPockets+ " of "+maxPockets+" used";
-	$('#pockets').html(pockets);
 
-	updateTradingButtons();
+
+	updateAllUIElements();
 				
 	return;
 }
