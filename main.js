@@ -351,7 +351,26 @@ $('#choose_loan').click(function(event)
 {	
 	$('#sell_Drugs').hide();
 	$('#buy_Drugs').hide();
-	$('#loanshark_div').toggle(400); 
+	$('#loanshark_div').toggle(400);
+
+	// todo: #7
+	//
+	if(debt > 0)
+	{
+		$("#btn_payDebt").show();
+
+		if(bank > debt)
+		{
+			$("#btn_payDebtAll").show();
+		}
+	}
+	else
+	{
+		// hide all payback options
+		$("#btn_payDebt").hide();
+		$("#btn_payDebtAll").hide();
+	}
+
 });
 
 
@@ -623,6 +642,25 @@ $('#btn_payDebt').click(function(event)
 		$('#debt').html("$"+debt);
 	}
 });	
+
+
+
+/*	
+	BUTTON PRESS: Pay Back Money all
+*/	
+$('#btn_payDebtAll').click(function(event) 
+{
+	bank = bank - debt;
+	debt = 0;
+
+	$('#inBank').html("$"+bank);
+	$('#debt').html("$"+debt);
+
+});	
+
+
+
+
 
 
 // check if acid-drug box got ticked -
