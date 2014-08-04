@@ -304,6 +304,17 @@ function gameEnded()
 				log.debug("New highscore_45 written");
 			}
 		break;
+		
+		case "90":
+			log.debug("highscore_90");
+			if (finalScore > localStorage.getItem("highscore_90")) 
+			{
+				localStorage.setItem("highscore_90", finalScore);
+				localStorage.setItem("player_90", playersName);
+				localStorage.setItem("date_90", Date.now());
+				log.debug("New highscore_90 written");
+			}
+		break;
 	} 
 	
 	loadHighscore(); // updates the highscore
@@ -764,6 +775,14 @@ function loadHighscore()
 	$('#player_45').html("by "+highscore_45_name);
 	highscore_45_date = localStorage.getItem("date_45");
 	$('#date_45').html("at "+highscore_45_date);
+	
+	// 90 Days
+	highscore_90_score = localStorage.getItem("highscore_90");
+	$('#score_90').html("<b>"+highscore_90_score+"</b>");						
+	highscore_90_name = localStorage.getItem("player_90");
+	$('#player_90').html("by "+highscore_90_name);
+	highscore_90_date = localStorage.getItem("date_90");
+	$('#date_90').html("at "+highscore_90_date);
 }
 
 
