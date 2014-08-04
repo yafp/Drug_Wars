@@ -353,24 +353,7 @@ $('#choose_loan').click(function(event)
 	$('#buy_Drugs').hide();
 	$('#loanshark_div').toggle(400);
 
-	// todo: #7
-	//
-	if(debt > 0)
-	{
-		$("#btn_payDebt").show();
-
-		if(bank > debt)
-		{
-			$("#btn_payDebtAll").show();
-		}
-	}
-	else
-	{
-		// hide all payback options
-		$("#btn_payDebt").hide();
-		$("#btn_payDebtAll").hide();
-	}
-
+	updateLoansharkUI();
 });
 
 
@@ -394,6 +377,7 @@ $('#btn').click(function(event)
 	debt = debt + b;
 	$('#debt').html("$"+debt);
 	
+	updateLoansharkUI();
 	updateTradingButtons();
 });
 
@@ -640,6 +624,8 @@ $('#btn_payDebt').click(function(event)
 		// update the debt
 		debt = debt - b;
 		$('#debt').html("$"+debt);
+		
+		updateLoansharkUI();
 	}
 });	
 
@@ -655,7 +641,8 @@ $('#btn_payDebtAll').click(function(event)
 
 	$('#inBank').html("$"+bank);
 	$('#debt').html("$"+debt);
-
+	
+	updateLoansharkUI();
 });	
 
 
@@ -717,6 +704,29 @@ $('#s_coke_tick').click(function(event)
 /*	###########################################
 	HELPERS
 	########################################### */
+
+
+
+function updateLoansharkUI()
+{
+	if(debt > 0)
+	{
+		$("#form_Payback").show();
+		$("#btn_payDebt").show();
+
+		if(bank > debt)
+		{
+			$("#btn_payDebtAll").show();
+		}
+	}
+	else
+	{
+		// hide all payback options
+		$("#form_Payback").hide();		
+	}
+}
+
+
 
 /*
 	HELPER: updateHighscore
