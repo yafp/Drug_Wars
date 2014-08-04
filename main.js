@@ -66,12 +66,17 @@ function initGame()
 	curDay=0;
 	
 	$('#calendar').html("Day "+1+" of X (Left Y)");
+
+
 	
 	// init values
 	maxPockets=100;
 	usedPockets=0;
 	freePockets=maxPockets - usedPockets;
 	pockets=usedPockets+ " of "+maxPockets+" used";
+
+	health=100;
+	$('#health').html(health);
 	
 	// hide several content divs
 	$('#div_Gameresult').hide();
@@ -1118,7 +1123,7 @@ function randomEvent_HankQuote()
 - create all potential drugs
 - create events (mugged, police, etc)
 */
-var bank = 0;
+var bank = 2000;
 var debt = Math.floor(0); 
 var currentLocation;
 var cashSpent = 0; 
