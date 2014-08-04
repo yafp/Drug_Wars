@@ -3,6 +3,13 @@
 */
 $( document ).ready(function() 
 {
+
+
+
+
+
+
+
 	// preparing the game - should show settings dialog and hide everything else
 	$('#div_Gameresult').hide();
 	$('#div_Info').hide();
@@ -659,8 +666,6 @@ $('#btn_payDebtAll').click(function(event)
 
 
 
-
-
 // check if acid-drug box got ticked -
 $('#acid_tick').click(function(event) 
 {
@@ -669,6 +674,10 @@ $('#acid_tick').click(function(event)
 		$('#coke_tick').prop('checked', false);
 		pickedAcid = true;
 		pickedCoke = false; 
+		
+		//calculateMaxBuyAcid();
+		choosenDrug ="Acid";
+		calculateMaxBuy(choosenDrug);
 	}	
 });
 
@@ -681,6 +690,10 @@ $('#coke_tick').click(function(event)
 		$('#acid_tick').prop('checked', false);
 		pickedCoke = true;
 		pickedAcid = false;
+		
+		//calculateMaxBuyAcid();
+		choosenDrug ="Coke";
+		calculateMaxBuy(choosenDrug);
 	}	
 });
 	
@@ -717,7 +730,45 @@ $('#s_coke_tick').click(function(event)
 	########################################### */
 
 
+/*
+	HELPER: calculate max possible buy
+*/
+function calculateMaxBuy()
+{
+	if(choosenDrug == "Acid")
+	{
+		maxPossibleAcidBuy = Math.floor(bank / drugs.acid);
+		if(maxPossibleAcidBuy > acid_unit) // check if enough is available
+		{
+			maxPossibleAcidBuy = acid_unit;
+		}
+		if(maxPossibleAcidBuy > freePockets)
+		{
+			maxPossibleAcidBuy = freePockets;
+		}
+		$('#maxBuy').html("(max: "+maxPossibleAcidBuy+")");			// update UI
+	}
+	
+	if(choosenDrug == "Coke")
+	{
+		maxPossibleCokeBuy = Math.floor(bank / drugs.coke);
+		if(maxPossibleCokeBuy > coke_unit) // check if enough is available
+		{
+			maxPossibleCokeBuy = coke_unit;
+		}
+		if(maxPossibleCokeBuy > freePockets)
+		{
+			maxPossibleCokeBuy = freePockets;
+		}
+		$('#maxBuy').html("(max: "+maxPossibleCokeBuy+")");			// update UI
+	}
+}
 
+
+
+/*
+	HELPER: update Loan Payback section
+*/
 function updateLoansharkUI()
 {
 	if(debt > 0)
@@ -730,10 +781,9 @@ function updateLoansharkUI()
 			$("#btn_payDebtAll").show();
 		}
 	}
-	else
+	else // player has no debt
 	{
-		// hide all payback options
-		$("#form_Payback").hide();		
+		$("#form_Payback").hide();		// hide all payback options
 	}
 }
 
@@ -1186,10 +1236,13 @@ function randomEvent_HankQuote()
 	########################################### */
 
 
+
+
 /*
 - create all potential drugs
 - create events (mugged, police, etc)
 */
+
 var bank = 2000;
 var debt = Math.floor(0); 
 var currentLocation;
@@ -1210,6 +1263,7 @@ var drugs =
 		return Math.floor((Math.random()*50)+1)
 	}
 }; // create new object 
+
 
 
 
@@ -1264,3 +1318,5 @@ sellPrice();
 
 var pickedAcid = false;
 var pickedCoke = false; 
+
+
