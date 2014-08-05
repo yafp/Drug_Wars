@@ -1022,7 +1022,7 @@ function randomEventsOnDayChange()
 		var shouldRandomHappen = getRandomInt(1,10); // calculate chance for a random event
 		if(shouldRandomHappen >= 8) // random event happens
 		{
-			var x = getRandomInt(1,7); // what random event should happen?
+			var x = getRandomInt(1,8); // what random event should happen?
 			log.debug("Random Event: "+x)
 				
 			// Execute Random Event: Police
@@ -1054,6 +1054,10 @@ function randomEventsOnDayChange()
 				
 				case 7:
 					randomEvent_HankQuote();
+				break;
+				
+				case 8:
+					randomEvent_BuyWeapon();
 				break;
 			} // end case
 		}
@@ -1314,6 +1318,38 @@ function randomEvent_HankQuote()
 				
 	// output random quote
 	var n = noty({text: "Hank Schrader: "+randomQuote});
+}
+
+
+
+/*
+	RANDOM EVENT: Buy Weapon
+*/
+function randomEvent_BuyWeapon()
+{
+	weaponName = "Magnum";
+	weaponPrice = 400;
+	
+	var n = noty({text: "Not fully implemented - Dummy - Buying weapon: "+randomQuote});
+	
+	if(bank > weaponPrice)
+	{
+		var answer = confirm("Do you want to buy a"+weaponName+" for "+weaponPrice+" $ ?")
+		if (answer)
+		{
+			var n = noty({text: 'You just got '+extraPockets+' extra pockets for '+calcExtraPocketPrice+' $.'});
+		}
+		else
+		{
+			var n = noty({text: 'The dude offered you a '+weaponName+' for '+weaponPrice+' $ but you  denied. Stay unarmed Ghandi'});
+			return;
+		}
+	}
+	else
+	{
+		var n = noty({text: 'The dude offered you a '+weaponName+' for '+weaponPrice+' $ but you had no money. Poor bastard.'});
+	}
+	
 }
 
 
