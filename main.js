@@ -1020,7 +1020,7 @@ function randomEventsOnDayChange()
 	if(curDay >= 2) // not on the first day
 	{
 		var shouldRandomHappen = getRandomInt(1,10); // calculate chance for a random event
-		if(shouldRandomHappen <= 3) // random event happens
+		if(shouldRandomHappen >= 8) // random event happens
 		{
 			var x = getRandomInt(1,7); // what random event should happen?
 			log.debug("Random Event: "+x)
@@ -1218,16 +1218,24 @@ function randomEvent_ExtraPockets()
 	{
 		// todo:
 		// ask user if he wants to buy those new pockets
-		
-		var n = noty({text: 'You just got '+extraPockets+' extra pockets for '+calcExtraPocketPrice+' $.'});
+		var answer = confirm("Do you want to buy "+extraPockets+" extra pockets for "+calcExtraPocketPrice+" $ ?")
+		if (answer)
+		{
+			var n = noty({text: 'You just got '+extraPockets+' extra pockets for '+calcExtraPocketPrice+' $.'});
 					
-		// calculate new values
-		maxPockets = maxPockets + extraPockets;
-		pockets=usedPockets+ " of "+maxPockets+" used";
-		bank = bank - calcExtraPocketPrice;
+			// calculate new values
+			maxPockets = maxPockets + extraPockets;
+			pockets=usedPockets+ " of "+maxPockets+" used";
+			bank = bank - calcExtraPocketPrice;
 					
-		// update UI-items
-		updateAllUIElements();	
+			// update UI-items
+			updateAllUIElements();	
+		}
+		else
+		{
+			var n = noty({text: 'The dude offered you '+extraPockets+' extra pockets for '+calcExtraPocketPrice+' $ but you  denied.'});
+			return;
+		}
 	}
 	else
 	{
