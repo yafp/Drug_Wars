@@ -48,6 +48,8 @@ function initGame()
 	pockets=usedPockets+ " of "+maxPockets+" used";
 	// health
 	health=100;
+	// weapon
+	weapons = 0;
 	
 
 
@@ -691,6 +693,7 @@ function updateAllUIElements()
 	$('#inBank').html("$"+bank); 
 	$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke);
 	$('#pockets').html(pockets); 
+	$('#weapons').html(weapons);
 	$('#debt').html("$"+debt); 
 	$('#health').html(health); 
 } // END: updateAllUIElements()
@@ -1024,6 +1027,7 @@ function randomEventsOnDayChange()
 		{
 			var x = getRandomInt(1,8); // what random event should happen?
 			log.debug("Random Event: "+x)
+
 				
 			// Execute Random Event: Police
 			switch(x)
@@ -1066,15 +1070,13 @@ function randomEventsOnDayChange()
 
 
 
-
-
+/*
+	HELPER: reduce player health and colorize it based on the value
+*/
 function reduceHealth()
 {
-	log.info(health);
-	log.info(healthDamage);
 	health = health - healthDamage;
-	log.info(health);
-	
+
 	// fit color
 	switch(health)
 	{
@@ -1090,12 +1092,29 @@ function reduceHealth()
 			var n = noty({text: 'You just died. RIP.'});
 			gameEnded();
 		break;
-
-	} // end c
-	
+	} 
 }
 
 
+
+
+
+/*
+	HELPER: getRobbed
+*/
+function getRobbed()
+{
+	// calculate money stolen
+	var stolen = Math.round(bank / 100 * 30);
+	bank = bank - stolen; 
+				
+	var n = noty({text: 'You got robbed. Loss '+stolen+' $.'});
+	log.info("You lost "+stolen+" $ (robbery)");
+	
+	health = health -10;
+	
+	updateAllUIElements();
+}
 
 
 
@@ -1153,13 +1172,34 @@ function randomEvent_Robbery()
 				
 	if(bank > 500) // we dont rob poor ppl
 	{
-		// calculate money stolen
-		var stolen = Math.round(bank / 100 * 30);
-		bank = bank - stolen; 
-				
-		var n = noty({text: 'You got robbed. Loss '+stolen+' $.'});
-		log.info("You lost "+stolen+" $ (robbery)")					
-				
+		if(weapons > 0)
+		{
+			var answer = confirm("Someone tries to rob you. Do you want to defend yourself using your weapon?")
+			if (answer)
+			{
+				// fight
+				calculateWinOrLose = getRandomInt(1,2); // get random number
+				if (calculateWinOrLose == 1)
+				{
+					// win
+				}
+				else
+				{
+					// lose
+					getRobbed();
+				}
+			}
+			else
+			{
+				getRobbed();
+			}
+		
+		}
+		else // got no weapon to defend yourself
+		{
+			getRobbed();
+		}
+	
 		updateAllUIElements();
 	}
 }
@@ -1327,29 +1367,34 @@ function randomEvent_HankQuote()
 */
 function randomEvent_BuyWeapon()
 {
-	weaponName = "Magnum";
-	weaponPrice = 400;
+	luckEvents = luckEvents + 1;
+
+	log.info("buying weapon");
 	
-	var n = noty({text: "Not fully implemented - Dummy - Buying weapon: "+randomQuote});
+	weaponName = "Magnum";
+	weaponPrice = '400';
 	
 	if(bank > weaponPrice)
 	{
-		var answer = confirm("Do you want to buy a"+weaponName+" for "+weaponPrice+" $ ?")
+		var answer = confirm("Do you want to buy a "+weaponName+" for "+weaponPrice+" $ ?")
 		if (answer)
 		{
-			var n = noty({text: 'You just got '+extraPockets+' extra pockets for '+calcExtraPocketPrice+' $.'});
+			var n = noty({text: 'You just got '+weaponName+' for '+weaponPrice+' $.'});
+			weapons = weapons +1;
+			bank = bank - weaponPrice;
 		}
 		else
 		{
 			var n = noty({text: 'The dude offered you a '+weaponName+' for '+weaponPrice+' $ but you  denied. Stay unarmed Ghandi'});
 			return;
 		}
+		
+		updateAllUIElements();
 	}
 	else
 	{
 		var n = noty({text: 'The dude offered you a '+weaponName+' for '+weaponPrice+' $ but you had no money. Poor bastard.'});
 	}
-	
 }
 
 
