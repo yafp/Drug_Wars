@@ -1024,7 +1024,7 @@ function randomEventsOnDayChange()
 		{
 			var x = getRandomInt(1,7); // what random event should happen?
 			log.debug("Random Event: "+x)
-			
+				
 			// Execute Random Event: Police
 			switch(x)
 			{
@@ -1064,6 +1064,37 @@ function randomEventsOnDayChange()
 
 
 
+function reduceHealth()
+{
+	log.info(health);
+	log.info(healthDamage);
+	health = health - healthDamage;
+	log.info(health);
+	
+	// fit color
+	switch(health)
+	{
+		case 70:
+			$('#health').css('color', 'orange');
+		break;
+
+		case 30:
+			$('#health').css('color', 'red');
+		break;
+
+		case 0:
+			var n = noty({text: 'You just died. RIP.'});
+			gameEnded();
+		break;
+
+	} // end c
+	
+}
+
+
+
+
+
 
 
 /*	###########################################
@@ -1087,8 +1118,6 @@ function randomEvent_Police()
 
 		// calculate new values
 		//
-		// health
-		health = health - 10;
 		// drugs		
 		currentDrugs.coke = 0;
 		currentDrugs.acid = 0; 
@@ -1096,6 +1125,9 @@ function randomEvent_Police()
 		usedPockets = 0;
 		freePockets = maxPockets;
 		pockets=usedPockets+ " of "+maxPockets+" used";
+		// health
+		healthDamage = 10;
+		reduceHealth(healthDamage);
 
 		updateAllUIElements();
 	}  
