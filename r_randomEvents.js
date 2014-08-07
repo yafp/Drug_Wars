@@ -17,7 +17,7 @@ function r_randomEventPolice()
 		}
 		else
 		{
-			var answer = confirm("Cops gonna control you - you have no drugs with you - but a weapon. Wanna figt")
+			var answer = confirm("Cops gonna control you - you have no drugs with you - but a weapon. Wanna fight?")
 			if (answer)
 			{
 				// fight
@@ -43,23 +43,71 @@ function r_randomEventPolice()
 	}
 	else // we do have drugs - cops will rip us
 	{
-		var n = noty({text: 'The cops .... dumping my stash'});
+		if(weapons = 0)
+		{
+			var n = noty({text: 'The cops .... dumping my stash'});
 
-		// calculate new values
-		//
-		// drugs		
-		currentDrugs.coke = 0;
-		currentDrugs.acid = 0; 
-		// pockets					
-		usedPockets = 0;
-		freePockets = maxPockets;
-		pockets=usedPockets+ " of "+maxPockets+" used";
-		// health
-		healthDamage = 10;
-		reduceHealth(healthDamage);
+			// calculate new values
+			//
+			// drugs		
+			currentDrugs.coke = 0;
+			currentDrugs.acid = 0; 
+			// pockets					
+			usedPockets = 0;
+			freePockets = maxPockets;
+			pockets=usedPockets+ " of "+maxPockets+" used";
+			// health
+			healthDamage = 10;
+			reduceHealth(healthDamage);
+		}
+		else // we have a weapon - offer fight
+		{
+			var answer = confirm("Cops gonna control you - you have drugs and a gun with you. Wanna fight?")
+			if (answer)
+			{
+				// fight
+				calculateWinOrLose = getRandomInt(1,2); // get random number
+				if (calculateWinOrLose == 1)
+				{
+					// win
+					var n = noty({text: 'That was a clear win for you. You beat the shit out of the cops. Weapons are lovely arent they?'});
+				}
+				else
+				{
+					var n = noty({text: 'You lost your weapons  and your drugs due to the policy control'});
+					weapons = 0;
+					
+					currentDrugs.coke = 0;
+					currentDrugs.acid = 0; 
+					// pockets					
+					usedPockets = 0;
+					freePockets = maxPockets;
+					pockets=usedPockets+ " of "+maxPockets+" used";
+					// health
+					healthDamage = 10;
+					reduceHealth(healthDamage)
+				}
+			}
+			else // got drugs, weapon but dont want to fight
+			{
+				weapons = 0;
+				health = health -30;
+				
+				currentDrugs.coke = 0;
+				currentDrugs.acid = 0; 
+				// pockets					
+				usedPockets = 0;
+				freePockets = maxPockets;
+				pockets=usedPockets+ " of "+maxPockets+" used";
+				// health
+				healthDamage = 10;
+				reduceHealth(healthDamage)
+			}
+		
+		}
 
-		updateAllUIElements();
 	}  
+	updateAllUIElements();
 }
 
 
@@ -246,6 +294,8 @@ function r_randomEventCheapDrugs()
 	// cost per unit
 	$('#acidPerUnit').html("$"+drugs.acid);
 	$('#cokePerUnit').html("$"+drugs.coke);
+	
+	updateAllUIElements();
 }
 
 

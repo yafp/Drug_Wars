@@ -130,6 +130,12 @@ function calculateMaxBuy()
 			document.getElementById("coke_tick").disabled = true;
 		}
 	}
+	
+	// insert max value into text field
+	$('#buyDrugs').val(maxPossibleBuy);
+	
+
+
 }
 
 
@@ -149,6 +155,7 @@ function calculateMaxSell()
 		
 		$('#maxSell').html("(max: "+maxPossibleSell+")");			// update UI
 		
+		
 		if(maxPossibleSell == 0)
 		{
 			document.getElementById("s_acid_tick").disabled = true;
@@ -166,8 +173,10 @@ function calculateMaxSell()
 		{
 			document.getElementById("s_coke_tick").disabled = true;
 		}
-		
 	}
+	
+	// insert max value into text field
+	$('#sellDrugs').val(maxPossibleSell);
 }
 
 
