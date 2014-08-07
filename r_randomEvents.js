@@ -11,7 +11,35 @@ function r_randomEventPolice()
 
 	if( freePockets == maxPockets) // we dont have any drug
 	{
-		var n = noty({text: 'Lucky you - cops controlled you - but you had empty pockets.'});
+		if(weapons = 0)
+		{
+			var n = noty({text: 'Lucky you - cops controlled you - but you had empty pockets.'});
+		}
+		else
+		{
+			var answer = confirm("Cops gonna control you - you have no drugs with you - but a weapon. Wanna figt")
+			if (answer)
+			{
+				// fight
+				calculateWinOrLose = getRandomInt(1,2); // get random number
+				if (calculateWinOrLose == 1)
+				{
+					// win
+					var n = noty({text: 'That was a clear win for you. Weapons are lovely arent they?'});
+				}
+				else
+				{
+					var n = noty({text: 'You lost your weapons due to the policy control'});
+					weapons = 0;
+				}
+			}
+			else
+			{
+				// dont fight - loose weapon
+				weapons = 0;
+				health = health -30;
+			}
+		}
 	}
 	else // we do have drugs - cops will rip us
 	{
@@ -60,6 +88,9 @@ function r_randomEventRobbery()
 				if (calculateWinOrLose == 1)
 				{
 					// win
+					calculateTheftsMoney = getRandomInt(50,1000); // get random number
+					bank = bank + calculateTheftsMoney;
+					var n = noty({text: 'You killed the theft and stole his money ('+calculateTheftsMoney+') instead.'}); 
 				}
 				else
 				{
@@ -209,8 +240,8 @@ function r_randomEventCheapDrugs()
 	log.info("Cheap drugs on the market")
 
 	// new cost of drugs
-	drugs.acid = getRandomInt(300,700);
-	drugs.coke = getRandomInt(400,1000);
+	drugs.acid = getRandomInt(200,500);
+	drugs.coke = getRandomInt(300,700);
 
 	// cost per unit
 	$('#acidPerUnit').html("$"+drugs.acid);

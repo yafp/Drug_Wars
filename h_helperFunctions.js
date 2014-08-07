@@ -134,6 +134,48 @@ function calculateMaxBuy()
 
 
 
+
+
+
+/*
+	HELPER: calculate max possible sell
+*/
+function calculateMaxSell()
+{	
+	if(choosenDrug == "Acid")
+	{
+		// check what we have
+		maxPossibleSell = currentDrugs.acid
+		
+		$('#maxSell').html("(max: "+maxPossibleSell+")");			// update UI
+		
+		if(maxPossibleSell == 0)
+		{
+			document.getElementById("s_acid_tick").disabled = true;
+		}
+	}
+	
+	if(choosenDrug == "Coke")
+	{
+		// check what we have
+		maxPossibleSell = currentDrugs.coke
+		
+		$('#maxSell').html("(max: "+maxPossibleSell+")");			// update UI
+		
+		if(maxPossibleSell == 0)
+		{
+			document.getElementById("s_coke_tick").disabled = true;
+		}
+		
+	}
+}
+
+
+
+
+
+
+
 /*
 	HELPER: update Loan Payback section
 */

@@ -429,8 +429,6 @@ $('#drugBtn').click(function(event)
 
 		// work out new bank balance
 		bank = bank - cashSpent;
-		
-		updateAllUIElements();
 	} // end of IF Picked Acid
 	else if (pickedCoke === true)
 	{
@@ -474,9 +472,10 @@ $('#drugBtn').click(function(event)
 		// work out new bank balance
 		bank = bank - cashSpent;
 		log.info("Bank "+bank)
-		
-		updateAllUIElements();
 	} // End of else if	
+	
+	$('#maxBuy').html("");			// update UI
+	updateAllUIElements();
 }); // buy drugs button
 	
 
@@ -522,9 +521,6 @@ $('#sellBtn').click(function(event)
 
 		// work out new bank balance
 		bank = bank + cashEarned;
-		
-		updateAllUIElements();
-		
 	} // end of IF Picked Acid
 	// NOW LET'S DO FOR COKE
 	else if (pickedCoke === true)
@@ -553,9 +549,20 @@ $('#sellBtn').click(function(event)
 		// work out new bank balance
 		bank = bank + cashEarned;
 		
-		updateAllUIElements();
+		
 	} // End of else if
+	$('#maxSell').html("");			// update UI
+	updateAllUIElements();
 }); // buy drugs button
+	
+	
+	
+
+$('#sellBtnAll').click(function(event) 
+{
+	alert("dummy");
+});
+	
 	
 		
 /*	
@@ -643,6 +650,9 @@ $('#s_acid_tick').click(function(event)
 		$('#s_coke_tick').prop('checked', false);
 		pickedAcid = true;
 		pickedCoke = false; 
+		
+		choosenDrug ="Acid";
+		calculateMaxSell(choosenDrug);
 	}	
 });
 
@@ -655,6 +665,9 @@ $('#s_coke_tick').click(function(event)
 		$('#s_acid_tick').prop('checked', false);
 		pickedCoke = true;
 		pickedAcid = false;
+		
+		choosenDrug ="Coke";
+		calculateMaxSell(choosenDrug);
 	}	
 });
 
