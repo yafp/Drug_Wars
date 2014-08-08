@@ -21,19 +21,23 @@ function initGame()
 {
 	log.info("Initializing the game");
 	
-	// get player name
-	var nameObject = document.getElementById("fname");
-	playersName = nameObject.value;
+	playersName = $('#fname').val();		// get player name from settings-dialog
 	
-	var n = noty({text: 'Welcome '+playersName+' to DrugWars - The Heisenberg Edition'});
+	// Save playername to local storage if defined
+	if(playersName != "")
+	{
+		localStorage.setItem("playersName", playersName);
+		log.debug("Player name: "+playersName+" stored to local Storage");
+	}
+	else // player set no name - so give him one
+	{
+		playersName = "Deadhead";
+	}
 	
-	// Save name to local storage
-	localStorage.setItem("playersName", playersName);
-	log.debug("Player name: "+playersName+" stored to local Storage");
+	var n = noty({text: 'Welcome '+playersName+' to DrugWars - The Heisenberg Edition'}); // welcome message to player & game-start
 	
 	// define game length
-	var daysObject = document.getElementById("gameLength");
-	maxDays = (daysObject.value);
+	maxDays = $( "#gameLength" ).val();
 	curDay=0;
 
 	// init values
@@ -52,11 +56,6 @@ function initGame()
 	weapons = 0;
 	
 
-
-
-
-	
-	
 	// hide several content divs
 	$('#div_Gameresult').hide();
 	$('#div_Info').hide();
@@ -98,9 +97,9 @@ function newDay()
 		curDay=curDay+1;
 	}
 	
-	updateDebt();				// re-calculate debt
-	randomEventsOnDayChange();	// check for random events
-	updateAllUIElements();		// update all relevant UI elements
+	updateDebt();						// re-calculate debt
+	randomEventsOnDayChange();		// check for random events
+	updateAllUIElements();			// update all relevant UI elements
 	
 	// update day-progress-o-meter
 	progressRatio = (curDay / maxDays) * 100;
@@ -357,8 +356,11 @@ $('#btn').click(function(event)
 	debt = debt + b;
 	$('#debt').html("$"+debt);
 	
+	$('#getCash').val("");		// reset input field where player defined amount money to borrow
+	
 	updateLoansharkUI();
 	updateAllUIElements();
+	
 });
 
 
@@ -475,6 +477,7 @@ $('#drugBtn').click(function(event)
 	} // End of else if	
 	
 	$('#maxBuy').html("");			// update UI
+	$('#buyDrugs').val("");		// reset input field where player defined amount of drugs to buy
 	updateAllUIElements();
 }); // buy drugs button
 	
@@ -495,7 +498,7 @@ $('#sellBtn').click(function(event)
 	var xUnits = $('input[id="sellDrugs"]').val(); 
 	var numUnits = parseInt(xUnits); 
 
-	// depending on your selection
+	// sell acid
 	if (pickedAcid === true)
 	{
 		cashEarned = drugs.acid * numUnits;
@@ -522,7 +525,8 @@ $('#sellBtn').click(function(event)
 		// work out new bank balance
 		bank = bank + cashEarned;
 	} // end of IF Picked Acid
-	// NOW LET'S DO FOR COKE
+	//
+	// sell coke
 	else if (pickedCoke === true)
 	{
 		cashEarned = drugs.coke * numUnits;
@@ -552,6 +556,9 @@ $('#sellBtn').click(function(event)
 		
 	} // End of else if
 	$('#maxSell').html("");			// update UI
+	$('#sellDrugs').val("");		// reset input field where player defined amount of drugs to sell
+	
+	
 	updateAllUIElements();
 }); // buy drugs button
 	

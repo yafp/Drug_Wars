@@ -64,6 +64,7 @@
 					<!--LOAN SHARK BUTTON -->
 					<div id="loanshark_div">
 						<form class="form-inline" role="form">
+							<h3>Loan Shark</h3>
 							<div class="form-group">
 								<label for="getCash">Ask the Loan Shark for $?</label>
 								<input type="number" class="form-control" id="getCash" placeholder="How much to borrow?">
@@ -89,6 +90,7 @@
 					<!--BUY DRUGS BUTTON -->
 					<form class="form-inline" role="form" id="buy_Drugs">
 					<div class="form-group">
+						<h3>Buy Drugs</h3>
 						What drug do you want to buy?
 						<label class="checkbox-inline"><input type="checkbox" id="acid_tick" value="acid"> Acid</label>
 						<label class="checkbox-inline"><input type="checkbox" id="coke_tick" value="coke"> Coke</label>
@@ -105,17 +107,22 @@
 
 					<!--SELL DRUGS-->
 					<form class="form-inline" role="form" id="sell_Drugs">
-					<div class="form-group">    
+					<div class="form-group"> 
+						<h3>Sell Drugs</h3>   
 						What drug do you want to sell?
 						<label class="checkbox-inline"><input type="checkbox" id="s_acid_tick" value="acid"> Acid</label>
 						<label class="checkbox-inline"><input type="checkbox" id="s_coke_tick" value="coke"> Coke</label>
-						<br><br>
+						<br>
+						<br>
 						<label for="sellDrugs">How many drugs do you want to sell?</label>
 						<label id="maxSell"></label>
 						<input type="number" class="form-control" id="sellDrugs" placeholder="How many units?">
+						<button type="button" id="sellBtn" class="btn btn-default">Sell</button>
 					</div> <!--END OF FORM GROUP -->
-					<button type="button" id="sellBtn" class="btn btn-default">Sell</button>
+					
+					<!--
 					<button type="button" id="sellBtnAll" class="btn btn-default">Sell All</button>
+					-->
 					</form>
 	
 	
@@ -199,7 +206,7 @@
 	
 					<!-- SETTINGS -->
 					<div id="div_Settings">
-						<h2><i class="fa fa-cog"></i> Settings</h2>
+						<h2><i class="fa fa-cog"></i> Setup</h2>
 						<hr>
 							<form action="#">
 								Name <input type="text" id="fname" name="fname" placeholder="Playername" value="Heisenberg">

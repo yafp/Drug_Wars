@@ -133,9 +133,6 @@ function calculateMaxBuy()
 	
 	// insert max value into text field
 	$('#buyDrugs').val(maxPossibleBuy);
-	
-
-
 }
 
 
@@ -461,11 +458,15 @@ function reduceHealth()
 
 /*
 	HELPER: getRobbed
+	
+	function:	player looses between 10%-90% of the money in his pockets & 10% health
 */
 function getRobbed()
 {
+	var robberyFactor = getRandomInt(10,90); // calculate the percentage player will loose while being robbed
+
 	// calculate money stolen
-	var stolen = Math.round(bank / 100 * 30);
+	var stolen = Math.round(bank / 100 * robberyFactor);
 	bank = bank - stolen; 
 				
 	var n = noty({text: 'You got robbed. Loss '+stolen+' $.'});

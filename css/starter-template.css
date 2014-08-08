@@ -90,6 +90,15 @@ td {
 
 
 
+#maxSell{
+	color: grey;
+}
+
+#maxBuy{
+	color: grey;
+}
+
+
 
 /*
 	GAME OVER SCREEN
