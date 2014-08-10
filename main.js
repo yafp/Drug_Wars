@@ -54,6 +54,8 @@ function initGame()
 	health=100;
 	// weapon
 	weapons = 0;
+	// bank
+	bank = 0;
 	
 
 	// hide several content divs
@@ -198,9 +200,9 @@ function gameEnded()
 	$('#div_GameProgress').hide();
 	
 	// calculate some values:
-	var finalMoney = bank;
+	var finalMoney = cash;
 	var finalDebt = debt;
-	var finalScore = bank - (3* debt); // calc final score
+	var finalScore = cash - (3* debt); // calc final score
 	
 	// add luck and badLuck modifiers to score
 	badLuckModifier =  (badLuckEvents * 5000);
@@ -345,12 +347,12 @@ $('#btn').click(function(event)
 	log.info("Borrowing "+amount+" $ from loan shark")
 	var b = parseInt(amount); 
 	 
-	// work out new bank balance
-	bank = bank + b;
-	log.info("New Bank balance is: "+bank)
+	// work out new cash balance
+	cash = cash + b;
+	log.info("New cash balance is: "+cash)
 
-	// update my bank
-	$('#inBank').html("$"+bank);
+	// update my cash
+	$('#inCash').html("$"+cash);
 
 	// update the debt
 	debt = debt + b;
@@ -395,7 +397,7 @@ $('#drugBtn').click(function(event)
 		cashSpent = drugs.acid * numUnits;
 		
 		// check to see if you can afford it
-		if (bank - cashSpent < 0)
+		if (cash - cashSpent < 0)
 		{
 			var n = noty({text: 'You cant afford that!'});
 			return;
@@ -429,15 +431,15 @@ $('#drugBtn').click(function(event)
 		acid_unit = acid_unit - numUnits;
 		$('#acidUnits').html(acid_unit); 
 
-		// work out new bank balance
-		bank = bank - cashSpent;
+		// work out new cash balance
+		cash = cash - cashSpent;
 	} // end of IF Picked Acid
 	else if (pickedCoke === true)
 	{
 		cashSpent = drugs.coke * numUnits;
 
 		// check to see if you can afford it
-		if (bank - cashSpent < 0)
+		if (cash - cashSpent < 0)
 		{
 			var n = noty({text: 'You cant afford that!'});
 			return;
@@ -471,9 +473,9 @@ $('#drugBtn').click(function(event)
 		coke_unit = coke_unit - numUnits;
 		$('#cokeUnits').html(coke_unit);  
 
-		// work out new bank balance
-		bank = bank - cashSpent;
-		log.info("Bank "+bank)
+		// work out new cash balance
+		cash = cash - cashSpent;
+		log.info("Cash "+cash)
 	} // End of else if	
 	
 	$('#maxBuy').html("");			// update UI
@@ -522,8 +524,8 @@ $('#sellBtn').click(function(event)
 		acid_unit = acid_unit + numUnits;
 		$('#acidUnits').html(acid_unit); 
 
-		// work out new bank balance
-		bank = bank + cashEarned;
+		// work out new cash balance
+		cash = cash + cashEarned;
 	} // end of IF Picked Acid
 	//
 	// sell coke
@@ -550,8 +552,8 @@ $('#sellBtn').click(function(event)
 		coke_unit = coke_unit + numUnits;
 		$('#cokeUnits').html(coke_unit);  
 
-		// work out new bank balance
-		bank = bank + cashEarned;
+		// work out new cash balance
+		cash = cash + cashEarned;
 		
 		
 	} // End of else if
@@ -588,9 +590,9 @@ $('#btn_payDebt').click(function(event)
 		log.info("Payback "+amount+" $ to loan shark")
 		var b = parseInt(amount); 
 	 
-		// work out new bank balance
-		bank = bank - b;
-		log.debug("New bank balance is:"+bank+" $")
+		// work out new cash balance
+		cash = cash - b;
+		log.debug("New cash balance is:"+cash+" $")
 
 		// recalculate the debt
 		debt = debt - b;
@@ -607,7 +609,7 @@ $('#btn_payDebt').click(function(event)
 */	
 $('#btn_payDebtAll').click(function(event) 
 {
-	bank = bank - debt;
+	cash = cash - debt;
 	debt = 0;
 	
 	updateLoansharkUI();
@@ -738,7 +740,7 @@ function sellPrice()
 - create events (mugged, police, etc)
 */
 
-var bank = 2000;
+var cash = 2000;
 var debt = Math.floor(2000);
 
 var currentLocation;
@@ -791,7 +793,7 @@ var start =
 {
 	play: function()
 	{
-		$('#inBank').html("$"+bank); 
+		$('#inCash').html("$"+cash); 
 		$('#debt').html("$"+debt);
 		$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke);
 		$('#pockets').html(pockets);

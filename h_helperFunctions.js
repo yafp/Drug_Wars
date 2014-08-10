@@ -22,12 +22,13 @@ function updateAllUIElements()
 	
 	// status menues
 	$('#calendar').html("Day "+curDay+" of "+maxDays);	//
+	$('#inCash').html("$"+cash); 
 	$('#inBank').html("$"+bank); 
 	$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke);
 	$('#pockets').html(pockets); 
 	$('#weapons').html(weapons);
 	$('#debt').html("$"+debt); 
-	$('#health').html(health); 
+	$('#health').html(health+"%"); 
 } // END: updateAllUIElements()
 
 
@@ -95,7 +96,7 @@ function calculateMaxBuy()
 {
 	if(choosenDrug == "Acid")
 	{
-		maxPossibleBuy = Math.floor(bank / drugs.acid);
+		maxPossibleBuy = Math.floor(cash / drugs.acid);
 		if(maxPossibleBuy > acid_unit) // check if enough is available
 		{
 			maxPossibleBuy = acid_unit;
@@ -114,7 +115,7 @@ function calculateMaxBuy()
 	
 	if(choosenDrug == "Coke")
 	{
-		maxPossibleBuy = Math.floor(bank / drugs.coke);
+		maxPossibleBuy = Math.floor(cash / drugs.coke);
 		if(maxPossibleBuy > coke_unit) // check if enough is available
 		{
 			maxPossibleBuy = coke_unit;
@@ -192,7 +193,7 @@ function updateLoansharkUI()
 		$("#form_Payback").show();
 		$("#btn_payDebt").show();
 
-		if(bank > debt)
+		if(cash > debt)
 		{
 			$("#btn_payDebtAll").show();
 		}
@@ -275,7 +276,7 @@ function updateTradingButtons()
 	
 	// Buy-Area button
 	//
-	if(bank>0) // player has money - enable buy button
+	if(cash>0) // player has money - enable buy button
 	{
 		document.getElementById("choose_buyd").disabled = false;	// enable buy button
 	}
@@ -466,8 +467,8 @@ function getRobbed()
 	var robberyFactor = getRandomInt(10,90); // calculate the percentage player will loose while being robbed
 
 	// calculate money stolen
-	var stolen = Math.round(bank / 100 * robberyFactor);
-	bank = bank - stolen; 
+	var stolen = Math.round(cash / 100 * robberyFactor);
+	cash = cash - stolen; 
 				
 	var n = noty({text: 'You got robbed. Loss '+stolen+' $.'});
 	log.info("You lost "+stolen+" $ (robbery)");

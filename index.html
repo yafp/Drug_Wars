@@ -55,7 +55,7 @@
 					<div id="div_ActionButtons">
 					<button type="button"  class="btn btn-default" id="choose_buyd"><i class="fa fa-shopping-cart"> Buy Drugs</i></button>
 					<button type="button"  class="btn btn-default" id="choose_selld"><i class="fa fa-share-alt"> Sell Drugs</i></button>
-					<button type="button"  class="btn btn-default" id="choose_loan"><i class="fa fa-bank"> Loan Shark</i></button>
+					<button type="button"  class="btn btn-default" id="choose_loan"><i class="fa fa-money"> Money</i></button>
 					<button type="button"  class="btn btn-default" id="choose_city"><i class="fa fa-plane"> Change City</i></button>
 					</div>
 					<br><br>
@@ -82,6 +82,20 @@
 							<button type="button" id="btn_payDebt" class="btn btn-default">Payback $</button>
 							<button type="button" id="btn_payDebtAll" class="btn btn-default">Payback All $</button>
 						</form>
+						
+						
+						<br>
+						<form class="form-inline" role="form" id="form_Payback">
+						<h3>Bank</h3>
+							<div class="form-group">
+								<label for="getoffDept">Deposit money at bank (5% interest per Day)</label>
+								<input type="number" class="form-control" id="payBank" placeholder="How much to deposit?">
+							</div>
+							<button type="button" id="btn_payDebt" class="btn btn-default">Deposit $</button>
+							
+						</form>
+						
+						
 					</div> <!--END OF LOAN SHARK -->
 
 
@@ -238,23 +252,25 @@
 							<thead>
 								<tr>
 									<th><i class="fa fa-calendar"></i> Calendar</th>
-									<th><i class="fa fa-money"></i> Money</th>
+									<th><i class="fa fa-child"></i> Health</th>	
+									<th><i class="fa fa-money"></i> Cash</th>
+									<th><i class="fa fa-book"></i> Debt</th>
+									<th><i class="fa fa-bank"></i> Bank</th>
 									<th><i class="fa fa-archive"></i> Drugs</th>
 									<th><i class="fa fa-briefcase"></i> Pockets</th>
 									<th><i class="fa fa-bomb"></i> Weapons</th>
-									<th><i class="fa fa-book"></i> Debt</th>
-									<th><i class="fa fa-child"></i> Health</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td id="calendar"></td>
+									<td id="health"></td>
+									<td id="inCash"></td>
+									<td id="debt"></td>
 									<td id="inBank"></td>
 									<td id="listDrugs"></td>
 									<td id="pockets"></td>
 									<td id="weapons"></td>
-									<td id="debt"></td>
-									<td id="health"></td>
 								</tr>
 							</tbody>
 						</table>

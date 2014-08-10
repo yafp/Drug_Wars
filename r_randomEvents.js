@@ -118,13 +118,13 @@ function r_randomEventRobbery()
 {
 	badLuckEvents = badLuckEvents + 1;
 
-	if(bank == 0) // if there is no money at all
+	if(cash == 0) // if there is no money at all
 	{
 		var n = noty({text: 'Someone tried to rob you but you had no money anyways.'}); 
 		return;
 	}
 				
-	if(bank > 500) // we dont rob poor ppl
+	if(cash > 500) // we dont rob poor ppl
 	{
 		if(weapons > 0)
 		{
@@ -137,7 +137,7 @@ function r_randomEventRobbery()
 				{
 					// win
 					calculateTheftsMoney = getRandomInt(50,1000); // get random number
-					bank = bank + calculateTheftsMoney;
+					cash = cash + calculateTheftsMoney;
 					var n = noty({text: 'You killed the theft and stole his money ('+calculateTheftsMoney+') instead.'}); 
 				}
 				else
@@ -247,7 +247,7 @@ function r_randomEventExtraPockets()
 	pocketPrice = getRandomInt(5,20); // get random number for pocket price
 	calcExtraPocketPrice = extraPockets * pocketPrice;
 	
-	if(bank >= calcExtraPocketPrice) // if we have enough money for the extra-pockets
+	if(cash >= calcExtraPocketPrice) // if we have enough money for the extra-pockets
 	{
 		// todo:
 		// ask user if he wants to buy those new pockets
@@ -259,7 +259,7 @@ function r_randomEventExtraPockets()
 			// calculate new values
 			maxPockets = maxPockets + extraPockets;
 			pockets=usedPockets+ " of "+maxPockets+" used";
-			bank = bank - calcExtraPocketPrice;
+			cash = cash- calcExtraPocketPrice;
 					
 			// update UI-items
 			updateAllUIElements();	
@@ -333,14 +333,14 @@ function r_randomEventBuyWeapon()
 	weaponName = "Magnum";
 	weaponPrice = '400';
 	
-	if(bank > weaponPrice)
+	if(cash > weaponPrice)
 	{
 		var answer = confirm("Do you want to buy a "+weaponName+" for "+weaponPrice+" $ ?")
 		if (answer)
 		{
 			var n = noty({text: 'You just got '+weaponName+' for '+weaponPrice+' $.'});
 			weapons = weapons +1;
-			bank = bank - weaponPrice;
+			cash = cash - weaponPrice;
 		}
 		else
 		{
