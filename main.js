@@ -202,7 +202,7 @@ function gameEnded()
 	$('#div_GameProgress').hide();
 	
 	// calculate some values:
-	var finalMoney = cash;
+	var finalMoney = cash + bank;
 	var finalDebt = debt;
 	var finalScore = cash - (3* debt); // calc final score
 	
@@ -630,8 +630,9 @@ $('#btn_bank_depositMoney').click(function(event)
 	
 	if(moneyToDeposit <= cash)
 	{
+		moneyToDeposit = Math.round(moneyToDeposit);
 		bank = bank + moneyToDeposit;
-		bank = Math.round(bank);
+		//bank = Math.round(bank);
 		
 		cash = cash - moneyToDeposit;
 		var n = noty({text: 'Deposit '+moneyToDeposit+' at your bank account. You now have '+bank+'$ in your bank account.'});

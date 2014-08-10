@@ -74,7 +74,7 @@ function r_randomEventPolice()
 				}
 				else
 				{
-					var n = noty({text: 'You lost your weapons  and your drugs due to the policy control'});
+					var n = noty({text: 'You lost your weapons and your drugs due to the policy control'});
 					weapons = 0;
 					
 					currentDrugs.coke = 0;
