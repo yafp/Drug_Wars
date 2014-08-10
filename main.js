@@ -52,9 +52,9 @@ function initGame()
 	// health
 	health=100;
 	// weapon
-	weapons = 0;
+	weapons=0;
 	// bank
-	bank = 0;
+	bank=0;
 	
 
 	// hide several content divs
@@ -98,6 +98,7 @@ function newDay()
 		curDay=curDay+1;
 	}
 	
+	updateBank();						// recalculate money in bank (ading interest)
 	updateDebt();						// re-calculate debt
 	randomEventsOnDayChange();		// check for random events
 	updateAllUIElements();			// update all relevant UI elements
@@ -603,6 +604,7 @@ $('#btn_payDebt').click(function(event)
 
 
 
+
 /*	
 	BUTTON PRESS: Pay Back Money all
 */	
@@ -614,6 +616,69 @@ $('#btn_payDebtAll').click(function(event)
 	updateLoansharkUI();
 	updateAllUIElements();
 });	
+
+
+
+
+
+/*	
+	BUTTON PRESS: Deposit money at bank
+*/	
+$('#btn_bank_depositMoney').click(function(event) 
+{	
+	moneyToDeposit = $('#input_bank_depositValue').val();		// get player name from settings-dialog
+	
+	if(moneyToDeposit <= cash)
+	{
+		bank = bank + moneyToDeposit;
+		bank = Math.round(bank);
+		
+		cash = cash - moneyToDeposit;
+		var n = noty({text: 'Deposit '+moneyToDeposit+' at your bank account. You now have '+bank+'$ in your bank account.'});
+	}
+	else
+	{
+		// dont try to cheat 
+		var n = noty({text: 'Dont fuck with me dude'});
+		return;
+	}
+	updateAllUIElements();
+});	
+
+
+
+
+
+
+/*	
+	BUTTON PRESS: get money back from bank
+*/	
+$('#btn_bank_payOutMoney').click(function(event) 
+{	
+	moneyToPayOut = $('#input_bank_payOutValue').val();		// get player name from settings-dialog
+	
+	if(moneyToPayOut <= bank)
+	{
+		bank = bank - moneyToPayOut;
+		bank = Math.round(bank);
+		
+		cash = cash + Math.round(moneyToPayOut);
+		
+		var n = noty({text: 'Bank payed out  '+moneyToPayOut+' from your bank account. You now have '+bank+'$ in your bank account.'});
+	}
+	else
+	{
+		// dont try to cheat 
+		var n = noty({text: 'Dont fuck with me dude'});
+		return;
+	}
+	
+	updateAllUIElements();
+});	
+
+
+
+
 
 
 
@@ -715,6 +780,9 @@ function sellPrice()
 	$('#acidSell').html("$"+sell_Acid);
 	$('#cokeSell').html("$"+sell_Coke);  
 } // end of sales price function
+
+
+
 
 
 

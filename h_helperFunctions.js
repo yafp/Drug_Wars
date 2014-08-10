@@ -16,9 +16,13 @@ function updateAllUIElements()
 	$('#s_acid_tick').prop('checked', false);
 	$('#s_coke_tick').prop('checked', false);
 	
+	// reset max possible buy
 	maxPossibleBuy=0;
 	$('#maxBuy').html("(max: "+maxPossibleBuy+")");			// update UI
 	
+	// reset max possible sell
+	maxPossibleSell=0;
+	$('#maxSell').html("(max: "+maxPossibleSell+")");			// update UI
 	
 	// status menues
 	$('#calendar').html("Day "+curDay+"/"+maxDays);	//
@@ -367,7 +371,18 @@ function updateDebt()
 }
 
 
-
+/*
+	HELPER: Calculate debt (happens on each new day)
+*/
+function updateBank()
+{
+	if(bank > 0) // only if player has money in bank account
+	{
+		log.info("Update bank (adding 5%")
+		bank = Math.round(bank * 1.05);	// calculate new bank
+		updateAllUIElements();
+	}
+}
 
 
 
