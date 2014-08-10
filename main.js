@@ -202,9 +202,10 @@ function gameEnded()
 	$('#div_GameProgress').hide();
 	
 	// calculate some values:
-	var finalMoney = cash + bank;
+	var finalCash = cash;
+	var finalBank = bank;
 	var finalDebt = debt;
-	var finalScore = cash - (3* debt); // calc final score
+
 	
 	// add luck and badLuck modifiers to score
 	badLuckModifier =  (badLuckEvents * 5000);
@@ -213,6 +214,7 @@ function gameEnded()
 	luckModifier =  (luckEvents * 5000);
 	log.debug("LuckModifier: "+luckModifier)
 	
+	var finalScore = cash - (3* debt); // calc final score
 	finalScore = finalScore + badLuckModifier -luckModifier;
 	
 	if (finalScore < 1) // negative final score is not possible
@@ -279,8 +281,16 @@ function gameEnded()
 	loadHighscoreFromLocalStorage(); // updates the highscore
 	
 	// write values to endgame div
-	$('#finalMoneyCount').html(+finalMoney);
+	//
+	// money things
+	$('#finalCashCount').html(+finalCash);
+	$('#finalBankCount').html(+finalBank);
 	$('#finalDebtCount').html(+finalDebt);
+	// luck-things
+	$('#finalLuckCount').html(+luckModifier);
+	$('#finalBadLuckCount').html(+badLuckModifier);
+	//
+	// final result:
 	$('#finalScoreCount').html(+finalScore);	
 	
 	$('#div_Gameresult').show();	// show result div
