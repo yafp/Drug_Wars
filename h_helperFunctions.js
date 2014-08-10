@@ -382,15 +382,11 @@ function randomEventsOnDayChange()
 	if(curDay >= 2) // not on the first day
 	{
 		var shouldRandomHappen = getRandomInt(1,10); // calculate chance for a random event
-		if(shouldRandomHappen >= 1) // random event happens
+		if(shouldRandomHappen >= 9) // random event happens
 		{
-		
-		
 			var x = getRandomInt(1,8); // what random event should happen?
 			log.debug("Random Event: "+x)
-			
-			x=1;
-			
+						
 			// Execute Random Event: Police
 			switch(x)
 			{
