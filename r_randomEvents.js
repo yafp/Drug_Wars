@@ -43,7 +43,7 @@ function r_randomEventPolice()
 	}
 	else // we do have drugs - cops will rip us
 	{
-		if(weapons = 0)
+		if(weapons == 0)
 		{
 			var n = noty({text: 'The cops .... dumping my stash'});
 
@@ -95,7 +95,7 @@ function r_randomEventPolice()
 				
 				currentDrugs.coke = 0;
 				currentDrugs.acid = 0; 
-				// pockets					
+				// pockets
 				usedPockets = 0;
 				freePockets = maxPockets;
 				pockets=usedPockets+ " of "+maxPockets+" used";
@@ -103,10 +103,8 @@ function r_randomEventPolice()
 				healthDamage = 10;
 				reduceHealth(healthDamage)
 			}
-		
 		}
-
-	}  
+	}
 	updateAllUIElements();
 }
 
@@ -142,7 +140,6 @@ function r_randomEventRobbery()
 				}
 				else
 				{
-					// lose
 					getRobbed();
 				}
 			}
@@ -150,13 +147,11 @@ function r_randomEventRobbery()
 			{
 				getRobbed();
 			}
-		
 		}
 		else // got no weapon to defend yourself
 		{
 			getRobbed();
 		}
-	
 		updateAllUIElements();
 	}
 }
@@ -249,13 +244,11 @@ function r_randomEventExtraPockets()
 	
 	if(cash >= calcExtraPocketPrice) // if we have enough money for the extra-pockets
 	{
-		// todo:
-		// ask user if he wants to buy those new pockets
 		var answer = confirm("Do you want to buy "+extraPockets+" extra pockets for "+calcExtraPocketPrice+" $ ?")
 		if (answer)
 		{
 			var n = noty({text: 'You just got '+extraPockets+' extra pockets for '+calcExtraPocketPrice+' $.'});
-					
+
 			// calculate new values
 			maxPockets = maxPockets + extraPockets;
 			pockets=usedPockets+ " of "+maxPockets+" used";
@@ -314,7 +307,7 @@ function r_randomEventHankQuote()
 				
 	// pick random quote from array
 	var randomQuote = hankQuotes[Math.floor(Math.random()*hankQuotes.length)];
-				
+
 	// output random quote
 	var n = noty({text: "Hank Schrader: "+randomQuote});
 }

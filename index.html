@@ -171,12 +171,6 @@
 					<div id="div_Highscore">
 						<h2><i class="fa fa-sitemap"></i> Highscore</h2>
 						<hr>
-						<!-- 5 Days -->
-						<h3>5 Days</h3>
-						<span id="score_5"></span>
-						<span id="player_5"></span>
-						<span id="date_5"></span>
-						
 						<!-- 15 Days -->
 						<h3>15 Days</h3>
 						<span id="score_15"></span>
@@ -234,7 +228,6 @@
 								Name <input type="text" id="fname" name="fname" placeholder="Playername" value="Heisenberg">
 								&nbsp;&nbsp;Days 
 								<select id="gameLength">
-									<option value="5">5 Days (dev)</option>
 									<option value="15">15 Days</option>
 									<option value="30" selected>30 Days</option>
 									<option value="45">45 Days</option>
@@ -371,7 +364,7 @@
 				easing: 'swing',
 				speed: 500 // opening & closing animation speed
 			  },
-			  timeout: 5000, // delay for closing event. Set false for sticky notifications
+			  timeout: 10000, // delay for closing event. Set false for sticky notifications
 			  force: false, // adds notification to the beginning of queue when set to true
 			  modal: false,
 			  closeWith: ['click'], // ['click', 'button', 'hover']

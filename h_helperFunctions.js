@@ -220,14 +220,6 @@ function updateLoansharkUI()
 */
 function loadHighscoreFromLocalStorage() 
 {
-	// 5 Days
-	highscore_5_score = localStorage.getItem("highscore_5");
-	$('#score_5').html("<b>"+highscore_5_score+"</b>");							
-	highscore_5_name = localStorage.getItem("player_5");
-	$('#player_5').html("by "+highscore_5_name);
-	highscore_5_date = localStorage.getItem("date_5");
-	$('#date_5').html("at "+highscore_5_date);
-	
 	// 15 Days
 	highscore_15_score = localStorage.getItem("highscore_15");
 	$('#score_15').html("<b>"+highscore_15_score+"</b>");
@@ -310,7 +302,7 @@ function updateTradingButtons()
 	{
 		document.getElementById("coke_tick").disabled = false
 	}
-	
+
 	
 	// Sell-Area buttons
 	if ((currentDrugs.acid == 0) & (currentDrugs.coke == 0) )
@@ -401,7 +393,7 @@ function randomEventsOnDayChange()
 		{
 			var x = getRandomInt(1,8); // what random event should happen?
 			log.debug("Random Event: "+x)
-						
+
 			// Execute Random Event: Police
 			switch(x)
 			{
@@ -412,7 +404,7 @@ function randomEventsOnDayChange()
 				case 2:
 					r_randomEventRobbery();
 				break;
-				
+
 				case 3:
 					r_randomEventFindDrugs();
 				break;
@@ -420,7 +412,7 @@ function randomEventsOnDayChange()
 				case 4:
 					r_randomEventJesseQuote();
 				break;
-				
+
 				case 5:
 					r_randomEventExtraPockets();
 				break;
@@ -428,11 +420,11 @@ function randomEventsOnDayChange()
 				case 6:
 					r_randomEventCheapDrugs();
 				break;
-				
+
 				case 7:
 					r_randomEventHankQuote();
 				break;
-				
+
 				case 8:
 					r_randomEventBuyWeapon();
 				break;
