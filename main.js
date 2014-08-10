@@ -214,7 +214,7 @@ function gameEnded()
 	luckModifier =  (luckEvents * 5000);
 	log.debug("LuckModifier: "+luckModifier)
 	
-	var finalScore = cash - (3* debt); // calc final score
+	var finalScore = ( cash + bank ) - (3* debt); // calc final score
 	finalScore = finalScore + badLuckModifier -luckModifier;
 	
 	if (finalScore < 1) // negative final score is not possible
