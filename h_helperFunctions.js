@@ -216,7 +216,7 @@ function updateLoansharkUI()
 
 
 /*
-	HELPER: updateHighscore
+	HELPER: load highscore from localStorage and display it in UI
 */
 function loadHighscoreFromLocalStorage() 
 {

@@ -230,25 +230,15 @@ function gameEnded()
 	log.debug("Max Days: "+maxDays);
 	
 	switch(maxDays) 
-	{		
-		case "5":
-			log.debug("highscore_5");
-			if (finalScore > localStorage.getItem("highscore_5")) 
-			{
-				localStorage.setItem("highscore_5", finalScore);
-				localStorage.setItem("player_5", playersName);
-				localStorage.setItem("date_5", Date.now());
-				log.debug("New highscore_5 written");
-			}
-		break;
-
+	{
 		case "15":
 			log.debug("highscore_15");
 			if (finalScore > localStorage.getItem("highscore_15")) 
 			{
 				localStorage.setItem("highscore_15", finalScore);
 				localStorage.setItem("player_15", playersName);
-				log.debug("New highscore_15 written");
+				localStorage.setItem("date_15", Date.now());
+				log.info("New highscore_15 written");
 			}
 		break;
 		
@@ -258,7 +248,8 @@ function gameEnded()
 			{
 				localStorage.setItem("highscore_30", finalScore);
 				localStorage.setItem("player_30", playersName);
-				log.debug("New highscore_30 written");
+				localStorage.setItem("date_30", Date.now());
+				log.info("New highscore_30 written");
 			}
 		break;
 		
@@ -269,7 +260,7 @@ function gameEnded()
 				localStorage.setItem("highscore_45", finalScore);
 				localStorage.setItem("player_45", playersName);
 				localStorage.setItem("date_45", Date.now());
-				log.debug("New highscore_45 written");
+				log.info("New highscore_45 written");
 			}
 		break;
 		
@@ -280,7 +271,7 @@ function gameEnded()
 				localStorage.setItem("highscore_90", finalScore);
 				localStorage.setItem("player_90", playersName);
 				localStorage.setItem("date_90", Date.now());
-				log.debug("New highscore_90 written");
+				log.info("New highscore_90 written");
 			}
 		break;
 	} 
