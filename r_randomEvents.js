@@ -11,7 +11,7 @@ function r_randomEventPolice()
 
 	if( freePockets == maxPockets) // we dont have any drug
 	{
-		if(weapons = 0)
+		if(weapons == 0)
 		{
 			var n = noty({text: 'Lucky you - cops controlled you - but you had empty pockets.'});
 		}
@@ -290,7 +290,7 @@ function r_randomEventCheapDrugs()
 	// new cost of drugs
 	drugs.acid = getRandomInt(200,500);
 	drugs.coke = getRandomInt(300,700);
-
+	
 	// cost per unit
 	$('#acidPerUnit').html("$"+drugs.acid);
 	$('#cokePerUnit').html("$"+drugs.coke);

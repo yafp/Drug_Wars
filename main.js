@@ -36,12 +36,12 @@ function initGame()
 	
 	var n = noty({text: 'Welcome '+playersName+' to DrugWars - The Heisenberg Edition'}); // welcome message to player & game-start
 	
+	
+	// init values
+	//
 	// define game length
 	maxDays = $( "#gameLength" ).val();
 	curDay=0;
-
-	// init values
-	//
 	// score modifier
 	luckEvents = 0;
 	badLuckEvents = 0;
@@ -49,7 +49,6 @@ function initGame()
 	maxPockets=100;
 	usedPockets=0;
 	freePockets=maxPockets - usedPockets;
-	pockets=usedPockets+ " of "+maxPockets+" used";
 	// health
 	health=100;
 	// weapon
@@ -82,7 +81,7 @@ function initGame()
 	
 	newDay(); // start a new day
 } // END: initGame()
-	
+
 
 /*
 // init a new Day
@@ -119,9 +118,7 @@ function changeCity()
 	$('#buy_Drugs').hide();
 	$('#loanshark_div').hide(); 
 	
-	// prepare the new day
-	newDay();
-	
+
 	if (currentLocation === 'lnd')
 	{
 		currentLocation = locations.ny;		// change city
@@ -176,6 +173,10 @@ function changeCity()
 	} // else if  
 	
 	log.info("Arrived in: "+currentLocation)
+	
+	// prepare the new day
+	newDay();
+	
 } // END: changeCity
 
 
@@ -425,7 +426,7 @@ $('#drugBtn').click(function(event)
 		// update pockets
 		usedPockets = usedPockets+ numUnits;
 		freePockets = maxPockets - usedPockets;
-		pockets = usedPockets + " of "+maxPockets+" used";
+		pockets = usedPockets + "/"+maxPockets;
 				
 		// remove units once bought 
 		acid_unit = acid_unit - numUnits;
@@ -467,7 +468,7 @@ $('#drugBtn').click(function(event)
 		// update pockets
 		usedPockets = usedPockets+ numUnits;
 		freePockets = maxPockets - usedPockets;
-		pockets = usedPockets + " of "+maxPockets+" used";
+		pockets = usedPockets + "/"+maxPockets;
 
 		// remove units once bought 
 		coke_unit = coke_unit - numUnits;
@@ -518,7 +519,6 @@ $('#sellBtn').click(function(event)
 
 		// update pockets
 		usedPockets = usedPockets - numUnits; // update pocket calculation
-		pockets = usedPockets + " of "+maxPockets+" used";
 		
 		// add back units once sold 
 		acid_unit = acid_unit + numUnits;
@@ -546,7 +546,6 @@ $('#sellBtn').click(function(event)
 		
 		// update pockets
 		usedPockets = usedPockets - numUnits; // update pocket calculation
-		pockets = usedPockets + " of "+maxPockets+" used";
 
 		// add back units once sold  
 		coke_unit = coke_unit + numUnits;

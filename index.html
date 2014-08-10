@@ -61,7 +61,8 @@
 					<br><br>
 					
 					
-					<!--LOAN SHARK BUTTON -->
+					<!--MONEY -->
+					<!--LOAN SHARK - GET MONEY -->
 					<div id="loanshark_div">
 						<form class="form-inline" role="form">
 							<h3>Loan Shark</h3>
@@ -72,7 +73,7 @@
 							<button type="button" id="btn" class="btn btn-default">Borrow $</button>
 						</form>
 
-						<!--LOAN SHARK PAY OFF DEBT -->
+						<!--LOAN SHARK - PAY BACK -->
 						<br>
 						<form class="form-inline" role="form" id="form_Payback">
 							<div class="form-group">
@@ -85,17 +86,24 @@
 						
 						
 						<br>
-						<form class="form-inline" role="form" id="form_Payback">
+						<!--BANK -->
+						<form class="form-inline" role="form" id="form_Bank_deposit">
 						<h3>Bank</h3>
 							<div class="form-group">
 								<label for="getoffDept">Deposit money at bank (5% interest per Day)</label>
 								<input type="number" class="form-control" id="payBank" placeholder="How much to deposit?">
 							</div>
-							<button type="button" id="btn_payDebt" class="btn btn-default">Deposit $</button>
-							
+							<button type="button" id="btn_bankDeposit" class="btn btn-default">Deposit $</button>
 						</form>
-						
-						
+						<!-- Bank get money back-->
+						<br>
+						<form class="form-inline" role="form" id="form_Bank_payOut">
+							<div class="form-group">
+								<label for="getoffDept">Pay out</label>
+								<input type="number" class="form-control" id="payDebt" placeholder="How much to pay out?">
+							</div>
+							<button type="button" id="btn_bankGet" class="btn btn-default">Pay out $</button>
+						</form>
 					</div> <!--END OF LOAN SHARK -->
 
 

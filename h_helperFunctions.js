@@ -21,10 +21,11 @@ function updateAllUIElements()
 	
 	
 	// status menues
-	$('#calendar').html("Day "+curDay+" of "+maxDays);	//
+	$('#calendar').html("Day "+curDay+"/"+maxDays);	//
 	$('#inCash').html("$"+cash); 
 	$('#inBank').html("$"+bank); 
 	$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke);
+	pockets = usedPockets + "/"+maxPockets;
 	$('#pockets').html(pockets); 
 	$('#weapons').html(weapons);
 	$('#debt').html("$"+debt); 
@@ -381,12 +382,15 @@ function randomEventsOnDayChange()
 	if(curDay >= 2) // not on the first day
 	{
 		var shouldRandomHappen = getRandomInt(1,10); // calculate chance for a random event
-		if(shouldRandomHappen >= 8) // random event happens
+		if(shouldRandomHappen >= 1) // random event happens
 		{
+		
+		
 			var x = getRandomInt(1,8); // what random event should happen?
 			log.debug("Random Event: "+x)
-
-				
+			
+			x=1;
+			
 			// Execute Random Event: Police
 			switch(x)
 			{
