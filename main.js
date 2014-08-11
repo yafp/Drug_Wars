@@ -32,6 +32,9 @@ function initGame()
 	{
 		playersName = "Deadhead";
 	}
+	$('#player').empty();
+	$('#player').append('<i class="fa fa-user"></i> '+playersName);
+	
 
 	var n = noty({text: 'Welcome '+playersName+' to DrugWars - The Heisenberg Edition'}); // welcome message to player & game-start
 	
@@ -624,6 +627,7 @@ $('#btn_bank_depositMoney').click(function(event)
 		var n = noty({text: 'Dont fuck with me dude'});
 		return;
 	}
+	h_updateMoneyUI();
 	h_updateAllUIElements();
 });	
 

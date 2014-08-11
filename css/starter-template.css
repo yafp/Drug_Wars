@@ -32,6 +32,7 @@ body {
 	border-style: solid;
 	border-width: 3px;
 	border-color: #2c2c2c;
+	opacity: 0.9;
 }
 
 
@@ -39,11 +40,12 @@ body {
 {
 	margin: 10px;
 	padding: 15px;
-	background-color: lightGrey;  
+	background-color: lightGrey;
 	border-radius: 15px;
 	border-style: solid;
 	border-width: 3px;
 	border-color: #2c2c2c;
+	opacity: 0.9;
 	
 }
 
@@ -57,7 +59,52 @@ body {
 	border-style: solid;
 	border-width: 3px;
 	border-color: #2c2c2c;
+	opacity: 0.9;
 }
+
+
+
+#div_GameProgress
+{
+	background-color: lightGrey; 
+	border-radius: 15px;
+	margin-top: 20px;
+	padding: 15px;
+	opacity: 0.9;
+	border-style: solid;
+	border-width: 3px;
+	border-color: #2c2c2c;
+}
+
+
+
+#div_StatusTable
+{
+	background-color: lightGrey; 
+	border-radius: 15px;
+	margin-top: 20px;
+	padding: 15px;
+	opacity: 0.9;
+	border-style: solid;
+	border-width: 3px;
+	border-color: #2c2c2c;
+}
+
+
+
+#div_Market
+{
+	background-color: lightGrey; 
+	border-radius: 15px;
+	margin-top: 20px;
+	padding: 15px;
+	opacity: 0.9;
+	border-style: solid;
+	border-width: 3px;
+	border-color: #2c2c2c;
+}
+
+
 
 
 
@@ -74,17 +121,14 @@ body {
 
 
 
-table{
 
-}
 
 th {
-	background-color: #2c2c2c;
-	color: grey;
+	background-color: white;
 }
 
 td {
-	background-color: white;
+
 }
 
 

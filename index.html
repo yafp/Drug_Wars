@@ -253,10 +253,23 @@
 	
 
 				<div class="col-md-6">
+				
+					<!-- Day Progress Meter -->
+					<div id="div_GameProgress">
+						<h3 id="gameProgress_Header"><i class="fa fa-calendar"></i> Game Progress (<span id="calendar"></span>)</h3>
+						<div class="progress">
+							<div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+								<span class="sr-only">0% Complete</span>
+							</div>
+						</div>
+					</div> <!-- game progress -->
+					
+					
 					
 					<!--STATUS-TABLE -->
 					<div id="div_StatusTable">
-						<h2><i class="fa fa-user"></i> Playername</h2>
+						<h3 id="player"><i class="fa fa-user"></i>Playername</h3>
+						
 						<table class="table table-bordered">
 							<thead>
 								<tr>
@@ -284,20 +297,11 @@
 					 </div>
 				
 
-					<!-- Day Progress Meter -->
-					<div id="div_GameProgress">
-						<i class="fa fa-calendar"></i> Game Progress (<span id="calendar"></span>)
-						
-						<div class="progress">
-							<div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-								<span class="sr-only">0% Complete</span>
-							</div>
-						</div>
-					</div> <!-- game progress -->
+					
 
 					<!--THE MARKET -->
 					<div id="div_Market">
-						<h2 id="market"><i class="fa fa-map-marker"></i> The Market:</h2>
+						<h3 id="market"><i class="fa fa-map-marker"></i> The Market:</h3>
 						<br>
 						<table class="table table-bordered">
 							<thead>
