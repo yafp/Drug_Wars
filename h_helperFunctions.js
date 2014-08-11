@@ -5,7 +5,7 @@
 /*
 	HELPER: update all ui-elements
 */
-function updateAllUIElements()
+function h_updateAllUIElements()
 {
 	// action buttons
 	updateTradingButtons();
@@ -41,7 +41,7 @@ function updateAllUIElements()
 /*
 	HELPER: check browser support for localStorage
 */
-function checkLocalStorageSupport()
+function h_checkLocalStorageSupport()
 {
 	if(typeof(Storage) !== "undefined") 
 	{
@@ -76,7 +76,6 @@ function showSettingsOnly()
 	$('#div_StatusTable').hide();
 	$('#div_Market').hide();
 	$('#div_GameProgress').hide();
-	
 } // END: showSettingsOnly()
 
 
@@ -191,8 +190,12 @@ function calculateMaxSell()
 /*
 	HELPER: update Loan Payback section
 */
-function updateLoansharkUI()
-{			
+function h_updateMoneyUI()
+{	
+	// loan shark 
+	//
+	
+	// based on debt
 	if(debt > 0)
 	{
 		$("#form_Payback").show();
@@ -209,6 +212,33 @@ function updateLoansharkUI()
 	}
 	else // player has no debt
 	{
+		$("#form_Payback").hide();		// hide all payback options
+	}
+	
+	
+	
+	// based on bank 
+	//
+	if(bank > 0)
+	{
+		$("#form_Bank_payOut").show();		// hide all pay-out stuff
+	}
+	else
+	{
+		$("#form_Bank_payOut").hide();		// hide all pay-out stuff
+	}
+	
+	
+	
+	// based on cash 
+	//
+	if(cash > 0)
+	{
+		$("#form_Bank_deposit").show();		// hide all pay-out stuff		
+	}
+	else // no cash
+	{
+		$("#form_Bank_deposit").hide();		// hide all pay-out stuff
 		$("#form_Payback").hide();		// hide all payback options
 	}
 }
@@ -358,7 +388,7 @@ function updateDebt()
 	{
 		log.info("Update debt (adding 10%")
 		debt = Math.round(debt * 1.1);	// calculate new debt
-		updateAllUIElements();
+		h_updateAllUIElements();
 	}
 }
 
@@ -372,7 +402,7 @@ function updateBank()
 	{
 		log.info("Update bank (adding 5%")
 		bank = Math.round(bank * 1.05);	// calculate new bank
-		updateAllUIElements();
+		h_updateAllUIElements();
 	}
 }
 
@@ -482,6 +512,6 @@ function getRobbed()
 	
 	health = health -10;
 	
-	updateAllUIElements();
+	h_updateAllUIElements();
 }
 

@@ -105,7 +105,7 @@ function r_randomEventPolice()
 			}
 		}
 	}
-	updateAllUIElements();
+	h_updateAllUIElements();
 }
 
 
@@ -152,7 +152,7 @@ function r_randomEventRobbery()
 		{
 			getRobbed();
 		}
-		updateAllUIElements();
+		h_updateAllUIElements();
 	}
 }
 
@@ -184,7 +184,7 @@ function r_randomEventFindDrugs()
 	freePockets = maxPockets - usedPockets;
 	pockets=usedPockets+ " of "+maxPockets+" used";
 
-	updateAllUIElements();				
+	h_updateAllUIElements();				
 	return;
 }
 
@@ -255,7 +255,7 @@ function r_randomEventExtraPockets()
 			cash = cash- calcExtraPocketPrice;
 					
 			// update UI-items
-			updateAllUIElements();	
+			h_updateAllUIElements();	
 		}
 		else
 		{
@@ -288,7 +288,7 @@ function r_randomEventCheapDrugs()
 	$('#acidPerUnit').html("$"+drugs.acid);
 	$('#cokePerUnit').html("$"+drugs.coke);
 	
-	updateAllUIElements();
+	h_updateAllUIElements();
 }
 
 
@@ -341,7 +341,7 @@ function r_randomEventBuyWeapon()
 			return;
 		}
 		
-		updateAllUIElements();
+		h_updateAllUIElements();
 	}
 	else
 	{

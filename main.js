@@ -3,7 +3,7 @@
 */
 $( document ).ready(function() 
 {	
-	checkLocalStorageSupport();			// LocalStorage
+	h_checkLocalStorageSupport();			// LocalStorage
 	loadHighscoreFromLocalStorage(); 	// load highscore values to highscore div
 	disableActionButtons();				// disable main buttons	
 	showSettingsOnly();					// show only the settings div	
@@ -20,7 +20,6 @@ $( document ).ready(function()
 function initGame()
 {
 	log.info("Initializing the game");
-	
 	playersName = $('#fname').val();		// get player name from settings-dialog
 	
 	// Save playername to local storage if defined
@@ -33,14 +32,13 @@ function initGame()
 	{
 		playersName = "Deadhead";
 	}
-	
+
 	var n = noty({text: 'Welcome '+playersName+' to DrugWars - The Heisenberg Edition'}); // welcome message to player & game-start
-	
 	
 	// init values
 	//
 	// define game length
-	maxDays = $( "#gameLength" ).val();
+	maxDays = $( "#gameLength" ).val(); // get game length from setup dialog
 	curDay=0;
 	// score modifier
 	luckEvents = 0;
@@ -56,7 +54,6 @@ function initGame()
 	// bank
 	bank=0;
 	
-
 	// hide several content divs
 	$('#div_Gameresult').hide();
 	$('#div_Info').hide();
@@ -100,8 +97,8 @@ function newDay()
 	
 	updateBank();						// recalculate money in bank (ading interest)
 	updateDebt();						// re-calculate debt
-	randomEventsOnDayChange();		// check for random events
-	updateAllUIElements();			// update all relevant UI elements
+	randomEventsOnDayChange();			// check for random events
+	h_updateAllUIElements();				// update all relevant UI elements
 	
 	// update day-progress-o-meter
 	progressRatio = (curDay / maxDays) * 100;
@@ -119,8 +116,7 @@ function changeCity()
 	$('#buy_Drugs').hide();
 	$('#loanshark_div').hide(); 
 	
-
-	if (currentLocation === 'lnd')
+	if (currentLocation === 'lnd') // London
 	{
 		currentLocation = locations.ny;		// change city
 
@@ -146,7 +142,7 @@ function changeCity()
 
 		sellPrice(); 
 	} // end of IF
-	else if (currentLocation === 'nyc')
+	else if (currentLocation === 'nyc') // new york
 	{
 		currentLocation = locations.lnd;		// change city
 
@@ -175,9 +171,7 @@ function changeCity()
 	
 	log.info("Arrived in: "+currentLocation)
 	
-	// prepare the new day
-	newDay();
-	
+	newDay();			// prepare the new day
 } // END: changeCity
 
 
@@ -214,8 +208,8 @@ function gameEnded()
 	luckModifier =  (luckEvents * 5000);
 	log.debug("LuckModifier: "+luckModifier)
 	
-	var finalScore = ( cash + bank ) - (3* debt); // calc final score
-	finalScore = finalScore + badLuckModifier -luckModifier;
+	var finalScore = ( cash + bank ) - (3* debt); 				// calc final score
+	finalScore = finalScore + badLuckModifier -luckModifier; 	// add luck & badluck modifiers
 	
 	if (finalScore < 1) // negative final score is not possible
 	{
@@ -224,13 +218,9 @@ function gameEnded()
 
 	// get end-timestamp
 	var endTime = new Date().getTime();
-	
-	//log.debug(startTime);
 	log.debug("End Time: "+endTime);
 	
-	// check highscore - depends on maxDays
-	log.debug("Max Days: "+maxDays);
-	
+	log.debug("Max Days: "+maxDays);			// check highscore - depends on maxDays
 	switch(maxDays) 
 	{
 		case "15":
@@ -284,19 +274,17 @@ function gameEnded()
 	//
 	// money things
 	$('#finalCashCount').html(+finalCash);
-	$('#finalBankCount').html(+finalBank);
-	$('#finalDebtCount').html(+finalDebt);
+	$('#finalBankCount').html("+"+finalBank);
+	$('#finalDebtCount').html("-"+finalDebt);
 	// luck-things
-	$('#finalLuckCount').html(+luckModifier);
-	$('#finalBadLuckCount').html(+badLuckModifier);
-	//
+	$('#finalLuckCount').html("-"+luckModifier);
+	$('#finalBadLuckCount').html("-"+badLuckModifier);
+
 	// final result:
 	$('#finalScoreCount').html(+finalScore);	
 	
 	$('#div_Gameresult').show();	// show result div
 } // END: gameEnded()
-
-
 
 
 
@@ -333,7 +321,7 @@ $('#choose_selld').click(function(event)
 */
 $('#choose_loan').click(function(event) 
 {	
-	updateLoansharkUI();
+	h_updateMoneyUI();
 	
 	$('#sell_Drugs').hide();
 	$('#buy_Drugs').hide();
@@ -363,9 +351,8 @@ $('#btn').click(function(event)
 	
 	$('#getCash').val("");		// reset input field where player defined amount money to borrow
 	
-	updateLoansharkUI();
-	updateAllUIElements();
-	
+	h_updateMoneyUI();
+	h_updateAllUIElements();
 });
 
 
@@ -409,7 +396,7 @@ $('#drugBtn').click(function(event)
 		// check to see if have enough units
 		if (acid_unit < numUnits)
 		{
-			var n = noty({text: 'Not enough units available, select less!'});
+			var n = noty({text: 'Not enough units available, select less.'});
 			return;
 		}
 		
@@ -430,7 +417,7 @@ $('#drugBtn').click(function(event)
 		freePockets = maxPockets - usedPockets;
 		pockets = usedPockets + "/"+maxPockets;
 				
-		// remove units once bought 
+		// remove units from market once bought 
 		acid_unit = acid_unit - numUnits;
 		$('#acidUnits').html(acid_unit); 
 
@@ -451,7 +438,7 @@ $('#drugBtn').click(function(event)
 		// check to see if have enough units
 		if (coke_unit < numUnits)
 		{
-			var n = noty({text: 'Not enough units available, select less!'});
+			var n = noty({text: 'Not enough units available, select less.'});
 			return;
 		}
 		
@@ -472,7 +459,7 @@ $('#drugBtn').click(function(event)
 		freePockets = maxPockets - usedPockets;
 		pockets = usedPockets + "/"+maxPockets;
 
-		// remove units once bought 
+		// remove units from market once bought 
 		coke_unit = coke_unit - numUnits;
 		$('#cokeUnits').html(coke_unit);  
 
@@ -481,9 +468,9 @@ $('#drugBtn').click(function(event)
 		log.info("Cash "+cash)
 	} // End of else if	
 	
-	$('#maxBuy').html("");			// update UI
-	$('#buyDrugs').val("");		// reset input field where player defined amount of drugs to buy
-	updateAllUIElements();
+	$('#maxBuy').html("");			// reset max-buy in UI
+	$('#buyDrugs').val("");			// reset input field where player defined amount of drugs to buy
+	h_updateAllUIElements();
 }); // buy drugs button
 	
 
@@ -558,11 +545,10 @@ $('#sellBtn').click(function(event)
 		
 		
 	} // End of else if
-	$('#maxSell').html("");			// update UI
+	$('#maxSell').html("");			// reset max-sell UI
 	$('#sellDrugs').val("");		// reset input field where player defined amount of drugs to sell
 	
-	
-	updateAllUIElements();
+	h_updateAllUIElements();
 }); // buy drugs button
 	
 	
@@ -598,12 +584,10 @@ $('#btn_payDebt').click(function(event)
 		// recalculate the debt
 		debt = debt - b;
 
-		updateLoansharkUI();
-		updateAllUIElements();
+		h_updateMoneyUI();
+		h_updateAllUIElements();
 	}
 });	
-
-
 
 
 /*	
@@ -614,12 +598,9 @@ $('#btn_payDebtAll').click(function(event)
 	cash = cash - debt;
 	debt = 0;
 	
-	updateLoansharkUI();
-	updateAllUIElements();
+	h_updateMoneyUI();
+	h_updateAllUIElements();
 });	
-
-
-
 
 
 /*	
@@ -627,9 +608,9 @@ $('#btn_payDebtAll').click(function(event)
 */	
 $('#btn_bank_depositMoney').click(function(event) 
 {	
-	moneyToDeposit = $('#input_bank_depositValue').val();		// get player name from settings-dialog
+	moneyToDeposit = $('#input_bank_depositValue').val();		// get amount of money player wants to deposit
 	
-	if(moneyToDeposit <= cash)
+	if(moneyToDeposit <= cash) // valid input
 	{
 		moneyToDeposit = Math.round(moneyToDeposit);
 		bank = bank + moneyToDeposit;
@@ -638,18 +619,13 @@ $('#btn_bank_depositMoney').click(function(event)
 		cash = cash - moneyToDeposit;
 		var n = noty({text: 'Deposit '+moneyToDeposit+' at your bank account. You now have '+bank+'$ in your bank account.'});
 	}
-	else
+	else // invalid input from player
 	{
-		// dont try to cheat 
 		var n = noty({text: 'Dont fuck with me dude'});
 		return;
 	}
-	updateAllUIElements();
+	h_updateAllUIElements();
 });	
-
-
-
-
 
 
 /*	
@@ -657,35 +633,29 @@ $('#btn_bank_depositMoney').click(function(event)
 */	
 $('#btn_bank_payOutMoney').click(function(event) 
 {	
-	moneyToPayOut = $('#input_bank_payOutValue').val();		// get player name from settings-dialog
+	moneyToPayOut = $('#input_bank_payOutValue').val();		// get amount of money player wants to put back from bank-account
 	
-	if(moneyToPayOut <= bank)
+	if(moneyToPayOut <= bank) // valid value
 	{
 		bank = bank - moneyToPayOut;
 		bank = Math.round(bank);
-		
 		cash = cash + Math.round(moneyToPayOut);
-		
 		var n = noty({text: 'Bank payed out  '+moneyToPayOut+' from your bank account. You now have '+bank+'$ in your bank account.'});
 	}
-	else
+	else // invalid value
 	{
-		// dont try to cheat 
 		var n = noty({text: 'Dont fuck with me dude'});
 		return;
 	}
 	
-	updateAllUIElements();
+	h_updateAllUIElements();
 });	
 
 
 
-
-
-
-
-
-// check if acid-drug box got ticked -
+/*
+	SELECT BUY ACID: check if acid-drug box got ticked
+*/
 $('#acid_tick').click(function(event) 
 {
 	if (this.checked)
@@ -701,7 +671,9 @@ $('#acid_tick').click(function(event)
 });
 
 
-// check if coke-drug box got ticket
+/*
+	SELECT BUY COKE: check if coke-drug box got ticket
+*/
 $('#coke_tick').click(function(event) 
 {
 	if (this.checked)
@@ -717,7 +689,9 @@ $('#coke_tick').click(function(event)
 });
 	
 
-// check if sell acid-drug box got ticked
+/*
+	SELL ACID: check if sell acid-drug box got ticked
+*/
 $('#s_acid_tick').click(function(event) 
 {	
 	if (this.checked)
@@ -732,7 +706,9 @@ $('#s_acid_tick').click(function(event)
 });
 
 
-// check if sell coke-drug box got ticked
+/*
+	SELL COKE: check if sell coke-drug box got ticked
+*/
 $('#s_coke_tick').click(function(event) 
 {	
 	if (this.checked)
@@ -748,13 +724,10 @@ $('#s_coke_tick').click(function(event)
 
 
 
-
-
-
 /*	###########################################
-	HELPERS
-	########################################### */
-	//
+HELPERS
+########################################### */
+//
 // moved to external file: h_helperFunctions.js
 
 /*
@@ -785,18 +758,11 @@ function sellPrice()
 
 
 
-
-
-
-
 /*	###########################################
 	RANDOM EVENTS
 	########################################### */
 //
 // moved to external file: r_randomEvents.js
-
-
-
 
 
 
@@ -820,7 +786,6 @@ var maxPockets = 100;
 var usedPockets = 0;
 var pockets = usedPockets + " of "+maxPockets+" used";
 
-
 var currentDrugs = {acid:0,coke:0};
 var drugs = 
 {
@@ -831,7 +796,6 @@ var drugs =
 		return Math.floor((Math.random()*50)+1)
 	}
 }; // create new object 
-
 
 var coke_unit = drugs.unit();
 var acid_unit = drugs.unit();
@@ -846,9 +810,6 @@ $('#sell_Drugs').hide();
 $('#loanshark_div').hide();
 $('#buy_Drugs').hide();
 currentLocation = locations.ny; 
-
-
-
 
 
 // Setup for NYC
@@ -877,11 +838,8 @@ var start =
 	} // play
 }; // end start function
 
-
 start.play();
 sellPrice(); 
 
 var pickedAcid = false;
 var pickedCoke = false; 
-
-
