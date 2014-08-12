@@ -21,7 +21,7 @@ function r_randomEventPolice()
 			if (answer)
 			{
 				// fight
-				calculateWinOrLose = getRandomInt(1,2); // get random number
+				calculateWinOrLose = h_getRandomInt(1,2); // get random number
 				if (calculateWinOrLose == 1)
 				{
 					// win
@@ -58,7 +58,7 @@ function r_randomEventPolice()
 			pockets=usedPockets+ " of "+maxPockets+" used";
 			// health
 			healthDamage = 10;
-			reduceHealth(healthDamage);
+			h_reduceHealth(healthDamage);
 		}
 		else // we have a weapon - offer fight
 		{
@@ -66,10 +66,9 @@ function r_randomEventPolice()
 			if (answer)
 			{
 				// fight
-				calculateWinOrLose = getRandomInt(1,2); // get random number
-				if (calculateWinOrLose == 1)
+				calculateWinOrLose = h_getRandomInt(1,2); // get random number
+				if (calculateWinOrLose == 1) // win
 				{
-					// win
 					var n = noty({text: 'That was a clear win for you. You beat the shit out of the cops. Weapons are lovely arent they?'});
 				}
 				else
@@ -85,7 +84,7 @@ function r_randomEventPolice()
 					pockets=usedPockets+ " of "+maxPockets+" used";
 					// health
 					healthDamage = 10;
-					reduceHealth(healthDamage)
+					h_reduceHealth(healthDamage)
 				}
 			}
 			else // got drugs, weapon but dont want to fight
@@ -101,7 +100,7 @@ function r_randomEventPolice()
 				pockets=usedPockets+ " of "+maxPockets+" used";
 				// health
 				healthDamage = 10;
-				reduceHealth(healthDamage)
+				h_reduceHealth(healthDamage)
 			}
 		}
 	}
@@ -130,27 +129,27 @@ function r_randomEventRobbery()
 			if (answer)
 			{
 				// fight
-				calculateWinOrLose = getRandomInt(1,2); // get random number
+				calculateWinOrLose = h_getRandomInt(1,2); // get random number
 				if (calculateWinOrLose == 1)
 				{
 					// win
-					calculateTheftsMoney = getRandomInt(50,1000); // get random number
+					calculateTheftsMoney = h_getRandomInt(50,1000); // get random number
 					cash = cash + calculateTheftsMoney;
 					var n = noty({text: 'You killed the theft and stole his money ('+calculateTheftsMoney+') instead.'}); 
 				}
 				else
 				{
-					getRobbed();
+					h_getRobbed();
 				}
 			}
 			else
 			{
-				getRobbed();
+				h_getRobbed();
 			}
 		}
 		else // got no weapon to defend yourself
 		{
-			getRobbed();
+			h_getRobbed();
 		}
 		h_updateAllUIElements();
 	}
@@ -164,7 +163,7 @@ function r_randomEventFindDrugs()
 {
 	luckEvents = luckEvents + 1;
 
-	foundDrugs = getRandomInt(1,50); // get random number
+	foundDrugs = h_getRandomInt(1,50); // get random number
 	if(foundDrugs <= freePockets)
 	{
 		var n = noty({text: 'You found '+foundDrugs+' acid on the streets'}); 
@@ -238,8 +237,8 @@ function r_randomEventJesseQuote()
 */
 function r_randomEventExtraPockets()
 {
-	extraPockets = getRandomInt(10,50); // get random number of offerend pockets
-	pocketPrice = getRandomInt(5,20); // get random number for pocket price
+	extraPockets = h_getRandomInt(10,50); // get random number of offerend pockets
+	pocketPrice = h_getRandomInt(5,20); // get random number for pocket price
 	calcExtraPocketPrice = extraPockets * pocketPrice;
 	
 	if(cash >= calcExtraPocketPrice) // if we have enough money for the extra-pockets
@@ -281,8 +280,8 @@ function r_randomEventCheapDrugs()
 	log.info("Cheap drugs on the market")
 
 	// new cost of drugs
-	drugs.acid = getRandomInt(200,500);
-	drugs.coke = getRandomInt(300,700);
+	drugs.acid = h_getRandomInt(200,500);
+	drugs.coke = h_getRandomInt(300,700);
 	
 	// cost per unit
 	$('#acidPerUnit').html("$"+drugs.acid);

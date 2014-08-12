@@ -8,7 +8,7 @@
 function h_updateAllUIElements()
 {
 	// action buttons
-	updateTradingButtons();
+	h_updateTradingButtons();
 
 	// unselect buy & sell checkboxes for drug-selection
 	$('#acid_tick').prop('checked', false);
@@ -62,7 +62,7 @@ function h_checkLocalStorageSupport()
 /*
 	HELPER: show only the settings div - and hide all the others
 */
-function showSettingsOnly()
+function h_showSettingsOnly()
 {
 	// show settings div
 	$('#div_Settings').hide(); 
@@ -82,9 +82,9 @@ function showSettingsOnly()
 
 
 /*
-	HELPER: disable the main 4 action buttons
+	HELPER: disable the 4 main-action buttons
 */
-function disableActionButtons()
+function h_disableActionButtons()
 {
 	document.getElementById("choose_buyd").disabled = true;		// disable buy button
 	document.getElementById("choose_selld").disabled = true;	// disable sell shark
@@ -94,9 +94,9 @@ function disableActionButtons()
 
 
 /*
-	HELPER: calculate max possible buy
+	HELPER: calculate max possible buy for selected drug
 */
-function calculateMaxBuy()
+function h_calculateMaxBuy()
 {
 	if(choosenDrug == "Acid")
 	{
@@ -142,13 +142,10 @@ function calculateMaxBuy()
 
 
 
-
-
-
 /*
-	HELPER: calculate max possible sell
+	HELPER: calculate max possible sell for selected drug
 */
-function calculateMaxSell()
+function h_calculateMaxSell()
 {	
 	if(choosenDrug == "Acid")
 	{
@@ -248,7 +245,7 @@ function h_updateMoneyUI()
 /*
 	HELPER: load highscore from localStorage and display it in UI
 */
-function loadHighscoreFromLocalStorage() 
+function h_loadHighscoreFromLocalStorage() 
 {
 	// 15 Days
 	highscore_15_score = localStorage.getItem("highscore_15");
@@ -288,7 +285,7 @@ function loadHighscoreFromLocalStorage()
 /*
 	HELPER: get randon int 
 */
-function getRandomInt(min, max) 
+function h_getRandomInt(min, max) 
 {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -297,7 +294,7 @@ function getRandomInt(min, max)
 /*
 	HELPER: updateTradingButtons (enable or disable them based on the amount of money and/or drugs in pocket
 */
-function updateTradingButtons()
+function h_updateTradingButtons()
 {
 	log.info("Updating trade buttons")
 	
@@ -382,7 +379,7 @@ function updateTradingButtons()
 /*
 	HELPER: Calculate debt (happens on each new day)
 */
-function updateDebt()
+function h_updateDebt()
 {
 	if(debt > 0) // only if player has debt
 	{
@@ -396,7 +393,7 @@ function updateDebt()
 /*
 	HELPER: Calculate debt (happens on each new day)
 */
-function updateBank()
+function h_updateBank()
 {
 	if(bank > 0) // only if player has money in bank account
 	{
@@ -412,16 +409,16 @@ function updateBank()
 /*
 	HELPER: Random Events
 */
-function randomEventsOnDayChange()
+function h_randomEventsOnDayChange()
 {
 	log.info("Check for random events")
 	
 	if(curDay >= 2) // not on the first day
 	{
-		var shouldRandomHappen = getRandomInt(1,10); // calculate chance for a random event
+		var shouldRandomHappen = h_getRandomInt(1,10); // calculate chance for a random event
 		if(shouldRandomHappen >= 9) // random event happens
 		{
-			var x = getRandomInt(1,8); // what random event should happen?
+			var x = h_getRandomInt(1,8); // what random event should happen?
 			log.debug("Random Event: "+x)
 
 			// Execute Random Event: Police
@@ -468,7 +465,7 @@ function randomEventsOnDayChange()
 /*
 	HELPER: reduce player health and colorize it based on the value
 */
-function reduceHealth()
+function h_reduceHealth()
 {
 	health = health - healthDamage;
 
@@ -492,16 +489,14 @@ function reduceHealth()
 
 
 
-
-
 /*
-	HELPER: getRobbed
+	HELPER: h_getRobbed
 	
 	function:	player looses between 10%-90% of the money in his pockets & 10% health
 */
-function getRobbed()
+function h_getRobbed()
 {
-	var robberyFactor = getRandomInt(10,90); // calculate the percentage player will loose while being robbed
+	var robberyFactor = h_getRandomInt(10,90); // calculate the percentage player will loose while being robbed
 
 	// calculate money stolen
 	var stolen = Math.round(cash / 100 * robberyFactor);

@@ -68,9 +68,11 @@
 							<h3>Loan Shark</h3>
 							<div class="form-group">
 								<label for="getCash">Ask the Loan Shark for $?</label>
+								<br>
 								<input type="number" class="form-control" id="getCash" placeholder="How much to borrow?">
+								<button type="button" id="btn" class="btn btn-default">Borrow $</button>
 							</div>
-							<button type="button" id="btn" class="btn btn-default">Borrow $</button>
+							
 						</form>
 
 						<!--LOAN SHARK - PAY BACK -->
@@ -78,10 +80,11 @@
 						<form class="form-inline" role="form" id="form_Payback">
 							<div class="form-group">
 								<label for="getoffDept">Pay off your debt?</label>
+								<br>
 								<input type="number" class="form-control" id="payDebt" placeholder="How much to pay back?">
+								<button type="button" id="btn_payDebt" class="btn btn-default">Payback $</button>
+								<button type="button" id="btn_payDebtAll" class="btn btn-default">Payback all $</button>
 							</div>
-							<button type="button" id="btn_payDebt" class="btn btn-default">Payback $</button>
-							<button type="button" id="btn_payDebtAll" class="btn btn-default">Payback All $</button>
 						</form>
 						
 						
@@ -91,18 +94,23 @@
 						<h3>Bank</h3>
 							<div class="form-group">
 								<label for="getoffDept">Deposit money at bank (5% interest per Day)</label>
+								<br>
 								<input type="number" class="form-control" id="input_bank_depositValue" placeholder="How much to deposit?">
+								<button type="button" id="btn_bank_depositMoney" class="btn btn-default">Deposit $</button>
+								<button type="button" id="btn_bank_depositMoneyAll" class="btn btn-default">Deposit all $</button>
 							</div>
-							<button type="button" id="btn_bank_depositMoney" class="btn btn-default">Deposit $</button>
+							
 						</form>
 						<!-- Bank get money back-->
 						<br>
 						<form class="form-inline" role="form" id="form_Bank_payOut">
 							<div class="form-group">
 								<label for="getoffDept">Pay out</label>
+								<br>
 								<input type="number" class="form-control" id="input_bank_payOutValue" placeholder="How much to pay out?">
+								<button type="button" id="btn_bank_payOutMoney" class="btn btn-default">Pay out $</button>
+								<button type="button" id="btn_bank_payOutMoneyAll" class="btn btn-default">Pay out all $</button>
 							</div>
-							<button type="button" id="btn_bank_payOutMoney" class="btn btn-default">Pay out $</button>
 						</form>
 					</div> <!--END OF LOAN SHARK -->
 
@@ -120,9 +128,11 @@
 						<br>
 						<label for="buyDrugs">How many drugs do you want to buy?</label>
 						<label id="maxBuy"></label>
+						<br>
 						<input type="number" class="form-control" id="buyDrugs" placeholder="How many units?">
+						<button type="button" id="drugBtn" class="btn btn-default">Buy</button>
 					</div>
-					<button type="button" id="drugBtn" class="btn btn-default">Buy</button>
+					
 					</form>
 
 
@@ -138,13 +148,13 @@
 						<br>
 						<label for="sellDrugs">How many drugs do you want to sell?</label>
 						<label id="maxSell"></label>
+						<br>
 						<input type="number" class="form-control" id="sellDrugs" placeholder="How many units?">
 						<button type="button" id="sellBtn" class="btn btn-default">Sell</button>
+						<!--
+						<button type="button" id="sellBtnAll" class="btn btn-default">Sell All</button>
+						-->
 					</div> <!--END OF FORM GROUP -->
-					
-					<!--
-					<button type="button" id="sellBtnAll" class="btn btn-default">Sell All</button>
-					-->
 					</form>
 	
 	
@@ -182,27 +192,38 @@
 						<hr>
 						<!-- 15 Days -->
 						<h3>15 Days</h3>
-						<span id="score_15"></span>
-						<span id="player_15"></span>
-						<span id="date_15"></span>
+						<p>
+							<span id="score_15"></span>
+							<span id="player_15"></span>
+							<span id="date_15"></span>
+						</p>
+						<br>
 						
 						<!-- 30 Days -->
 						<h3>30 Days</h3>
-						<span id="score_30"></span>
-						<span id="player_30"></span>
-						<span id="date_30"></span>
+						<p>
+							<span id="score_30"></span>
+							<span id="player_30"></span>
+							<span id="date_30"></span>
+						</p>
+						<br>
 						
 						<!-- 45 Days -->
 						<h3>45 Days</h3>
-						<span id="score_45"></span>
-						<span id="player_45"></span>
-						<span id="date_45"></span>
+						<p>
+							<span id="score_45"></span>
+							<span id="player_45"></span>
+							<span id="date_45"></span>
+						</p>
+						<br>
 						
 						<!-- 90 Days -->
 						<h3>90 Days</h3>
-						<span id="score_90"></span>
-						<span id="player_90"></span>
-						<span id="date_90"></span>
+						<p>
+							<span id="score_90"></span>
+							<span id="player_90"></span>
+							<span id="date_90"></span>
+						</p>
 					</div>
 	
 	
@@ -273,13 +294,13 @@
 						<table class="table table-bordered">
 							<thead>
 								<tr>
-									<th><i class="fa fa-child"></i> Health</th>	
-									<th><i class="fa fa-money"></i> Cash</th>
-									<th><i class="fa fa-book"></i> Debt</th>
-									<th><i class="fa fa-bank"></i> Bank</th>
-									<th><i class="fa fa-archive"></i> Drugs</th>
-									<th><i class="fa fa-briefcase"></i> Pockets</th>
-									<th><i class="fa fa-bomb"></i> Weapons</th>
+									<th><i class="fa fa-child" title="Health"></i></th>	
+									<th><i class="fa fa-money" title="Cash"></i></th>
+									<th><i class="fa fa-book" title="Debt"></i></th>
+									<th><i class="fa fa-bank" title="Bank"></i></th>
+									<th><i class="fa fa-archive" title="Drugs"></i></th>
+									<th><i class="fa fa-briefcase" title="Pockets"></i></th>
+									<th><i class="fa fa-bomb" title="Weapons"></i></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -308,8 +329,8 @@
 								<tr>
 									<th>Drug</th>
 									<th>Units</th>
-									<th>Buy per Unit</th>
-									<th>Sell $</th>
+									<th>$ Buy</th>
+									<th>$ Sell</th>
 								</tr>
 							</thead>
 							<tbody>

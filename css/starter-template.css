@@ -18,7 +18,11 @@ body {
 
 
 
-
+h3{
+	margin-top: 3px;
+	font-size: 16px;
+	
+}
 
 
 
@@ -68,7 +72,7 @@ body {
 {
 	background-color: lightGrey; 
 	border-radius: 15px;
-	margin-top: 20px;
+	margin-top: 0px;
 	padding: 15px;
 	opacity: 0.9;
 	border-style: solid;
@@ -82,7 +86,7 @@ body {
 {
 	background-color: lightGrey; 
 	border-radius: 15px;
-	margin-top: 20px;
+	margin-top: 10px;
 	padding: 15px;
 	opacity: 0.9;
 	border-style: solid;
@@ -96,7 +100,7 @@ body {
 {
 	background-color: lightGrey; 
 	border-radius: 15px;
-	margin-top: 20px;
+	margin-top: 10px;
 	padding: 15px;
 	opacity: 0.9;
 	border-style: solid;
@@ -121,6 +125,11 @@ body {
 
 
 
+/* input fields for numbers */
+.form-control
+{
+width: 150px;
+}
 
 
 th {

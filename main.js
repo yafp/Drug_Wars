@@ -1,12 +1,12 @@
 /*
-	On game start
+	while loading the page
 */
 $( document ).ready(function() 
 {	
 	h_checkLocalStorageSupport();			// LocalStorage
-	loadHighscoreFromLocalStorage(); 	// load highscore values to highscore div
-	disableActionButtons();				// disable main buttons	
-	showSettingsOnly();					// show only the settings div	
+	h_loadHighscoreFromLocalStorage(); 		// load highscore values to highscore div
+	h_disableActionButtons();				// disable main buttons	
+	h_showSettingsOnly();					// show only the settings div	
 });
 
 
@@ -98,9 +98,9 @@ function newDay()
 		curDay=curDay+1;
 	}
 	
-	updateBank();						// recalculate money in bank (ading interest)
-	updateDebt();						// re-calculate debt
-	randomEventsOnDayChange();			// check for random events
+	h_updateBank();						// recalculate money in bank (ading interest)
+	h_updateDebt();						// re-calculate debt
+	h_randomEventsOnDayChange();			// check for random events
 	h_updateAllUIElements();				// update all relevant UI elements
 	
 	// update day-progress-o-meter
@@ -128,8 +128,8 @@ function changeCity()
 		$('#market').append('<i class="fa fa-map-marker"></i> The Market: New York City');
 
 		// cost in nyc
-		drugs.acid = getRandomInt(600,1300);
-		drugs.coke = getRandomInt(900,1900);
+		drugs.acid = h_getRandomInt(600,1300);
+		drugs.coke = h_getRandomInt(900,1900);
 
 		// change units to represent time passed
 		coke_unit = drugs.unit();
@@ -154,8 +154,8 @@ function changeCity()
 		$('#market').append("<i class='fa fa-map-marker'></i> The Market: London"); 
 	
 		// cost in lnd
-		drugs.acid = getRandomInt(700,1500);
-		drugs.coke = getRandomInt(900,1700);
+		drugs.acid = h_getRandomInt(700,1500);
+		drugs.coke = h_getRandomInt(900,1700);
 
 		// change units to represent time passed
 		coke_unit = drugs.unit();
@@ -185,7 +185,7 @@ function gameEnded()
 {	
 	log.info("GAME OVER")
 	
-	disableActionButtons();	// disable main buttons	
+	h_disableActionButtons();	// disable main buttons	
 	
 	// hide input menues
 	$('#sell_Drugs').hide();
@@ -271,7 +271,7 @@ function gameEnded()
 		break;
 	} 
 	
-	loadHighscoreFromLocalStorage(); // updates the highscore
+	h_loadHighscoreFromLocalStorage(); // updates the highscore
 	
 	// write values to endgame div
 	//
@@ -668,9 +668,8 @@ $('#acid_tick').click(function(event)
 		pickedAcid = true;
 		pickedCoke = false; 
 		
-		//calculateMaxBuyAcid();
 		choosenDrug ="Acid";
-		calculateMaxBuy(choosenDrug);
+		h_calculateMaxBuy(choosenDrug);
 	}	
 });
 
@@ -686,9 +685,8 @@ $('#coke_tick').click(function(event)
 		pickedCoke = true;
 		pickedAcid = false;
 		
-		//calculateMaxBuyAcid();
 		choosenDrug ="Coke";
-		calculateMaxBuy(choosenDrug);
+		h_calculateMaxBuy(choosenDrug);
 	}	
 });
 	
@@ -705,7 +703,7 @@ $('#s_acid_tick').click(function(event)
 		pickedCoke = false; 
 		
 		choosenDrug ="Acid";
-		calculateMaxSell(choosenDrug);
+		h_calculateMaxSell(choosenDrug);
 	}	
 });
 
@@ -722,7 +720,7 @@ $('#s_coke_tick').click(function(event)
 		pickedAcid = false;
 		
 		choosenDrug ="Coke";
-		calculateMaxSell(choosenDrug);
+		h_calculateMaxSell(choosenDrug);
 	}	
 });
 
