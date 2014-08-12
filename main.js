@@ -632,6 +632,32 @@ $('#btn_bank_depositMoney').click(function(event)
 });	
 
 
+
+/*	
+	BUTTON PRESS: Deposit ALL money at bank
+*/	
+$('#btn_bank_depositMoneyAll').click(function(event) 
+{	
+	if(cash > 0)
+	{
+		bank = bank + cash;
+		var n = noty({text: 'Added '+cash+'$ to your bank account. You now have '+bank+'$ in your bank account and 0 cash.'});
+		cash = 0;
+	}
+	else
+	{
+		var n = noty({text: 'Dont fuck with me dude'});
+		return;
+	}
+	
+	h_updateMoneyUI();
+	h_updateAllUIElements();
+});
+
+
+
+
+
 /*	
 	BUTTON PRESS: get money back from bank
 */	
@@ -655,6 +681,25 @@ $('#btn_bank_payOutMoney').click(function(event)
 	h_updateAllUIElements();
 });	
 
+
+
+
+
+$('#btn_bank_payOutMoneyAll').click(function(event) 
+{
+	if(bank > 0)
+	{
+		cash = cash + bank;
+		var n = noty({text: 'Bank payed out  '+bank+' from your bank account. You now have '+bank+'$ in your bank account.'});
+		bank = 0;
+	}
+	else
+	{
+		var n = noty({text: 'Dont fuck with me dude'});
+		return;
+	}
+	h_updateAllUIElements();
+});
 
 
 /*
