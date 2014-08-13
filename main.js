@@ -30,7 +30,7 @@ function initGame()
 	}
 	else // player set no name - so give him one
 	{
-		playersName = "Deadhead";
+		playersName = "Bored Deadhead";
 	}
 	$('#player').empty();
 	$('#player').append('<i class="fa fa-user"></i> '+playersName);
@@ -115,8 +115,8 @@ function newDay()
 function changeCity()
 {	
 	// hide buy/sell/loan div
-	$('#sell_Drugs').hide();
-	$('#buy_Drugs').hide();
+	$('#form_Drugs_sell').hide();
+	$('#form_Drugs_buy').hide();
 	$('#loanshark_div').hide(); 
 	
 	if (currentLocation === 'lnd') // London
@@ -188,9 +188,9 @@ function gameEnded()
 	h_disableActionButtons();	// disable main buttons	
 	
 	// hide input menues
-	$('#sell_Drugs').hide();
+	$('#form_Drugs_sell').hide();
 	$('#loanshark_div').hide();
-	$('#buy_Drugs').hide();
+	$('#form_Drugs_buy').hide();
 	
 	// hide main game-divs
 	$('#div_ActionButtons').hide();
@@ -302,9 +302,9 @@ function gameEnded()
 */
 $('#choose_buyd').click(function(event) 
 {	
-	$('#sell_Drugs').hide();
+	$('#form_Drugs_sell').hide();
 	$('#loanshark_div').hide();
-	$('#buy_Drugs').toggle(400); 
+	$('#form_Drugs_buy').toggle(400); 
 });
 
 
@@ -314,8 +314,8 @@ $('#choose_buyd').click(function(event)
 $('#choose_selld').click(function(event) 
 {	
 	$('#loanshark_div').hide();
-	$('#buy_Drugs').hide();
-	$('#sell_Drugs').toggle(400); 
+	$('#form_Drugs_buy').hide();
+	$('#form_Drugs_sell').toggle(400); 
 });
 
 
@@ -326,8 +326,8 @@ $('#choose_loan').click(function(event)
 {	
 	h_updateMoneyUI();
 	
-	$('#sell_Drugs').hide();
-	$('#buy_Drugs').hide();
+	$('#form_Drugs_sell').hide();
+	$('#form_Drugs_buy').hide();
 	$('#loanshark_div').toggle(400);
 });
 
@@ -607,6 +607,21 @@ $('#btn_payDebtAll').click(function(event)
 
 
 /*	
+	BUTTON PRESS: Loan shark - Pay Back max
+*/	
+$('#btn_payDebtMax').click(function(event) 
+{
+	maxPayDebt = cash; // calc max possible payback debt amount
+	
+	debt = debt - maxPayDebt;
+	cash = cash - maxPayDebt;
+	
+	h_updateMoneyUI();
+	h_updateAllUIElements();
+});	
+
+
+/*	
 	BUTTON PRESS: Deposit money at bank
 */	
 $('#btn_bank_depositMoney').click(function(event) 
@@ -853,9 +868,9 @@ var locations = {ny: "nyc", lnd: "lnd"};
 var acid = drugs.acid;
 var coke = drugs.coke;
 
-$('#sell_Drugs').hide();
+$('#form_Drugs_sell').hide();
 $('#loanshark_div').hide();
-$('#buy_Drugs').hide();
+$('#form_Drugs_buy').hide();
 currentLocation = locations.ny; 
 
 

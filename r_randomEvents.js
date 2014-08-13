@@ -347,4 +347,3 @@ function r_randomEventBuyWeapon()
 		var n = noty({text: 'The dude offered you a '+weaponName+' for '+weaponPrice+' $ but you had no money. Poor bastard.'});
 	}
 }
-

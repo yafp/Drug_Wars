@@ -79,8 +79,6 @@ function h_showSettingsOnly()
 } // END: showSettingsOnly()
 
 
-
-
 /*
 	HELPER: disable the 4 main-action buttons
 */
@@ -180,40 +178,11 @@ function h_calculateMaxSell()
 
 
 
-
-
-
-
 /*
 	HELPER: update Loan Payback section
 */
 function h_updateMoneyUI()
 {	
-	// loan shark 
-	//
-	
-	// based on debt
-	if(debt > 0)
-	{
-		$("#form_Payback").show();
-		$("#btn_payDebt").show();
-
-		if(cash > debt)
-		{
-			$("#btn_payDebtAll").show();
-		}
-		else
-		{
-			$("#btn_payDebtAll").hide();
-		}
-	}
-	else // player has no debt
-	{
-		$("#form_Payback").hide();		// hide all payback options
-	}
-	
-	
-	
 	// based on bank 
 	//
 	if(bank > 0)
@@ -231,15 +200,38 @@ function h_updateMoneyUI()
 	//
 	if(cash > 0)
 	{
-		$("#form_Bank_deposit").show();		// hide all pay-out stuff		
+		$("#form_Bank_deposit").show();		// hide all pay-out stuff
+		$("#btn_payDebtMax").show();
 	}
 	else // no cash
 	{
+		$("#btn_payDebtMax").hide();
 		$("#form_Bank_deposit").hide();		// hide all pay-out stuff
-		$("#form_Payback").hide();		// hide all payback options
+		$("#form_Loan_Payback").hide();		// hide all payback options
+	}
+	
+	
+	// based on debt
+	if(debt > 0)
+	{
+		$("#form_Loan_Payback").show();
+		$("#btn_payDebt").show();
+
+		if(cash > debt)
+		{
+			$("#btn_payDebtAll").show();
+			$("#btn_payDebtMax").hide(); // hide MAX - as ALL is displayed already
+		}
+		else
+		{
+			$("#btn_payDebtAll").hide();
+		}
+	}
+	else // player has no debt
+	{
+		$("#form_Loan_Payback").hide();		// hide all payback options
 	}
 }
-
 
 
 /*
@@ -279,7 +271,6 @@ function h_loadHighscoreFromLocalStorage()
 	highscore_90_date = localStorage.getItem("date_90");
 	$('#date_90').html("at "+highscore_90_date);
 }
-
 
 
 /*
@@ -404,8 +395,6 @@ function h_updateBank()
 }
 
 
-
-
 /*
 	HELPER: Random Events
 */
@@ -469,7 +458,7 @@ function h_reduceHealth()
 {
 	health = health - healthDamage;
 
-	// fit color
+	// fit color (green -> orange -> red -> death)
 	switch(health)
 	{
 		case 70:
@@ -491,7 +480,6 @@ function h_reduceHealth()
 
 /*
 	HELPER: h_getRobbed
-	
 	function:	player looses between 10%-90% of the money in his pockets & 10% health
 */
 function h_getRobbed()
@@ -509,4 +497,3 @@ function h_getRobbed()
 	
 	h_updateAllUIElements();
 }
-
