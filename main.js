@@ -202,6 +202,8 @@ function gameEnded()
 	var finalCash = cash;
 	var finalBank = bank;
 	var finalDebt = debt;
+	var finalMoneyPerDay = (cash + bank - debt) / maxDays;
+	finalMoneyPerDay = Math.round(finalMoneyPerDay)
 
 	
 	// add luck and badLuck modifiers to score
@@ -285,6 +287,9 @@ function gameEnded()
 
 	// final result:
 	$('#finalScoreCount').html(+finalScore);	
+	
+	// final money per day:
+	$('#finalMoneyPerDay').html(+finalMoneyPerDay);	
 	
 	$('#div_Gameresult').show();	// show result div
 } // END: gameEnded()
