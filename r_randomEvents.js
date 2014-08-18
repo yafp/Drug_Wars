@@ -9,6 +9,10 @@ function r_randomEventPolice()
 {
 	log.info("Random Event: Police");
 	
+	log.info("Free pockets: "+freePockets);
+	log.info("Max pockets: "+maxPockets);
+	
+	
 	badLuckEvents = badLuckEvents + 1;
 
 	if( freePockets == maxPockets) // we dont have any drug
