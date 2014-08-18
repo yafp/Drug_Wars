@@ -80,6 +80,10 @@ function initGame()
 	log.debug("Start-Time: "+startTime);
 	
 	newDay(); // start a new day
+	
+	$.pageguide('unload'); // unload pageguide: Explain Start Page
+	$.pageguide(gameGuide); // load the game for the game itself
+	
 } // END: initGame()
 
 

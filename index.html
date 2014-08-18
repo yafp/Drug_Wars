@@ -11,14 +11,85 @@
 		
 		<!-- Bootstrap core CSS -->
 		<link href="css/bootstrap.css" rel="stylesheet">
+		
 		<!-- Custom styles for this template -->
 		<link href="css/starter-template.css" rel="stylesheet">
 		<!-- font awesome -->
 		<link rel="stylesheet" href="css/font-awesome-4.1.0/css/font-awesome.min.css">
 		<!-- blackbird -->
 		<link rel="stylesheet" href="js/blackbird-js-master/blackbird.css">
+		<!-- pageguide -->
+		<link href="css/pageguide.css" rel="stylesheet">
 		<!-- jquery -->
 		<script src="js/jquery-2.1.0.js"></script>
+		
+		
+		<script>
+			var defaultGuide = 
+			{
+				id: 'simple',
+				'title': 'Starting the game',
+				steps: [
+					{
+						target: '#fname',
+						content: 'First of all - enter your name',
+						direction: 'left'
+					},
+					{
+					target: '#gameLength',
+					content: 'Then define the preferend game length',
+					direction: 'right'
+					},
+					{
+					target: '#button_StartGame',
+					content: 'And finally start the game with the Start button',
+					direction: 'bottom',
+					margin: {
+						bottom: 200
+					}
+					}
+				]
+			}
+		</script>
+		
+		
+		
+		<script>
+			var gameGuide = 
+			{
+				id: 'simple',
+				'title': 'Explain game UI',
+				steps: [
+					{
+						target: '#div_GameProgress',
+						content: 'See the game progress',
+						direction: 'left'
+					},
+					{
+					target: '#gameLength',
+					content: 'Then define the preferend game length',
+					direction: 'right'
+					},
+					{
+					target: '#button_StartGame',
+					content: 'And finally start the game with the Start button',
+					direction: 'bottom',
+					margin: {
+						bottom: 200
+					}
+					}
+				]
+			}
+		</script>
+		
+		
+		<script>
+		    $(function() 
+			{
+				// Load the default guide!
+				$.pageguide(defaultGuide);
+			});
+		</script>
 	</head>
 
 
@@ -242,7 +313,7 @@
 							</select> 
 							<br>
 							<br>
-							<a class="btn btn-primary btn-lg" role="button" onclick="initGame();"><i class="fa fa-play-circle"></i> Start Game</a>
+							<a id="button_StartGame" class="btn btn-primary btn-lg" role="button" onclick="initGame();"><i class="fa fa-play-circle"></i> Start</a>
 						</form> 
 					</div>
 				</div> <!--END OF COL -->
@@ -338,7 +409,9 @@
 		<script src="main.js"></script>
 		<script src="r_randomEvents.js"></script>
 		<script src="h_helperFunctions.js"></script>
-
+		<!-- page guide -->
+		<script src="js/jquery.pageguide.js"></script>
+		
 		<!-- blackbird -->
 		<script type="text/javascript" charset="utf-8" src="js/blackbird-js-master/blackbird.js"></script>
 		
