@@ -343,13 +343,12 @@
 		
 		<!-- noty -->
 		<script type="text/javascript" charset="utf-8" src="js/noty-2.2.4/js/noty/packaged/jquery.noty.packaged.min.js"></script>
-		<script type="text/javascript" charset="utf-8" src="js/noty-2.2.4/js/noty/layouts/top.js"></script>
-		<script type="text/javascript" charset="utf-8" src="js/noty-2.2.4/js/noty/layouts/bottom.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/noty-2.2.4/js/noty/layouts/center.js"></script>
 		<script type="text/javascript" charset="utf-8" src="js/noty-2.2.4/js/noty/js/noty/themes/default.js"></script>
 		<!-- init noty -->
 		<script>
 			$.noty.defaults = {
-			  layout: 'bottom',
+			  layout: 'center',
 			  theme: 'defaultTheme',
 			  type: 'alert',
 			  text: '',
@@ -361,7 +360,7 @@
 				easing: 'swing',
 				speed: 500 // opening & closing animation speed
 			  },
-			  timeout: 7000, // delay for closing event. Set false for sticky notifications
+			  timeout: false, // delay for closing event. Set false for sticky notifications
 			  force: false, // adds notification to the beginning of queue when set to true
 			  modal: false,
 			  closeWith: ['click'], // ['click', 'button', 'hover']

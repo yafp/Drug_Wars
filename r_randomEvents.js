@@ -7,6 +7,8 @@
 */
 function r_randomEventPolice()
 {
+	log.info("Random Event: Police");
+	
 	badLuckEvents = badLuckEvents + 1;
 
 	if( freePockets == maxPockets) // we dont have any drug
@@ -14,6 +16,7 @@ function r_randomEventPolice()
 		if(weapons == 0)
 		{
 			var n = noty({text: 'Lucky you - cops controlled you - but you had empty pockets.'});
+			log.info("Nothing happend - you had empty pockets");
 		}
 		else
 		{
@@ -26,18 +29,25 @@ function r_randomEventPolice()
 				{
 					// win
 					var n = noty({text: 'That was a clear win for you. Weapons are lovely arent they?'});
+					log.info("You won the fight with the cops");
 				}
 				else
 				{
-					var n = noty({text: 'You lost your weapons due to the policy control'});
+					// loose
+					var n = noty({text: 'You got shot by the policy.'});
+					log.info("Got shot by police. Loosing health and weapon");
 					weapons = 0;
+					healthDamage = 30;
+					h_reduceHealth(healthDamage);
 				}
 			}
 			else
 			{
 				// dont fight - loose weapon
 				weapons = 0;
-				health = health -30;
+				healthDamage = 10;
+				h_reduceHealth(healthDamage);
+				log.info("No fight - Loosing a bit health and weapon");
 			}
 		}
 	}
@@ -46,7 +56,7 @@ function r_randomEventPolice()
 		if(weapons == 0)
 		{
 			var n = noty({text: 'The cops .... dumping my stash'});
-
+			log.info("Loosing all drugs and a bit health");
 			// calculate new values
 			//
 			// drugs		
@@ -70,10 +80,12 @@ function r_randomEventPolice()
 				if (calculateWinOrLose == 1) // win
 				{
 					var n = noty({text: 'That was a clear win for you. You beat the shit out of the cops. Weapons are lovely arent they?'});
+					log.info("Won the fight with the police");
 				}
 				else
 				{
 					var n = noty({text: 'You lost your weapons and your drugs due to the policy control'});
+					log.info("got shot by police, loosing all drugs, your weapons and health");
 					weapons = 0;
 					
 					currentDrugs.coke = 0;
@@ -83,14 +95,18 @@ function r_randomEventPolice()
 					freePockets = maxPockets;
 					pockets=usedPockets+ " of "+maxPockets+" used";
 					// health
-					healthDamage = 10;
+					healthDamage = 30;
 					h_reduceHealth(healthDamage)
 				}
 			}
 			else // got drugs, weapon but dont want to fight
 			{
+				var n = noty({text: 'You didnt fight, loosing drugs, weapons and health.'});
+				log.info("You didnt fight, loosing drugs, weapons and health");
+			
 				weapons = 0;
-				health = health -30;
+				healthDamage = 10;
+				h_reduceHealth(healthDamage)
 				
 				currentDrugs.coke = 0;
 				currentDrugs.acid = 0; 
@@ -98,9 +114,6 @@ function r_randomEventPolice()
 				usedPockets = 0;
 				freePockets = maxPockets;
 				pockets=usedPockets+ " of "+maxPockets+" used";
-				// health
-				healthDamage = 10;
-				h_reduceHealth(healthDamage)
 			}
 		}
 	}
@@ -113,11 +126,14 @@ function r_randomEventPolice()
 */
 function r_randomEventRobbery()
 {
+	log.info("Random Event: Robbery");
+
 	badLuckEvents = badLuckEvents + 1;
 
 	if(cash == 0) // if there is no money at all
 	{
 		var n = noty({text: 'Someone tried to rob you but you had no money anyways.'}); 
+		log.info("Robbery, but you already had empty pockets");
 		return;
 	}
 				
@@ -136,6 +152,7 @@ function r_randomEventRobbery()
 					calculateTheftsMoney = h_getRandomInt(50,1000); // get random number
 					cash = cash + calculateTheftsMoney;
 					var n = noty({text: 'You killed the theft and stole his money ('+calculateTheftsMoney+') instead.'}); 
+					log.info("Robbery, you killed the theft and got his money");
 				}
 				else
 				{
@@ -161,16 +178,20 @@ function r_randomEventRobbery()
 */
 function r_randomEventFindDrugs()
 {
+	log.info("Random Event: Finding Drugs on street");
+
 	luckEvents = luckEvents + 1;
 
 	foundDrugs = h_getRandomInt(1,50); // get random number
 	if(foundDrugs <= freePockets)
 	{
 		var n = noty({text: 'You found '+foundDrugs+' acid on the streets'}); 
+		log.info("You found drugs on the street");
 	}
 	else // not enough pockets
 	{			
 		var n = noty({text: 'You found '+foundDrugs+' acid on the streets but could take only '+freePockets+' cause of pocket size.'}); 
+		log.info("You found drugs on the street - but didnt had enough pockets to take em all");
 		foundDrugs = freePockets;
 	}
 						
@@ -193,6 +214,8 @@ function r_randomEventFindDrugs()
 */
 function r_randomEventJesseQuote()
 {
+	log.info("Random Event: Meeting Jesse");
+
 	// random jesse pinkman quote:
 	var jesseQuotes = [
 					"Look, I like making cherry product, but let’s keep it real, alright? We make poison for people who don’t care. We probably have the most unpicky customers in the world.", 
@@ -237,6 +260,8 @@ function r_randomEventJesseQuote()
 */
 function r_randomEventExtraPockets()
 {
+	log.info("Random Event: Extra pockets");
+
 	extraPockets = h_getRandomInt(10,50); // get random number of offerend pockets
 	pocketPrice = h_getRandomInt(5,20); // get random number for pocket price
 	calcExtraPocketPrice = extraPockets * pocketPrice;
@@ -247,6 +272,7 @@ function r_randomEventExtraPockets()
 		if (answer)
 		{
 			var n = noty({text: 'You just got '+extraPockets+' extra pockets for '+calcExtraPocketPrice+' $.'});
+			log.info("You bought extra pockets");
 
 			// calculate new values
 			maxPockets = maxPockets + extraPockets;
@@ -259,12 +285,14 @@ function r_randomEventExtraPockets()
 		else
 		{
 			var n = noty({text: 'The dude offered you '+extraPockets+' extra pockets for '+calcExtraPocketPrice+' $ but you  denied.'});
+			log.info("You denied buying extra pockets");
 			return;
 		}
 	}
 	else
 	{
 		var n = noty({text: 'The dude offered you '+extraPockets+' extra pockets for '+calcExtraPocketPrice+' $ but you had no money.'});
+		log.info("You had no money to buy extra pockets");
 	}
 }
 
@@ -274,10 +302,11 @@ function r_randomEventExtraPockets()
 */
 function r_randomEventCheapDrugs()
 {
+	log.info("Random Event: Cheap Drugs");
+
 	luckEvents = luckEvents + 1;
 
 	var n = noty({text: 'Drug sale - buy now as much as possible'});
-	log.info("Cheap drugs on the market")
 
 	// new cost of drugs
 	drugs.acid = h_getRandomInt(200,500);
@@ -296,6 +325,8 @@ function r_randomEventCheapDrugs()
 */
 function r_randomEventHankQuote()
 {
+	log.info("Random Event: Meeting Hank");
+
 	// random hank schrader quotes:
 	var hankQuotes = [
 					"You're the smartest guy I ever met... but you're too stupid to see... He made up his mind ten minutes ago.", 
@@ -318,9 +349,11 @@ function r_randomEventHankQuote()
 */
 function r_randomEventBuyWeapon()
 {
+	log.info("Random Event: Buying weapons");
+
 	luckEvents = luckEvents + 1;
 
-	log.info("buying weapon");
+	
 	
 	weaponName = "Magnum";
 	weaponPrice = '400';
@@ -331,12 +364,14 @@ function r_randomEventBuyWeapon()
 		if (answer)
 		{
 			var n = noty({text: 'You just got '+weaponName+' for '+weaponPrice+' $.'});
+			log.info("Bought a weapon");
 			weapons = weapons +1;
 			cash = cash - weaponPrice;
 		}
 		else
 		{
 			var n = noty({text: 'The dude offered you a '+weaponName+' for '+weaponPrice+' $ but you  denied. Stay unarmed Ghandi'});
+			log.info("You denied buying a weapon");
 			return;
 		}
 		
@@ -345,5 +380,6 @@ function r_randomEventBuyWeapon()
 	else
 	{
 		var n = noty({text: 'The dude offered you a '+weaponName+' for '+weaponPrice+' $ but you had no money. Poor bastard.'});
+		log.info("No money to buy a weapon ... serious?");
 	}
 }

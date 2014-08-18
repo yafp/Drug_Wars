@@ -491,7 +491,7 @@ function h_getRobbed()
 	cash = cash - stolen; 
 				
 	var n = noty({text: 'You got robbed. Loss '+stolen+' $.'});
-	log.info("You lost "+stolen+" $ (robbery)");
+	log.info("Got robbed - you lost "+stolen+" $ (robbery)");
 	
 	health = health -10;
 	
