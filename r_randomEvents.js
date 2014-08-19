@@ -290,8 +290,6 @@ function r_randomEventBuyWeapon()
 
 	luckEvents = luckEvents + 1;
 
-	
-	
 	weaponName = "Magnum";
 	weaponPrice = '400';
 	
@@ -300,7 +298,7 @@ function r_randomEventBuyWeapon()
 		var answer = confirm("Do you want to buy a "+weaponName+" for "+weaponPrice+" $ ?")
 		if (answer)
 		{
-			var n = noty({text: 'You just got '+weaponName+' for '+weaponPrice+' $.'});
+			var n = noty({text: '<p><i class="fa fa-bomb"></i></p>You just got '+weaponName+' for '+weaponPrice+' $.'});
 			log.info("Bought a weapon");
 			weapons = weapons +1;
 			cash = cash - weaponPrice;
@@ -397,3 +395,77 @@ function r_randomQuoteHank()
 	// output random quote
 	var n = noty({text: "Hank Schrader: "+randomQuote});
 }
+
+
+
+/*
+	RANDOM QUOTE: Hector
+*/
+function r_randomQuoteHector()
+{
+	log.info("Random Event: Meeting Hector");
+
+	// random hector quotes:
+	var hectorQuotes = [
+					"ding ding ding."
+				];
+				
+	// pick random quote from array
+	var randomQuote = hectorQuotes[Math.floor(Math.random()*hectorQuotes.length)];
+
+	// output random quote
+	var n = noty({text: "Hector Salamanca: "+randomQuote});
+}
+
+
+
+/*
+	RANDOM QUOTE: Mike Ehrmantraut 
+*/
+function r_randomQuoteMike()
+{
+	log.info("Random Event: Meeting Mike");
+
+	// random mike quotes:
+	var mikeQuotes = [
+					"All of this, falling apart like this, is on you.", 
+					"You - are not the guy. You're not capable of being the guy. I had a guy, but now I don't. You - are not the guy.", 
+					"Is that true, Walter?", 
+					"You're on thin ice, you little shithead. You know that?", 
+					"Keys, scumbag. It's the universal symbol for keys.", 
+					"You know Walter, sometimes it doesn't hurt to have someone watching your back. ", 
+					"Saul Goodman sent me.", 
+					"We had a good thing, you stupid son of a bitch! We had Fring. We had a lab. We had everything we needed, and it all ran like clockwork. You could've shut your mouth, cooked and made as much money as you ever needed. It was perfect. But, no, you just had to blow it up. You and your pride and your ego! You just had to be the man. If you'd done your job, known your place, we'd all be fine right now."
+				];
+				
+	// pick random quote from array
+	var randomQuote = mikeQuotes[Math.floor(Math.random()*mikeQuotes.length)];
+
+	// output random quote
+	var n = noty({text: "Mike Ehrmantraut: "+randomQuote});
+}
+
+
+
+/*
+	RANDOM QUOTE: Saul
+*/
+function r_randomQuoteSaul()
+{
+	log.info("Random Event: Meeting Saul");
+
+	// random hector quotes:
+	var saulQuotes = [
+					"What did Tom Hagen do for Vito Corleone?", 
+					"No Shit! Right now you're Fredo! ", 
+					"Better safe than sorry. That's my motto."
+				];
+				
+	// pick random quote from array
+	var randomQuote = saulQuotes[Math.floor(Math.random()*saulQuotes.length)];
+
+	// output random quote
+	var n = noty({text: "Saul Goodman: "+randomQuote});
+}
+
+

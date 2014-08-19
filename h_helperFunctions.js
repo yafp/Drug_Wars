@@ -405,7 +405,7 @@ function h_randomEventsOnDayChange()
 	if(curDay >= 2) // not on the first day
 	{
 		var shouldRandomHappen = h_getRandomInt(1,10); // calculate chance for a random event
-		if(shouldRandomHappen >= 9) // random event happens
+		if(shouldRandomHappen >= 8) // random event happens
 		{
 			var x = h_getRandomInt(1,6); // what random event should happen?
 			log.debug("Random Event: "+x)
@@ -456,7 +456,7 @@ function h_randomPeopleQuotesOnDayChange()
 		var shouldRandomHappen = h_getRandomInt(1,10); // calculate chance for a random event
 		if(shouldRandomHappen >= 5) // random event happens
 		{
-			var x = h_getRandomInt(1,2); // what random event should happen?
+			var x = h_getRandomInt(1,5); // what random event should happen?
 			log.debug("Random Quote: "+x)
 		
 			// Execute Random Quote
@@ -468,6 +468,18 @@ function h_randomPeopleQuotesOnDayChange()
 
 				case 2:
 					r_randomQuoteHank();
+				break;
+				
+				case 3:
+					r_randomQuoteHector();
+				break;
+				
+				case 4:
+					r_randomQuoteMike();
+				break;
+				
+				case 5:
+					r_randomQuoteSaul();
 				break;
 			} // end case
 		}
