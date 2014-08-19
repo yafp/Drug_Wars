@@ -244,7 +244,7 @@
   text-shadow: none;
 }
 #pageGuideWrapper #pageGuideToggle a.pageguide-close:hover {
-  color: #be0267;
+  /* color: #be0267; */
   color: #D98727;
 }
 #pageGuideWrapper .pageguide-guide {
@@ -369,22 +369,22 @@
   top: 0;
 }
 #pageGuideWrapper .pageguide-guide li:hover {
-  background-color: rgba(241, 2, 130, 0.95);
+  /* background-color: rgba(241, 2, 130, 0.95); */
   background-color: rgba(217, 135, 39, 0.95);
 }
 #pageGuideWrapper .pageguide-guide li:hover.pageguide-bottom:after {
-  border-bottom: 6px solid rgba(241, 2, 130, 0.95);
+  /* border-bottom: 6px solid rgba(241, 2, 130, 0.95); */
   border-bottom: 6px solid rgba(217, 135, 39, 0.95);
 }
 #pageGuideWrapper .pageguide-guide li:hover.pageguide-right:after,
 #pageGuideWrapper .pageguide-guide li:hover.pageguide-left:after,
 #pageGuideWrapper .pageguide-guide li:hover.pageguide-top:after {
-  border-top: 6px solid rgba(241, 2, 130, 0.95);
+  /* border-top: 6px solid rgba(241, 2, 130, 0.95); */
   border-top: 6px solid rgba(217, 135, 39, 0.95);
 }
 #pageGuideWrapper .pageguide-guide li.pageguide-active {
   opacity: 1;
-  background-color: rgba(241, 2, 130, 0.95);
+  /* background-color: rgba(241, 2, 130, 0.95); */
   background-color: rgba(217, 135, 39, 0.95);
   -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15) 0 5px 0 rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15) 0 5px 0 rgba(0, 0, 0, 0.5);
@@ -392,25 +392,25 @@
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15) 0 5px 0 rgba(0, 0, 0, 0.5);
 }
 #pageGuideWrapper .pageguide-guide li.pageguide-active.pageguide-top:after {
-  border-top: 8px solid rgba(241, 2, 130, 0.95);
+  /* border-top: 8px solid rgba(241, 2, 130, 0.95); */
   border-top: 8px solid rgba(217, 135, 39, 0.95);
   border-right: 8px solid transparent;
   bottom: -8px;
 }
 #pageGuideWrapper .pageguide-guide li.pageguide-active.pageguide-bottom:after {
-  border-bottom: 8px solid rgba(241, 2, 130, 0.95);
+  /* border-bottom: 8px solid rgba(241, 2, 130, 0.95); */
   border-bottom: 8px solid rgba(217, 135, 39, 0.95);
   border-right: 8px solid transparent;
   top: -8px;
 }
 #pageGuideWrapper .pageguide-guide li.pageguide-active.pageguide-right:after {
-  border-top: 8px solid rgba(241, 2, 130, 0.95);
+  /* border-top: 8px solid rgba(241, 2, 130, 0.95); */
   border-top: 8px solid rgba(217, 135, 39, 0.95);
   border-left: 8px solid transparent;
   left: -8px;
 }
 #pageGuideWrapper .pageguide-guide li.pageguide-active.pageguide-left:after {
-  border-top: 8px solid rgba(241, 2, 130, 0.95);
+  /* border-top: 8px solid rgba(241, 2, 130, 0.95); */
   border-top: 8px solid rgba(217, 135, 39, 0.95);
   border-right: 8px solid transparent;
   right: -8px;
@@ -448,7 +448,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  background-color: rgba(241, 2, 130, 0.95);
+  /* background-color: rgba(241, 2, 130, 0.95); */
   background-color: rgba(217, 135, 39, 0.95);
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -488,7 +488,8 @@
   color: #fff;
 }
 #pageGuideWrapper #pageGuideMessage .pageguide-close {
-  background-color: #f10282;
+  /* background-color: #f10282; */
+  background-color: #D98727;
   -webkit-border-radius: 0 0 3px 3px;
   -moz-border-radius: 0 0 3px 3px;
   -o-border-radius: 0 0 3px 3px;
@@ -555,7 +556,8 @@
   -moz-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.25);
   -o-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.25);
   box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.25);
-  background-color: rgba(241, 2, 130, 0.9);
+  /* background-color: rgba(241, 2, 130, 0.9); */
+  background-color: rgba(217, 135, 39, 0.9);
   color: #fff;
   text-shadow: 0 1px rgba(0, 0, 0, 0.25);
   right: 0 !important;
@@ -570,10 +572,12 @@
   margin: 0;
 }
 .pageguide-open #pageGuideWrapper #pageGuideToggle:before {
-  background-color: #fd299b;
+  /* background-color: #fd299b; */
+  background-color: #D98727;
 }
 .pageguide-open #pageGuideWrapper #pageGuideToggle:hover {
-  background-color: #fe5bb2;
+  /* background-color: #fe5bb2; */
+  background-color: #D98727;
 }
 .pageguide-open #pageGuideWrapper #pageGuideToggle:hover div span {
   margin: 0;
@@ -587,12 +591,16 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(241, 2, 130, 0.15);
-  background-color: rgba(217, 135, 39, 0.95);
-  -webkit-box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35);
-  -moz-box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35);
-  -o-box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35);
-  box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35);
+  /* background-color: rgba(241, 2, 130, 0.15); */
+  background-color: rgba(217, 135, 39, 0.15);
+  /* -webkit-box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35); */
+  -webkit-box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.35);
+  /* -moz-box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35); */
+  -moz-box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.35);
+  /* -o-box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35); */
+  -o-box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.35);
+  /* box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35); */
+  box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.35);
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -o-border-radius: 3px;
@@ -609,14 +617,14 @@
   padding: 0;
   margin: 0;
   pointer-events: none;
-  -webkit-box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35);
-  -webkit-box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.95);
-  -moz-box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35);
-  -moz-box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.95);
-  -o-box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35);
-  -o-box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.95);
-  box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35);
-  box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.95);
+  /* -webkit-box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35); */
+  -webkit-box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.35);
+  /* -moz-box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35); */
+  -moz-box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.35);
+  /* -o-box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35); */
+  -o-box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.35);
+  /* box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35); */
+  box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.35);
 }
 .pageguide-open .pageguide-shadow.pageguide-shadow-active .pageguide-shadow-pulse {
   opacity: 0;
@@ -627,14 +635,18 @@
   height: inherit;
   width: inherit;
   padding: inherit;
-  background-color: rgba(241, 2, 130, 0.05);
-  background-color: rgba(217, 135, 39, 0.95);
+  /* background-color: rgba(241, 2, 130, 0.05); */
+  background-color: rgba(217, 135, 39, 0.05);
   z-index: 500;
   pointer-events: none;
-  -webkit-box-shadow: 0 0 5px 1px #f10282;
-  -moz-box-shadow: 0 0 5px 1px #f10282;
-  -o-box-shadow: 0 0 5px 1px #f10282;
-  box-shadow: 0 0 5px 1px #f10282;
+  /* -webkit-box-shadow: 0 0 5px 1px #f10282; */
+  -webkit-box-shadow: 0 0 5px 1px #D98727;
+  /* -moz-box-shadow: 0 0 5px 1px #f10282; */
+  -moz-box-shadow: 0 0 5px 1px #D98727;
+  /* -o-box-shadow: 0 0 5px 1px #f10282; */
+  -o-box-shadow: 0 0 5px 1px #D98727;
+  /* box-shadow: 0 0 5px 1px #f10282; */
+  box-shadow: 0 0 5px 1px #D98727;
   -webkit-animation-name: pg-pulse;
   -webkit-animation-duration: 0.7s;
   -webkit-animation-iteration-count: 1;

@@ -454,11 +454,11 @@ function h_randomPeopleQuotesOnDayChange()
 	if(curDay >= 2) // not on the first day
 	{
 		var shouldRandomHappen = h_getRandomInt(1,10); // calculate chance for a random event
-		if(shouldRandomHappen >= 5) // random event happens
+		if(shouldRandomHappen >= 7) // random event happens
 		{
 			var x = h_getRandomInt(1,5); // what random event should happen?
 			log.debug("Random Quote: "+x)
-		
+	
 			// Execute Random Quote
 			switch(x)
 			{

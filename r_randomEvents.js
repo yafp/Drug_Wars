@@ -369,7 +369,8 @@ function r_randomQuoteJesse()
 	var randomQuote = jesseQuotes[Math.floor(Math.random()*jesseQuotes.length)];
 				
 	// output random quote
-	var n = noty({text: "Jesse Pinkman: "+randomQuote});
+	//var n = noty({text: "Jesse Pinkman: "+randomQuote});
+	noty({text: '<p><i class="fa fa-user"></i> Jesse Pinkman</p> '+randomQuote, type: 'warning'});
 }
 
 
@@ -393,7 +394,8 @@ function r_randomQuoteHank()
 	var randomQuote = hankQuotes[Math.floor(Math.random()*hankQuotes.length)];
 
 	// output random quote
-	var n = noty({text: "Hank Schrader: "+randomQuote});
+	//var n = noty({text: "Hank Schrader: "+randomQuote});
+	noty({text: '<p><i class="fa fa-user"></i> Hank Schrader</p> '+randomQuote, type: 'warning'});
 }
 
 
@@ -414,7 +416,8 @@ function r_randomQuoteHector()
 	var randomQuote = hectorQuotes[Math.floor(Math.random()*hectorQuotes.length)];
 
 	// output random quote
-	var n = noty({text: "Hector Salamanca: "+randomQuote});
+	//var n = noty({text: "Hector Salamanca: "+randomQuote});
+	noty({text: '<p><i class="fa fa-user"></i> Hector Salamanca</p> '+randomQuote, type: 'warning'});
 }
 
 
@@ -442,7 +445,8 @@ function r_randomQuoteMike()
 	var randomQuote = mikeQuotes[Math.floor(Math.random()*mikeQuotes.length)];
 
 	// output random quote
-	var n = noty({text: "Mike Ehrmantraut: "+randomQuote});
+	//var n = noty({text: "Mike Ehrmantraut: "+randomQuote});
+	noty({text: '<p><i class="fa fa-user"></i> Mike Ehrmantraut</p> '+randomQuote, type: 'warning'});
 }
 
 
@@ -465,7 +469,8 @@ function r_randomQuoteSaul()
 	var randomQuote = saulQuotes[Math.floor(Math.random()*saulQuotes.length)];
 
 	// output random quote
-	var n = noty({text: "Saul Goodman: "+randomQuote});
+	//var n = noty({text: "Saul Goodman: "+randomQuote});
+	noty({text: '<p><i class="fa fa-user"></i> Saul Goodman</p> '+randomQuote, type: 'warning'});
 }
 
 
