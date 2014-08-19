@@ -407,7 +407,7 @@ function h_randomEventsOnDayChange()
 		var shouldRandomHappen = h_getRandomInt(1,10); // calculate chance for a random event
 		if(shouldRandomHappen >= 9) // random event happens
 		{
-			var x = h_getRandomInt(1,8); // what random event should happen?
+			var x = h_getRandomInt(1,6); // what random event should happen?
 			log.debug("Random Event: "+x)
 
 			// Execute Random Event: Police
@@ -426,28 +426,55 @@ function h_randomEventsOnDayChange()
 				break;
 
 				case 4:
-					r_randomEventJesseQuote();
-				break;
-
-				case 5:
 					r_randomEventExtraPockets();
 				break;
 
-				case 6:
+				case 5:
 					r_randomEventCheapDrugs();
 				break;
 
-				case 7:
-					r_randomEventHankQuote();
-				break;
-
-				case 8:
+				case 6:
 					r_randomEventBuyWeapon();
 				break;
 			} // end case
 		}
 	}
 }
+
+
+
+
+/*
+	HELPER: Random People Quotes
+*/
+function h_randomPeopleQuotesOnDayChange()
+{
+	log.info("Check for random people quotes")
+	
+	if(curDay >= 2) // not on the first day
+	{
+		var shouldRandomHappen = h_getRandomInt(1,10); // calculate chance for a random event
+		if(shouldRandomHappen >= 5) // random event happens
+		{
+			var x = h_getRandomInt(1,2); // what random event should happen?
+			log.debug("Random Quote: "+x)
+		
+			// Execute Random Quote
+			switch(x)
+			{
+				case 1:
+					r_randomQuoteJesse();
+				break;
+
+				case 2:
+					r_randomQuoteHank();
+				break;
+			} // end case
+		}
+	}
+}
+	
+
 
 
 

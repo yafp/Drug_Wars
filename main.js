@@ -105,6 +105,7 @@ function newDay()
 	h_updateBank();						// recalculate money in bank (ading interest)
 	h_updateDebt();						// re-calculate debt
 	h_randomEventsOnDayChange();			// check for random events
+	h_randomPeopleQuotesOnDayChange();
 	h_updateAllUIElements();				// update all relevant UI elements
 	
 	// update day-progress-o-meter
