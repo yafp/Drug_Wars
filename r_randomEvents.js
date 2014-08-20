@@ -325,6 +325,9 @@ function r_randomEventBuyWeapon()
 
 
 
+/*
+// quotes: http://en.wikiquote.org/wiki/Breaking_Bad
+*/
 
 
 /*
@@ -362,6 +365,16 @@ function r_randomQuoteJesse()
 					"You got me riding shotgun to every dark anal recess of this state. It’d be nice if you clued me in a little.",
 					"What happens now? I’ll tell you what happens now. Your scumbag brother-in-law is finished. Done. You understand? I will own him when this is over. Every cent he earns, every cent his wife earns is mine. Any place he goes, anywhere he turns, I’m gonna be there grabbing my share. He’ll be scrubbing toilets in Tijuana for pennies and I’ll be standing over him to get my cut. He’ll see me when he wakes up in the morning and when he crawls to sleep in whatever rat hole is left for him after I shred his house down. I will haunt his crusty ass forever until the day he sticks a gun up his mouth and pulls the trigger just to get me out of his head. That’s what happens next.",
 					"Yeah, bitch! Magnets!", 
+					"Yo, Gatorade me bitch!",
+					"So roll me further, bitch.",
+					"This is my own private domicile and I will not be harassed…bitch!",
+					"You know what? Eat me.",
+					"Dude, you scared the shit out of me. When you say its contamination. I mean, I’m thinking like… an Ebola leak or something.",
+					"What’s the point of being an outlaw when you got responsibilities?",
+					"We’re all on the same page. The one that says, if I can’t kill you, you'll sure as shit wish you were dead.",
+					"Yo, I thought I was gonna see some, like, vaginas.",
+					"Not like any vagina I ever saw. This chick have medical issues?",
+					"Did you know that there’s an acceptable level of rat turds that can go into candy bars? It’s the government, jack. Even government doesn’t care that much about quality. You know what is okay to put in hot dogs? Huh? Pig lips and assholes. But I say, hey, have at it bitches ’cause I love hot dogs.",
 					"Yo 148, 3-to-the-3-to-the-6-to-the-9. Representin’ the ABQ. What up, biatch? Leave it at the tone!"
 				];
 				
@@ -369,7 +382,6 @@ function r_randomQuoteJesse()
 	var randomQuote = jesseQuotes[Math.floor(Math.random()*jesseQuotes.length)];
 				
 	// output random quote
-	//var n = noty({text: "Jesse Pinkman: "+randomQuote});
 	noty({text: '<p><i class="fa fa-user"></i> Jesse Pinkman</p> '+randomQuote, type: 'warning'});
 }
 
@@ -387,6 +399,10 @@ function r_randomQuoteHank()
 					"You're the smartest guy I ever met... but you're too stupid to see... He made up his mind ten minutes ago.", 
 					"My name is ASAC Schrader and you can go fuck yourself.",
 					"Hey, white boy. My name's Tortuga. You know what that means? Well, if I had to guess, I'd say that's Spanish for asshole.",
+					"Its free food. Free food always tastes good.",
+					"Since when do vegans eat fried chicken?",
+					"Chicks got an ass like an onion ... makes me want to cry",
+					"It says, ‘TO W.W., MY STAR, MY PERFECT SILENCE.’ W.W., I mean, who do you figure that is? Woodrow Wilson? Willy Wonka? Walter White?",
 					"Do what you're gonna do."
 				];
 				
@@ -394,7 +410,6 @@ function r_randomQuoteHank()
 	var randomQuote = hankQuotes[Math.floor(Math.random()*hankQuotes.length)];
 
 	// output random quote
-	//var n = noty({text: "Hank Schrader: "+randomQuote});
 	noty({text: '<p><i class="fa fa-user"></i> Hank Schrader</p> '+randomQuote, type: 'warning'});
 }
 
@@ -416,7 +431,6 @@ function r_randomQuoteHector()
 	var randomQuote = hectorQuotes[Math.floor(Math.random()*hectorQuotes.length)];
 
 	// output random quote
-	//var n = noty({text: "Hector Salamanca: "+randomQuote});
 	noty({text: '<p><i class="fa fa-user"></i> Hector Salamanca</p> '+randomQuote, type: 'warning'});
 }
 
@@ -437,7 +451,11 @@ function r_randomQuoteMike()
 					"You're on thin ice, you little shithead. You know that?", 
 					"Keys, scumbag. It's the universal symbol for keys.", 
 					"You know Walter, sometimes it doesn't hurt to have someone watching your back. ", 
-					"Saul Goodman sent me.", 
+					"Saul Goodman sent me.",
+					"Shut the fuck up, and let me die in peace.",
+					"Everyone sounds like Meryl Streep with a gun to their head.",
+					"You know when they say ... its been a pleasure ... well it hasnt",
+					"Just because you shot Jesse James, don’t make you Jesse James.", 
 					"We had a good thing, you stupid son of a bitch! We had Fring. We had a lab. We had everything we needed, and it all ran like clockwork. You could've shut your mouth, cooked and made as much money as you ever needed. It was perfect. But, no, you just had to blow it up. You and your pride and your ego! You just had to be the man. If you'd done your job, known your place, we'd all be fine right now."
 				];
 				
@@ -445,7 +463,6 @@ function r_randomQuoteMike()
 	var randomQuote = mikeQuotes[Math.floor(Math.random()*mikeQuotes.length)];
 
 	// output random quote
-	//var n = noty({text: "Mike Ehrmantraut: "+randomQuote});
 	noty({text: '<p><i class="fa fa-user"></i> Mike Ehrmantraut</p> '+randomQuote, type: 'warning'});
 }
 
@@ -462,6 +479,14 @@ function r_randomQuoteSaul()
 	var saulQuotes = [
 					"What did Tom Hagen do for Vito Corleone?", 
 					"No Shit! Right now you're Fredo! ", 
+					"If you’re committed enough, you can make any story work. I once told a woman I was Kevin Costner, and it worked because I believed it.",
+					"Congratulations, you’ve just left your family a second-hand Subaru.",
+					"Yeah, you do have a little shit creek action happening",
+					"That’s what the kids call epic fail.",
+					"Scientists love lasers!",
+					"As to your dead guy, occupational hazard. Drug dealer getting shot? I'm gonna go out on a limb here and say it's been known to happen",
+					"If I ever get anal polyps I know what I'm gonna call them Jesse Magnets!",
+					"Look, let’s start with some tough love. You two suck at peddling meth. Period.",
 					"Better safe than sorry. That's my motto."
 				];
 				
@@ -469,13 +494,12 @@ function r_randomQuoteSaul()
 	var randomQuote = saulQuotes[Math.floor(Math.random()*saulQuotes.length)];
 
 	// output random quote
-	//var n = noty({text: "Saul Goodman: "+randomQuote});
 	noty({text: '<p><i class="fa fa-user"></i> Saul Goodman</p> '+randomQuote, type: 'warning'});
 }
 
 
 /*
-	RANDOM QUOTE: Saul
+	RANDOM QUOTE: Skyler
 */
 function r_randomQuoteSkyler()
 {
@@ -484,8 +508,13 @@ function r_randomQuoteSkyler()
 	// random skyler quotes:
 	var skylerQuotes = [
 					"Walt ...", 
-					"", 
-					""
+					"I thought you were the danger", 
+					"Walt…I want my kids back. I want my life back. Please tell me…how much is enough? How big does this pile have to be?",
+					"SHUT UP! SHUT UP! SHUT UP!", 
+					"I fucked Ted.",
+					"Someone has to protect this family from the man who protects this family.",
+					"We have discussed everything we need to discuss…I thought I made myself clear.",
+					"I’m not your wife. I’m your hostage."
 				];
 				
 	// pick random quote from array
@@ -506,9 +535,9 @@ function r_randomQuoteMarie()
 
 	// random marie quotes:
 	var marieQuotes = [
-					"Walt ...", 
-					"", 
-					""
+					"Walt ...",
+					"You made one mistake.",
+					"Chemotherapy and marijuana go together like apple pie and Chevrolet."
 				];
 				
 	// pick random quote from array
@@ -521,7 +550,7 @@ function r_randomQuoteMarie()
 
 
 /*
-	RANDOM QUOTE: Marie
+	RANDOM QUOTE: Junior
 */
 function r_randomQuoteJunior()
 {
@@ -530,8 +559,10 @@ function r_randomQuoteJunior()
 	// random junior quotes:
 	var juniorQuotes = [
 					"Walt ...", 
-					"", 
-					""
+					"I'm staying. That's all I have to say.",
+					"You haven't explained jack shit! You want me out? Explain to me why! Why do I have to go to Uncle Hank's? Give me the exact reason, or I'm not going anywhere!",
+					"What's going on? Why can't anybody tell me anything? I want one good reason!",
+					"Dad..." 
 				];
 				
 	// pick random quote from array
@@ -552,8 +583,10 @@ function r_randomQuoteGustavo()
 
 	// random gustavo quotes:
 	var gustavoQuotes = [
-					"Walt ...", 
-					"", 
+					"I don't think we're alike at all, Mr. White. You're not a cautious man at all. Your partner was late. And he was high.",
+					"I have to ask why. Why him?",
+					"f you try to interfere, this becomes a much simpler matter. I will kill your wife. I will kill your son. I will kill your infant daughter.", 
+					"When you have children, you always have family. They will always be your priority, your responsibility. And a man, a man provides. And he does it even when he’s not appreciated or respected or even loved. He simply bears up and he does it. Because he’s a man.", 
 					""
 				];
 				
@@ -575,9 +608,10 @@ function r_randomQuoteTodd()
 
 	// random todd quotes:
 	var toddQuotes = [
-					"Walt ...", 
-					"", 
-					""
+					"Mister White...",
+					"Well, I get why we want the tank for the methylamine, but why this other one for the water?",
+					"Yes sir",
+					"You mind if I ask you a question?"
 				];
 				
 	// pick random quote from array
