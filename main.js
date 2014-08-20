@@ -33,7 +33,7 @@ function initGame()
 		playersName = "Bored Deadhead";
 	}
 	$('#player').empty();
-	$('#player').append('<i class="fa fa-user"></i> '+playersName);
+	$('#player').append(' '+playersName);
 	
 
 	var n = noty({text: 'Welcome '+playersName+' to DrugWars - The Heisenberg Edition'}); // welcome message to player & game-start
@@ -130,7 +130,7 @@ function changeCity()
 
 		// change city title
 		$('#market').empty();
-		$('#market').append('<i class="fa fa-map-marker"></i> The Market: New York City');
+		$('#market').append('<i class="fa fa-map-marker"></i> Location: New York City');
 
 		// cost in nyc
 		drugs.acid = h_getRandomInt(600,1300);
@@ -156,7 +156,7 @@ function changeCity()
 
 		// change city title
 		$('#market').empty();
-		$('#market').append("<i class='fa fa-map-marker'></i> The Market: London"); 
+		$('#market').append("<i class='fa fa-map-marker'></i> Location: London"); 
 	
 		// cost in lnd
 		drugs.acid = h_getRandomInt(700,1500);

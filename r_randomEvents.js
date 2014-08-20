@@ -458,7 +458,7 @@ function r_randomQuoteSaul()
 {
 	log.info("Random Event: Meeting Saul");
 
-	// random hector quotes:
+	// random saul quotes:
 	var saulQuotes = [
 					"What did Tom Hagen do for Vito Corleone?", 
 					"No Shit! Right now you're Fredo! ", 
@@ -474,3 +474,115 @@ function r_randomQuoteSaul()
 }
 
 
+/*
+	RANDOM QUOTE: Saul
+*/
+function r_randomQuoteSkyler()
+{
+	log.info("Random Event: Meeting Skyler White");
+
+	// random skyler quotes:
+	var skylerQuotes = [
+					"Walt ...", 
+					"", 
+					""
+				];
+				
+	// pick random quote from array
+	var randomQuote = skylerQuotes[Math.floor(Math.random()*skylerQuotes.length)];
+
+	// output random quote
+	noty({text: '<p><i class="fa fa-user"></i> Skyler White</p> '+randomQuote, type: 'warning'});
+}
+
+
+
+/*
+	RANDOM QUOTE: Marie
+*/
+function r_randomQuoteMarie()
+{
+	log.info("Random Event: Meeting Marie Schrader");
+
+	// random marie quotes:
+	var marieQuotes = [
+					"Walt ...", 
+					"", 
+					""
+				];
+				
+	// pick random quote from array
+	var randomQuote = marieQuotes[Math.floor(Math.random()*marieQuotes.length)];
+
+	// output random quote
+	noty({text: '<p><i class="fa fa-user"></i> Marie Schrader</p> '+randomQuote, type: 'warning'});
+}
+
+
+
+/*
+	RANDOM QUOTE: Marie
+*/
+function r_randomQuoteJunior()
+{
+	log.info("Random Event: Meeting Walter White Junior");
+
+	// random junior quotes:
+	var juniorQuotes = [
+					"Walt ...", 
+					"", 
+					""
+				];
+				
+	// pick random quote from array
+	var randomQuote = juniorQuotes[Math.floor(Math.random()*juniorQuotes.length)];
+
+	// output random quote
+	noty({text: '<p><i class="fa fa-user"></i> Walter White Junior</p> '+randomQuote, type: 'warning'});
+}
+
+
+
+/*
+	RANDOM QUOTE: Gustavo
+*/
+function r_randomQuoteGustavo()
+{
+	log.info("Random Event: Meeting Gustavo Fring");
+
+	// random gustavo quotes:
+	var gustavoQuotes = [
+					"Walt ...", 
+					"", 
+					""
+				];
+				
+	// pick random quote from array
+	var randomQuote = gustavoQuotes[Math.floor(Math.random()*gustavoQuotes.length)];
+
+	// output random quote
+	noty({text: '<p><i class="fa fa-user"></i> Gustavo Fring</p> '+randomQuote, type: 'warning'});
+}
+
+
+
+/*
+	RANDOM QUOTE: Todd
+*/
+function r_randomQuoteTodd()
+{
+	log.info("Random Event: Meeting Todd");
+
+	// random todd quotes:
+	var toddQuotes = [
+					"Walt ...", 
+					"", 
+					""
+				];
+				
+	// pick random quote from array
+	var randomQuote = toddQuotes[Math.floor(Math.random()*toddQuotes.length)];
+
+	// output random quote
+	noty({text: '<p><i class="fa fa-user"></i> Todd Alquist</p> '+randomQuote, type: 'warning'});
+}
