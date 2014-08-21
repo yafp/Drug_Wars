@@ -9,6 +9,9 @@ function h_updateAllUIElements()
 {
 	// action buttons
 	h_updateTradingButtons();
+	
+	// update MoneyUI
+	h_updateMoneyUI();
 
 	// unselect buy & sell checkboxes for drug-selection
 	$('#acid_tick').prop('checked', false);
@@ -24,7 +27,7 @@ function h_updateAllUIElements()
 	maxPossibleSell=0;
 	$('#maxSell').html("(max: "+maxPossibleSell+")");			// update UI
 	
-	// status menues
+	// update status menues
 	$('#calendar').html("Day "+curDay+"/"+maxDays);	//
 	$('#inCash').html("$"+cash); 
 	$('#inBank').html("$"+bank); 
@@ -99,14 +102,16 @@ function h_calculateMaxBuy()
 	if(choosenDrug == "Acid")
 	{
 		maxPossibleBuy = Math.floor(cash / drugs.acid);
-		if(maxPossibleBuy > acid_unit) // check if enough is available
-		{
-			maxPossibleBuy = acid_unit;
-		}
+		// check if enough pocksts are available
 		if(maxPossibleBuy > freePockets)
 		{
 			maxPossibleBuy = freePockets;
 		}
+		if(maxPossibleBuy > acid_unit) // check if enough is available
+		{
+			maxPossibleBuy = acid_unit;
+		}
+		
 		$('#maxBuy').html("(max: "+maxPossibleBuy+")");			// update UI
 		
 		if(maxPossibleBuy == 0)
@@ -118,14 +123,19 @@ function h_calculateMaxBuy()
 	if(choosenDrug == "Coke")
 	{
 		maxPossibleBuy = Math.floor(cash / drugs.coke);
-		if(maxPossibleBuy > coke_unit) // check if enough is available
-		{
-			maxPossibleBuy = coke_unit;
-		}
+		
+		// consider available/free pockets
 		if(maxPossibleBuy > freePockets)
 		{
 			maxPossibleBuy = freePockets;
 		}
+		
+		// check if enough is available
+		if(maxPossibleBuy > coke_unit) 
+		{
+			maxPossibleBuy = coke_unit;
+		}
+		
 		$('#maxBuy').html("(max: "+maxPossibleBuy+")");			// update UI
 		
 		if(maxPossibleBuy == 0)
@@ -239,37 +249,111 @@ function h_updateMoneyUI()
 */
 function h_loadHighscoreFromLocalStorage() 
 {
+	
 	// 15 Days
 	highscore_15_score = localStorage.getItem("highscore_15");
-	$('#score_15').html("<b>"+highscore_15_score+"</b>");
-	highscore_15_name = localStorage.getItem("player_15");
-	$('#player_15').html("by "+highscore_15_name);
-	highscore_15_date = localStorage.getItem("date_15");
-	$('#date_15').html("at "+highscore_15_date);
+	if(highscore_15_score == null )
+	{
+		$('#score_15').html("<i>No highscore available yet</i>");
+	}
+	else
+	{
+		// get values
+		highscore_15_name = localStorage.getItem("player_15");
+		highscore_15_moneyPerDay = localStorage.getItem("moneyPerDay_15");
+		highscore_15_date = localStorage.getItem("date_15");
+		
+		// display values
+		$('#score_15').html("<b>"+highscore_15_score+"</b>");
+		$('#player_15').html("by "+highscore_15_name);
+		$('#moneyPerDay_15').html("("+highscore_15_moneyPerDay+" per Day)");	
+		$('#date_15').html("at "+highscore_15_date);
+	}
+	
 	
 	// 30 Days
 	highscore_30_score = localStorage.getItem("highscore_30");
-	$('#score_30').html("<b>"+highscore_30_score+"</b>");
-	highscore_30_name = localStorage.getItem("player_30");
-	$('#player_30').html("by "+highscore_30_name);
-	highscore_30_date = localStorage.getItem("date_30");
-	$('#date_30').html("at "+highscore_30_date);
+	if(highscore_30_score == null)
+	{
+		$('#score_30').html("<i>No highscore available yet</i>");
+	}
+	else
+	{
+		// get values
+		highscore_30_name = localStorage.getItem("player_30");
+		highscore_30_moneyPerDay = localStorage.getItem("moneyPerDay_30");
+		highscore_30_date = localStorage.getItem("date_30");
+		
+		// display values
+		$('#score_30').html("<b>"+highscore_30_score+"</b>");
+		$('#player_30').html("by "+highscore_30_name);
+		$('#moneyPerDay_30').html("("+highscore_30_moneyPerDay+" per Day)");
+		$('#date_30').html("at "+highscore_30_date);
+	}
+	
 	
 	// 45 Days
 	highscore_45_score = localStorage.getItem("highscore_45");
-	$('#score_45').html("<b>"+highscore_45_score+"</b>");						
-	highscore_45_name = localStorage.getItem("player_45");
-	$('#player_45').html("by "+highscore_45_name);
-	highscore_45_date = localStorage.getItem("date_45");
-	$('#date_45').html("at "+highscore_45_date);
+	if(highscore_45_score == null)
+	{
+		$('#score_45').html("<i>No highscore available yet</i>");
+	}
+	else
+	{
+		// get values
+		highscore_45_name = localStorage.getItem("player_45");
+		highscore_45_moneyPerDay = localStorage.getItem("moneyPerDay_45");
+		highscore_45_date = localStorage.getItem("date_45");
+		
+		// display values
+		$('#score_45').html("<b>"+highscore_45_score+"</b>");						
+		$('#player_45').html("by "+highscore_45_name);
+		$('#moneyPerDay_45').html("("+highscore_45_moneyPerDay+" per Day)");
+		$('#date_45').html("at "+highscore_45_date);
+	}
+	
 	
 	// 90 Days
 	highscore_90_score = localStorage.getItem("highscore_90");
-	$('#score_90').html("<b>"+highscore_90_score+"</b>");						
-	highscore_90_name = localStorage.getItem("player_90");
-	$('#player_90').html("by "+highscore_90_name);
-	highscore_90_date = localStorage.getItem("date_90");
-	$('#date_90').html("at "+highscore_90_date);
+	if(highscore_90_score == null)
+	{
+		$('#score_90').html("<i>No highscore available yet</i>");
+	}
+	else
+	{
+		// get values
+		highscore_90_name = localStorage.getItem("player_90");
+		highscore_90_moneyPerDay = localStorage.getItem("moneyPerDay_90");
+		highscore_90_date = localStorage.getItem("date_90");
+		
+		// display values
+		$('#score_90').html("<b>"+highscore_90_score+"</b>");						
+		$('#player_90').html("by "+highscore_90_name);
+		$('#moneyPerDay_90').html("("+highscore_90_moneyPerDay+" per Day)");
+		$('#date_90').html("at "+highscore_90_date);
+	}
+	
+	
+	
+	// 120 Days
+	highscore_120_score = localStorage.getItem("highscore_120");
+	if(highscore_120_score ==  null )
+	{
+		$('#score_120').html("<i>No highscore available yet</i>");
+	}
+	else
+	{
+		// get values
+		highscore_120_name = localStorage.getItem("player_120");
+		highscore_120_moneyPerDay = localStorage.getItem("moneyPerDay_120");
+		highscore_120_date = localStorage.getItem("date_120");
+		
+		// display values
+		$('#score_120').html("<b>"+highscore_120_score+"</b>");
+		$('#player_120').html("by "+highscore_120_name);	
+		$('#moneyPerDay_120').html("("+highscore_120_moneyPerDay+" per Day)");
+		$('#date_120').html("at "+highscore_120_date);
+	}
 }
 
 
@@ -438,6 +522,8 @@ function h_randomEventsOnDayChange()
 				break;
 			} // end case
 		}
+		log.debug("Luck Events Overall: "+luckEvents);
+		log.debug("Bad Luck Events Overall: "+badLuckEvents);
 	}
 }
 
@@ -454,7 +540,7 @@ function h_randomPeopleQuotesOnDayChange()
 	if(curDay >= 2) // not on the first day
 	{
 		var shouldRandomHappen = h_getRandomInt(1,10); // calculate chance for a random event
-		if(shouldRandomHappen >= 7) // random event happens
+		if(shouldRandomHappen >= 8) // random event happens
 		{
 			var x = h_getRandomInt(1,5); // what random event should happen?
 			log.debug("Random Quote: "+x)

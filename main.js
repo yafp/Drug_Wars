@@ -239,6 +239,7 @@ function gameEnded()
 			{
 				localStorage.setItem("highscore_15", finalScore);
 				localStorage.setItem("player_15", playersName);
+				localStorage.setItem("moneyPerDay_15", finalMoneyPerDay);
 				localStorage.setItem("date_15", Date());
 				log.info("New highscore_15 written");
 			}
@@ -250,6 +251,7 @@ function gameEnded()
 			{
 				localStorage.setItem("highscore_30", finalScore);
 				localStorage.setItem("player_30", playersName);
+				localStorage.setItem("moneyPerDay_30", finalMoneyPerDay);
 				localStorage.setItem("date_30", Date());
 				log.info("New highscore_30 written");
 			}
@@ -261,6 +263,7 @@ function gameEnded()
 			{
 				localStorage.setItem("highscore_45", finalScore);
 				localStorage.setItem("player_45", playersName);
+				localStorage.setItem("moneyPerDay_45", finalMoneyPerDay);
 				localStorage.setItem("date_45", Date());
 				log.info("New highscore_45 written");
 			}
@@ -272,8 +275,21 @@ function gameEnded()
 			{
 				localStorage.setItem("highscore_90", finalScore);
 				localStorage.setItem("player_90", playersName);
+				localStorage.setItem("moneyPerDay_90", finalMoneyPerDay);
 				localStorage.setItem("date_90", Date());
 				log.info("New highscore_90 written");
+			}
+		break;
+		
+		case "120":
+			log.debug("highscore_120");
+			if (finalScore > localStorage.getItem("highscore_120")) 
+			{
+				localStorage.setItem("highscore_120", finalScore);
+				localStorage.setItem("player_120", playersName);
+				localStorage.setItem("moneyPerDay_120", finalMoneyPerDay);
+				localStorage.setItem("date_120", Date());
+				log.info("New highscore_120 written");
 			}
 		break;
 	} 
@@ -288,7 +304,7 @@ function gameEnded()
 	$('#finalDebtCount').html("-"+finalDebt);
 	// luck-things
 	$('#finalLuckCount').html("-"+luckModifier);
-	$('#finalBadLuckCount').html("-"+badLuckModifier);
+	$('#finalBadLuckCount').html("+"+badLuckModifier);
 
 	// final result:
 	$('#finalScoreCount').html(+finalScore);	
@@ -343,7 +359,7 @@ $('#choose_loan').click(function(event)
 
 
 /*
-	BUTTON PRESS: Do Borrow Money 
+	BUTTON PRESS: Loan Shark - Borrow Money 
 */
 $('#btn').click(function(event) 
 {
@@ -364,13 +380,12 @@ $('#btn').click(function(event)
 	
 	$('#getCash').val("");		// reset input field where player defined amount money to borrow
 	
-	h_updateMoneyUI();
 	h_updateAllUIElements();
 });
 
 
 /*	
-	BUTTON PRESS: change city
+	BUTTON PRESS: Travel - change city
 */
 $('#choose_city').click(function(event) 
 {	
@@ -575,7 +590,7 @@ $('#sellBtnAll').click(function(event)
 	
 		
 /*	
-	BUTTON PRESS: Pay Back Money
+	BUTTON PRESS: Loan Shark - Pay Back Money
 */	
 $('#btn_payDebt').click(function(event) 
 {
@@ -596,28 +611,26 @@ $('#btn_payDebt').click(function(event)
 
 		// recalculate the debt
 		debt = debt - b;
-
-		h_updateMoneyUI();
+		
 		h_updateAllUIElements();
 	}
 });	
 
 
 /*	
-	BUTTON PRESS: Pay Back Money all
+	BUTTON PRESS: Loan Shark - Pay Back all Debt
 */	
 $('#btn_payDebtAll').click(function(event) 
 {
 	cash = cash - debt;
 	debt = 0;
 	
-	h_updateMoneyUI();
 	h_updateAllUIElements();
 });	
 
 
 /*	
-	BUTTON PRESS: Loan shark - Pay Back max
+	BUTTON PRESS: Loan shark - Pay Back max debt
 */	
 $('#btn_payDebtMax').click(function(event) 
 {
@@ -626,7 +639,6 @@ $('#btn_payDebtMax').click(function(event)
 	debt = debt - maxPayDebt;
 	cash = cash - maxPayDebt;
 	
-	h_updateMoneyUI();
 	h_updateAllUIElements();
 });	
 
@@ -641,18 +653,27 @@ $('#btn_bank_depositMoney').click(function(event)
 	if(moneyToDeposit <= cash) // valid input
 	{
 		moneyToDeposit = Math.round(moneyToDeposit);
-		bank = bank + moneyToDeposit;
+		
+		transactionFee = moneyToDeposit * 0,01;
+		if(transactionFee < 10) // at least 10 USD
+		{
+			transactionFee = 10;
+		}			
+		// pay transaction fee
+		moneyToDeposit = moneyToDeposit - transactionFee;
+		
+		bank = bank + moneyToDeposit
 		//bank = Math.round(bank);
 		
 		cash = cash - moneyToDeposit;
-		var n = noty({text: 'Deposit '+moneyToDeposit+' at your bank account. You now have '+bank+'$ in your bank account.'});
+		var n = noty({text: 'Deposit '+moneyToDeposit+' at your bank account (Fee: '+transactionFee+' $). You now have '+bank+'$ in your bank account.'});
 	}
 	else // invalid input from player
 	{
 		var n = noty({text: 'Dont fuck with me dude'});
 		return;
 	}
-	h_updateMoneyUI();
+
 	h_updateAllUIElements();
 });	
 
@@ -665,8 +686,16 @@ $('#btn_bank_depositMoneyAll').click(function(event)
 {	
 	if(cash > 0)
 	{
-		bank = bank + cash;
-		var n = noty({text: 'Added '+cash+'$ to your bank account. You now have '+bank+'$ in your bank account and 0 cash.'});
+		transactionFee = cash * 0,01;
+		if(transactionFee < 10) // at least 10 USD
+		{
+			transactionFee = 10;
+		}			
+		// pay transaction fee
+		moneyToDeposit = cash - transactionFee;
+	
+		bank = bank + moneyToDeposit;
+		var n = noty({text: 'Added '+moneyToDeposit+'$ to your bank account (Fee: '+transactionFee+' $). You now have '+bank+'$ in your bank account and 0 cash.'});
 		cash = 0;
 	}
 	else
@@ -675,7 +704,6 @@ $('#btn_bank_depositMoneyAll').click(function(event)
 		return;
 	}
 	
-	h_updateMoneyUI();
 	h_updateAllUIElements();
 });
 
@@ -694,8 +722,17 @@ $('#btn_bank_payOutMoney').click(function(event)
 	{
 		bank = bank - moneyToPayOut;
 		bank = Math.round(bank);
-		cash = cash + Math.round(moneyToPayOut);
-		var n = noty({text: 'Bank payed out  '+moneyToPayOut+' from your bank account. You now have '+bank+'$ in your bank account.'});
+				
+		transactionFee = moneyToPayOut * 0,01;
+		if(transactionFee < 10) // at least 10 USD
+		{
+			transactionFee = 10;
+		}			
+		moneyToPayOut = moneyToPayOut - transactionFee;
+		moneyToPayOut = Math.round(moneyToPayOut);
+				
+		cash = cash + Math.round(moneyToPayout);
+		var n = noty({text: 'Bank payed out  '+moneyToPayOut+' from your bank account (Fee: '+transactionFee+' $). You now have '+bank+'$ in your bank account.'});
 	}
 	else // invalid value
 	{
@@ -709,13 +746,23 @@ $('#btn_bank_payOutMoney').click(function(event)
 
 
 
-
+/*	
+	BUTTON PRESS: get all money back from bank
+*/	
 $('#btn_bank_payOutMoneyAll').click(function(event) 
 {
 	if(bank > 0)
 	{
-		cash = cash + bank;
-		var n = noty({text: 'Bank payed out  '+bank+' from your bank account. You now have '+bank+'$ in your bank account.'});
+		transactionFee = bank * 0,01;
+		if(transactionFee < 10) // at least 10 USD
+		{
+			transactionFee = 10;
+		}
+		moneyToPayOut = bank - transactionFee;
+		moneyToPayOut = Math.round(moneyToPayOut);
+	
+		cash = cash + moneyToPayOut;
+		var n = noty({text: 'Bank payed out  '+moneyToPayOut+' from your bank account (Fee: '+transactionFee+' $). You now have '+bank+'$ in your bank account.'});
 		bank = 0;
 	}
 	else
@@ -723,6 +770,7 @@ $('#btn_bank_payOutMoneyAll').click(function(event)
 		var n = noty({text: 'Dont fuck with me dude'});
 		return;
 	}
+	
 	h_updateAllUIElements();
 });
 

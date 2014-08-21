@@ -9,14 +9,15 @@ function r_randomEventPolice()
 {
 	log.info("Random Event: Police");
 	
-	log.info("Free pockets: "+freePockets);
-	log.info("Max pockets: "+maxPockets);
-	
+	log.debug("Free pockets: "+freePockets);
+	log.debug("Max pockets: "+maxPockets);
 	
 	badLuckEvents = badLuckEvents + 1;
 
 	if( freePockets == maxPockets) // we dont have any drug
 	{
+		var n = noty({text: 'DEBUG - no drugs with you'});
+	
 		if(weapons == 0)
 		{
 			var n = noty({text: 'Lucky you - cops controlled you - but you had empty pockets.'});
@@ -57,22 +58,58 @@ function r_randomEventPolice()
 	}
 	else // we do have drugs - cops will rip us
 	{
+		var n = noty({text: 'DEBUG - you got drugs with you'});
+	
 		if(weapons == 0)
 		{
-			var n = noty({text: 'The cops .... dumping my stash'});
-			log.info("Loosing all drugs and a bit health");
-			// calculate new values
-			//
-			// drugs		
-			currentDrugs.coke = 0;
-			currentDrugs.acid = 0; 
-			// pockets					
-			usedPockets = 0;
-			freePockets = maxPockets;
-			pockets=usedPockets+ " of "+maxPockets+" used";
-			// health
-			healthDamage = 10;
-			h_reduceHealth(healthDamage);
+			var answer = confirm("Cops gonna control you - you have drugs but no weapon to defend yourself. Wanna run?")
+			if (answer)
+			{
+				// fight
+				calculateWinOrLose = h_getRandomInt(1,2); // get random number
+				if (calculateWinOrLose == 1) // you can run pretty fast forest
+				{
+					// nothing happens - well done
+					var n = noty({text: 'You ran successfully run away .... Well done forest.'});
+					log.info("You are a good runner. Cops lost you");
+				}
+				else
+				{
+					var n = noty({text: 'You ran away ...without success .... Cops got you and are dumping your stash'});
+					log.info("Loosing all drugs and a bit health");
+					// calculate new values
+					//
+					// drugs		
+					currentDrugs.coke = 0;
+					currentDrugs.acid = 0; 
+					// pockets					
+					usedPockets = 0;
+					freePockets = maxPockets;
+					pockets=usedPockets+ " of "+maxPockets+" used";
+					// health
+					healthDamage = 20;
+					h_reduceHealth(healthDamage);
+				}
+			}
+			else // dont want to run - get ripped of by cops now
+			{
+				var n = noty({text: 'The cops .... dumping my stash'});
+				log.info("Loosing all drugs and a bit health");
+				// calculate new values
+				//
+				// drugs		
+				currentDrugs.coke = 0;
+				currentDrugs.acid = 0; 
+				// pockets					
+				usedPockets = 0;
+				freePockets = maxPockets;
+				pockets=usedPockets+ " of "+maxPockets+" used";
+				// health
+				healthDamage = 10;
+				h_reduceHealth(healthDamage);
+			
+			}
+			
 		}
 		else // we have a weapon - offer fight
 		{
@@ -222,7 +259,8 @@ function r_randomEventFindDrugs()
 function r_randomEventExtraPockets()
 {
 	log.info("Random Event: Extra pockets");
-
+	luckEvents = luckEvents + 1;
+	
 	extraPockets = h_getRandomInt(10,50); // get random number of offerend pockets
 	pocketPrice = h_getRandomInt(5,20); // get random number for pocket price
 	calcExtraPocketPrice = extraPockets * pocketPrice;
@@ -424,7 +462,7 @@ function r_randomQuoteHector()
 
 	// random hector quotes:
 	var hectorQuotes = [
-					"ding ding ding."
+					"is ringing his bell ..... ding ding ding."
 				];
 				
 	// pick random quote from array
