@@ -626,3 +626,32 @@ function h_getRobbed()
 	
 	h_updateAllUIElements();
 }
+
+
+
+
+/*
+	HELPER: h_updateFuckCounter
+	function:	player did a mistake - fuckcounter++ - if too high - sanction player
+*/
+function h_updateFuckCounter()
+{
+	fuckCounter=fuckCounter+1;
+	
+	switch(fuckCounter)
+	{
+		case 5:
+			var n = noty({text: '<p><i class="fa fa-tachometer"></i> Fuck Counter</p>Dude ... your fuck counter is on 5 - next time it will cost you heavily'});
+		break;
+
+		case 6:
+			var n = noty({text: '<p><i class="fa fa-tachometer"></i> Ezekiel 25:17</p>The path of the righteous man is beset on all sides by the inequities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brothers keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who attempt to poison and destroy my brothers. And you will know I am the Lord when I lay my vengeance upon you.'});
+			bank = 0;
+			if(cash >0)
+			{
+				cash = cash - (cash/2);
+			}
+		break;
+	} 
+	h_updateAllUIElements();
+}

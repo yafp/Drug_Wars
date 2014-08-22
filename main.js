@@ -56,6 +56,8 @@ function initGame()
 	weapons=0;
 	// bank
 	bank=0;
+	// fuck counter (handling user-mistakes
+	fuckCounter=0;
 	
 	// hide several content divs
 	$('#div_Gameresult').hide();
@@ -408,6 +410,13 @@ $('#drugBtn').click(function(event)
 	// turn number of units into a number 
 	var xUnits = $('input[id="buyDrugs"]').val(); 
 	var numUnits = parseInt(xUnits); 
+	
+	if(numUnits < 1 )
+	{
+		var n = noty({text: 'Dont try to fuck with me dude.'});
+		h_updateFuckCounter();
+		return;
+	}
 
 	// depending on your selection
 	if (pickedAcid === true)
@@ -454,6 +463,13 @@ $('#drugBtn').click(function(event)
 	} // end of IF Picked Acid
 	else if (pickedCoke === true)
 	{
+		if(numUnits < 1 )
+		{
+			var n = noty({text: 'Dont try to fuck with me dude.'});
+			h_updateFuckCounter();
+			return;
+		}
+	
 		cashSpent = drugs.coke * numUnits;
 
 		// check to see if you can afford it
@@ -517,6 +533,13 @@ $('#sellBtn').click(function(event)
 	// turn number of units into a number 
 	var xUnits = $('input[id="sellDrugs"]').val(); 
 	var numUnits = parseInt(xUnits); 
+	
+	if(numUnits < 1 )
+	{
+		var n = noty({text: 'Dont try to fuck with me dude.'});
+		h_updateFuckCounter();
+		return;
+	}
 
 	// sell acid
 	if (pickedAcid === true)
@@ -598,6 +621,7 @@ $('#btn_payDebt').click(function(event)
 	if(amount <= 0) // check if entered payback-amount is valid 
 	{
 		var n = noty({text: 'Loan shark: Dont try to fuck with me dude.'});
+		h_updateFuckCounter();
 		return;
 	}
 	else // amount is valid
@@ -671,6 +695,7 @@ $('#btn_bank_depositMoney').click(function(event)
 	else // invalid input from player
 	{
 		var n = noty({text: 'Dont fuck with me dude'});
+		h_updateFuckCounter()
 		return;
 	}
 
@@ -701,6 +726,7 @@ $('#btn_bank_depositMoneyAll').click(function(event)
 	else
 	{
 		var n = noty({text: 'Dont fuck with me dude'});
+		h_updateFuckCounter()
 		return;
 	}
 	
@@ -737,6 +763,7 @@ $('#btn_bank_payOutMoney').click(function(event)
 	else // invalid value
 	{
 		var n = noty({text: 'Dont fuck with me dude'});
+		h_updateFuckCounter()
 		return;
 	}
 	
@@ -768,6 +795,7 @@ $('#btn_bank_payOutMoneyAll').click(function(event)
 	else
 	{
 		var n = noty({text: 'Dont fuck with me dude'});
+		h_updateFuckCounter()
 		return;
 	}
 	
