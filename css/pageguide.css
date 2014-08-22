@@ -592,15 +592,15 @@
   top: 0;
   left: 0;
   /* background-color: rgba(241, 2, 130, 0.15); */
-  background-color: rgba(217, 135, 39, 0.15);
+  background-color: rgba(217, 135, 39, 0.0);
   /* -webkit-box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35); */
-  -webkit-box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.35);
+  -webkit-box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.0);
   /* -moz-box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35); */
-  -moz-box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.35);
+  -moz-box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.0);
   /* -o-box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35); */
-  -o-box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.35);
+  -o-box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.0);
   /* box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35); */
-  box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.35);
+  box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.0);
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -o-border-radius: 3px;
@@ -618,13 +618,13 @@
   margin: 0;
   pointer-events: none;
   /* -webkit-box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35); */
-  -webkit-box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.35);
+  -webkit-box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.0);
   /* -moz-box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35); */
-  -moz-box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.35);
+  -moz-box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.0);
   /* -o-box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35); */
-  -o-box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.35);
+  -o-box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.0);
   /* box-shadow: 0 0 1px 1px rgba(241, 2, 130, 0.35); */
-  box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.35);
+  box-shadow: 0 0 1px 1px rgba(217, 135, 39, 0.0);
 }
 .pageguide-open .pageguide-shadow.pageguide-shadow-active .pageguide-shadow-pulse {
   opacity: 0;
