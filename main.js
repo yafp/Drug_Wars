@@ -536,6 +536,7 @@ $('#sellBtn').click(function(event)
 
 		// update pockets
 		usedPockets = usedPockets - numUnits; // update pocket calculation
+		freePockets = freePockets + numUnits; // update free pockets
 		
 		// add back units once sold 
 		acid_unit = acid_unit + numUnits;
@@ -563,6 +564,7 @@ $('#sellBtn').click(function(event)
 		
 		// update pockets
 		usedPockets = usedPockets - numUnits; // update pocket calculation
+		freePockets = freePockets + numUnits; // update free pockets
 
 		// add back units once sold  
 		coke_unit = coke_unit + numUnits;
@@ -570,8 +572,6 @@ $('#sellBtn').click(function(event)
 
 		// work out new cash balance
 		cash = cash + cashEarned;
-		
-		
 	} // End of else if
 	$('#maxSell').html("");			// reset max-sell UI
 	$('#sellDrugs').val("");		// reset input field where player defined amount of drugs to sell

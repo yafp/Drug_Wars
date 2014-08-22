@@ -20,7 +20,7 @@ function r_randomEventPolice()
 	
 		if(weapons == 0)
 		{
-			var n = noty({text: 'Lucky you - cops controlled you - but you had empty pockets.'});
+			var n = noty({text: '<p><i class="fa fa-cab"></i> Police</p>Lucky you - cops controlled you - but you had empty pockets.'});
 			log.info("Nothing happend - you had empty pockets");
 		}
 		else
@@ -33,13 +33,13 @@ function r_randomEventPolice()
 				if (calculateWinOrLose == 1)
 				{
 					// win
-					var n = noty({text: 'That was a clear win for you. Weapons are lovely arent they?'});
+					var n = noty({text: '<p><i class="fa fa-cab"></i> Police</p>That was a clear win for you. Weapons are lovely arent they?'});
 					log.info("You won the fight with the cops");
 				}
 				else
 				{
 					// loose
-					var n = noty({text: 'You got shot by the policy.'});
+					var n = noty({text: '<p><i class="fa fa-cab"></i> Police</p>You got shot by the policy.'});
 					log.info("Got shot by police. Loosing health and weapon");
 					weapons = 0;
 					healthDamage = 30;
@@ -48,6 +48,7 @@ function r_randomEventPolice()
 			}
 			else
 			{
+				var n = noty({text: '<p><i class="fa fa-cab"></i> Police</p>You didnt fight or run ... gonna loose your weapons now.'});
 				// dont fight - loose weapon
 				weapons = 0;
 				healthDamage = 10;
@@ -70,12 +71,12 @@ function r_randomEventPolice()
 				if (calculateWinOrLose == 1) // you can run pretty fast forest
 				{
 					// nothing happens - well done
-					var n = noty({text: 'You ran successfully run away .... Well done forest.'});
+					var n = noty({text: '<p><i class="fa fa-cab"></i> Police</p>You ran successfully run away .... Well done forest.'});
 					log.info("You are a good runner. Cops lost you");
 				}
 				else
 				{
-					var n = noty({text: 'You ran away ...without success .... Cops got you and are dumping your stash'});
+					var n = noty({text: '<p><i class="fa fa-cab"></i> Police</p>You ran away ...without success .... Cops got you and are dumping your stash'});
 					log.info("Loosing all drugs and a bit health");
 					// calculate new values
 					//
@@ -93,7 +94,7 @@ function r_randomEventPolice()
 			}
 			else // dont want to run - get ripped of by cops now
 			{
-				var n = noty({text: 'The cops .... dumping my stash'});
+				var n = noty({text: '<p><i class="fa fa-cab"></i> Police</p>The cops .... dumping my stash'});
 				log.info("Loosing all drugs and a bit health");
 				// calculate new values
 				//
@@ -120,12 +121,12 @@ function r_randomEventPolice()
 				calculateWinOrLose = h_getRandomInt(1,2); // get random number
 				if (calculateWinOrLose == 1) // win
 				{
-					var n = noty({text: 'That was a clear win for you. You beat the shit out of the cops. Weapons are lovely arent they?'});
+					var n = noty({text: '<p><i class="fa fa-cab"></i> Police</p>That was a clear win for you. You beat the shit out of the cops. Weapons are lovely arent they?'});
 					log.info("Won the fight with the police");
 				}
 				else
 				{
-					var n = noty({text: 'You lost your weapons and your drugs due to the policy control'});
+					var n = noty({text: '<p><i class="fa fa-cab"></i> Police</p>You lost your weapons and your drugs due to the policy control'});
 					log.info("got shot by police, loosing all drugs, your weapons and health");
 					weapons = 0;
 					
@@ -142,7 +143,7 @@ function r_randomEventPolice()
 			}
 			else // got drugs, weapon but dont want to fight
 			{
-				var n = noty({text: 'You didnt fight, loosing drugs, weapons and health.'});
+				var n = noty({text: '<p><i class="fa fa-cab"></i> Police</p>You didnt fight, loosing drugs, weapons and health.'});
 				log.info("You didnt fight, loosing drugs, weapons and health");
 			
 				weapons = 0;
@@ -173,7 +174,7 @@ function r_randomEventRobbery()
 
 	if(cash == 0) // if there is no money at all
 	{
-		var n = noty({text: 'Someone tried to rob you but you had no money anyways.'}); 
+		var n = noty({text: '<p><i class="fa fa-qq"></i> Robbery</p>Someone tried to rob you but you had no money anyways.'}); 
 		log.info("Robbery, but you already had empty pockets");
 		return;
 	}
@@ -192,7 +193,7 @@ function r_randomEventRobbery()
 					// win
 					calculateTheftsMoney = h_getRandomInt(50,1000); // get random number
 					cash = cash + calculateTheftsMoney;
-					var n = noty({text: 'You killed the theft and stole his money ('+calculateTheftsMoney+') instead.'}); 
+					var n = noty({text: '<p><i class="fa fa-qq"></i> Robbery</p>You killed the theft and stole his money ('+calculateTheftsMoney+') instead.'}); 
 					log.info("Robbery, you killed the theft and got his money");
 				}
 				else
@@ -226,12 +227,12 @@ function r_randomEventFindDrugs()
 	foundDrugs = h_getRandomInt(1,50); // get random number
 	if(foundDrugs <= freePockets)
 	{
-		var n = noty({text: 'You found '+foundDrugs+' acid on the streets'}); 
+		var n = noty({text: '<p><i class="fa fa-search"></i> Finding Drugs</p>You found '+foundDrugs+' acid on the streets'}); 
 		log.info("You found drugs on the street");
 	}
 	else // not enough pockets
 	{			
-		var n = noty({text: 'You found '+foundDrugs+' acid on the streets but could take only '+freePockets+' cause of pocket size.'}); 
+		var n = noty({text: '<p><i class="fa fa-search"></i> Finding Drugs</p>You found '+foundDrugs+' acid on the streets but could take only '+freePockets+' cause of pocket size.'}); 
 		log.info("You found drugs on the street - but didnt had enough pockets to take em all");
 		foundDrugs = freePockets;
 	}
@@ -270,7 +271,7 @@ function r_randomEventExtraPockets()
 		var answer = confirm("Do you want to buy "+extraPockets+" extra pockets for "+calcExtraPocketPrice+" $ ?")
 		if (answer)
 		{
-			var n = noty({text: 'You just got '+extraPockets+' extra pockets for '+calcExtraPocketPrice+' $.'});
+			var n = noty({text: '<p><i class="fa fa-plus-square"></i> Extra Pockets</p>You just got '+extraPockets+' extra pockets for '+calcExtraPocketPrice+' $.'});
 			log.info("You bought extra pockets");
 
 			// calculate new values
@@ -283,14 +284,14 @@ function r_randomEventExtraPockets()
 		}
 		else
 		{
-			var n = noty({text: 'The dude offered you '+extraPockets+' extra pockets for '+calcExtraPocketPrice+' $ but you  denied.'});
+			var n = noty({text: '<p><i class="fa fa-plus-square"></i> Extra Pockets</p>The dude offered you '+extraPockets+' extra pockets for '+calcExtraPocketPrice+' $ but you  denied.'});
 			log.info("You denied buying extra pockets");
 			return;
 		}
 	}
 	else
 	{
-		var n = noty({text: 'The dude offered you '+extraPockets+' extra pockets for '+calcExtraPocketPrice+' $ but you had no money.'});
+		var n = noty({text: '<p><i class="fa fa-plus-square"></i> Extra Pockets</p>The dude offered you '+extraPockets+' extra pockets for '+calcExtraPocketPrice+' $ but you had no money.'});
 		log.info("You had no money to buy extra pockets");
 	}
 }
@@ -305,7 +306,7 @@ function r_randomEventCheapDrugs()
 
 	luckEvents = luckEvents + 1;
 
-	var n = noty({text: 'Drug sale - buy now as much as possible'});
+	var n = noty({text: '<p><i class="fa  fa-shopping-cart"></i> Cheap Drugs</p>Drug sale - buy now as much as possible'});
 
 	// new cost of drugs
 	drugs.acid = h_getRandomInt(200,500);
@@ -336,14 +337,14 @@ function r_randomEventBuyWeapon()
 		var answer = confirm("Do you want to buy a "+weaponName+" for "+weaponPrice+" $ ?")
 		if (answer)
 		{
-			var n = noty({text: '<p><i class="fa fa-bomb"></i></p>You just got '+weaponName+' for '+weaponPrice+' $.'});
+			var n = noty({text: '<p><i class="fa fa-bomb"></i> Buy Weapons</p>You just got '+weaponName+' for '+weaponPrice+' $.'});
 			log.info("Bought a weapon");
 			weapons = weapons +1;
 			cash = cash - weaponPrice;
 		}
 		else
 		{
-			var n = noty({text: 'The dude offered you a '+weaponName+' for '+weaponPrice+' $ but you  denied. Stay unarmed Ghandi'});
+			var n = noty({text: '<p><i class="fa fa-bomb"></i> Buy Weapons</p>The dude offered you a '+weaponName+' for '+weaponPrice+' $ but you  denied. Stay unarmed Ghandi'});
 			log.info("You denied buying a weapon");
 			return;
 		}
@@ -352,7 +353,7 @@ function r_randomEventBuyWeapon()
 	}
 	else
 	{
-		var n = noty({text: 'The dude offered you a '+weaponName+' for '+weaponPrice+' $ but you had no money. Poor bastard.'});
+		var n = noty({text: '<p><i class="fa fa-bomb"></i> Buy Weapons</p>The dude offered you a '+weaponName+' for '+weaponPrice+' $ but you had no money. Poor bastard.'});
 		log.info("No money to buy a weapon ... serious?");
 	}
 }

@@ -615,7 +615,7 @@ function h_getRobbed()
 	var stolen = Math.round(cash / 100 * robberyFactor);
 	cash = cash - stolen; 
 				
-	var n = noty({text: 'You got robbed. Loss '+stolen+' $.'});
+	var n = noty({text: '<p><i class="fa fa-qq"></i> Robbery</p>You got robbed. Loss '+stolen+' $.'});
 	log.info("Got robbed - you lost "+stolen+" $ (robbery)");
 	
 	health = health -10;
