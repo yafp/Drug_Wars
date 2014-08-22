@@ -491,7 +491,7 @@ function h_randomEventsOnDayChange()
 		var shouldRandomHappen = h_getRandomInt(1,10); // calculate chance for a random event
 		if(shouldRandomHappen >= 8) // random event happens
 		{
-			var x = h_getRandomInt(1,6); // what random event should happen?
+			var x = h_getRandomInt(1,7); // what random event should happen?
 			log.debug("Random Event: "+x)
 
 			// Execute Random Event: Police
@@ -519,6 +519,10 @@ function h_randomEventsOnDayChange()
 
 				case 6:
 					r_randomEventBuyWeapon();
+				break;
+				
+				case 7:
+					r_randomEventCancerReturns();
 				break;
 			} // end case
 		}

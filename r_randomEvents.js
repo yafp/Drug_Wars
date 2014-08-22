@@ -361,6 +361,29 @@ function r_randomEventBuyWeapon()
 
 
 
+/*
+	RANDOM EVENT: Cancer Returns - SPECIAL RANDOM EVENT - happens really rare
+*/
+function r_randomEventCancerReturns()
+{
+	log.info("Random Event: Cancer returns");
+
+	var shouldRandomHappen = h_getRandomInt(1,100); // calculate chance for a random event
+	if(shouldRandomHappen >= 95) // random event happens
+	{
+		// cancer really happens
+		var n = noty({text: '<p><i class="fa fa-user-md"></i> Cancer</p>Heavy signs and symptoms of cancer.'});
+		badLuckEvents = badLuckEvents + 10;
+		
+		healthDamage = 50;
+		h_reduceHealth(healthDamage);
+	}
+	h_updateAllUIElements();
+}
+
+
+
+
 
 
 
