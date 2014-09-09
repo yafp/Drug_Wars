@@ -54,6 +54,9 @@ function h_checkLocalStorageSupport()
 		// set the name into the settings dialog
 		var elem = document.getElementById("fname");
 		elem.value = lastName;
+		
+		// get value for RandomQuotes
+		enableRandomQuotes = localStorage.getItem("enableRandomQuotes");
 	} 
 	else 
 	{
@@ -69,7 +72,7 @@ function h_showSettingsOnly()
 {
 	// show settings div
 	$('#div_Settings').hide(); 
-	$('#div_Settings').fadeIn(2000); // 2 sec
+	$('#div_Settings').fadeIn(1000); // 1 sec
 	
 	// and hide most other divs
 	$('#div_Gameresult').hide();

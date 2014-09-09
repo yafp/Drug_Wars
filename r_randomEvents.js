@@ -220,6 +220,8 @@ function r_randomEventRobbery()
 */
 function r_randomEventFindDrugs()
 {
+	// baustelle - lets give Chilli P Meth away - insteed of acid
+	
 	log.info("Random Event: Finding Drugs on street");
 
 	luckEvents = luckEvents + 1;

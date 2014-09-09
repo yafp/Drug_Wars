@@ -3,10 +3,12 @@
 */
 $( document ).ready(function() 
 {	
-	h_checkLocalStorageSupport();			// LocalStorage
+	enableRandomQuotes=1;	// set default value for RandomQuotes on page-load 
+
+	h_checkLocalStorageSupport();			// Check if LocalStorage is supported - if so - try to get name and setting for random quotes
 	h_loadHighscoreFromLocalStorage(); 		// load highscore values to highscore div
 	h_disableActionButtons();				// disable main buttons	
-	h_showSettingsOnly();					// show only the settings div	
+	h_showSettingsOnly();					// show only the settings div		
 });
 
 
@@ -32,8 +34,8 @@ function initGame()
 	{
 		playersName = "Bored Deadhead";
 	}
-	$('#player').empty();
-	$('#player').append(' '+playersName);
+	//$('#player').empty();
+	//$('#player').append(' '+playersName);
 	
 
 	var n = noty({text: 'Welcome '+playersName+' to DrugWars - The Heisenberg Edition'}); // welcome message to player & game-start
@@ -58,6 +60,8 @@ function initGame()
 	bank=0;
 	// fuck counter (handling user-mistakes
 	fuckCounter=0;
+	
+	
 	
 	// hide several content divs
 	$('#div_Gameresult').hide();
@@ -106,8 +110,12 @@ function newDay()
 	
 	h_updateBank();						// recalculate money in bank (ading interest)
 	h_updateDebt();						// re-calculate debt
-	h_randomEventsOnDayChange();			// check for random events
-	h_randomPeopleQuotesOnDayChange();
+	h_randomEventsOnDayChange();		// check for random events
+	
+	if(enableRandomQuotes == 1)			// random Quotes if enabled
+	{
+		h_randomPeopleQuotesOnDayChange();
+	}
 	h_updateAllUIElements();				// update all relevant UI elements
 	
 	// update day-progress-o-meter
@@ -126,63 +134,184 @@ function changeCity()
 	$('#form_Drugs_buy').hide();
 	$('#loanshark_div').hide(); 
 	
-	if (currentLocation === 'lnd') // London
-	{
-		currentLocation = locations.ny;		// change city
-
-		// change city title
-		$('#market').empty();
-		$('#market').append('<i class="fa fa-map-marker"></i> Location: New York City');
-
-		// cost in nyc
-		drugs.acid = h_getRandomInt(600,1300);
-		drugs.coke = h_getRandomInt(900,1900);
-
-		// change units to represent time passed
-		coke_unit = drugs.unit();
-		acid_unit = drugs.unit();
-				
-		// how many units available
-		$('#acidUnits').html(acid_unit);
-		$('#cokeUnits').html(coke_unit);
-				
-		// cost per unit
-		$('#acidPerUnit').html("$"+drugs.acid);
-		$('#cokePerUnit').html("$"+drugs.coke);
-
-		sellPrice(); 
-	} // end of IF
-	else if (currentLocation === 'nyc') // new york
-	{
-		currentLocation = locations.lnd;		// change city
-
-		// change city title
-		$('#market').empty();
-		$('#market').append("<i class='fa fa-map-marker'></i> Location: London"); 
+	// get target destination
+	targetDestination = $( "#travelTarget" ).val(); // get target destination
+	//alert("Travelling to "+targetDestination);
 	
-		// cost in lnd
-		drugs.acid = h_getRandomInt(700,1500);
-		drugs.coke = h_getRandomInt(900,1700);
-
-		// change units to represent time passed
-		coke_unit = drugs.unit();
-		acid_unit = drugs.unit();
-
-		// how many units available
-		$('#acidUnits').html(acid_unit);
-		$('#cokeUnits').html(coke_unit);
-				
-		// cost per unit
-		$('#acidPerUnit').html("$"+drugs.acid);
-		$('#cokePerUnit').html("$"+drugs.coke);
-
-		sellPrice(); 	
-	} // else if  
+	// Update travelTarget select-box
+	//
+	// enable all options first ...then
+	$("#travelTarget option[value='loc_white']").removeAttr('disabled');
+	$("#travelTarget option[value='loc_jesse']").removeAttr('disabled');
+	$("#travelTarget option[value='loc_school']").removeAttr('disabled');
+	$("#travelTarget option[value='loc_car']").removeAttr('disabled');
+	$("#travelTarget option[value='loc_tuco']").removeAttr('disabled');
+	$("#travelTarget option[value='loc_pest']").removeAttr('disabled');
+	$("#travelTarget option[value='loc_schwartz']").removeAttr('disabled');
+	$("#travelTarget option[value='loc_dea']").removeAttr('disabled');
+	$("#travelTarget option[value='loc_pollos']").removeAttr('disabled');
+	$("#travelTarget option[value='loc_gale']").removeAttr('disabled');
+	//
+	// disable new location - as it is the new current location
+	$("#travelTarget option[value="+targetDestination+"]").attr('disabled','disabled'); 
 	
+	
+	// general changes
+	$('#market').empty();
+	
+	// location specific changes
+	switch(targetDestination) 
+	{
+		case "loc_white":
+			//location itself
+			currentLocation = locations.loc_white;
+			$('#market').append("<i class='fa fa-map-marker'></i> Location: The White Residence"); 
+			
+			// drug-prices
+			drugs.acid = h_getRandomInt(700,1500);
+			drugs.coke = h_getRandomInt(900,1700);
+			
+			// drug availability chance
+			// MISSING
+		break;
+		
+		case "loc_jesse":
+			//location itself
+			currentLocation = locations.loc_jesse;
+			$('#market').append("<i class='fa fa-map-marker'></i> Location: Jesse's House");
+			
+			// drug-prices
+			drugs.acid = h_getRandomInt(500,1200);
+			drugs.coke = h_getRandomInt(800,1600);
+		break;
+		
+		case "loc_school":
+			//location itself
+			currentLocation = locations.loc_jesse;
+			$('#market').append("<i class='fa fa-map-marker'></i> Location: J. P. Wynne High School");
+			
+			// drug-prices
+			drugs.acid = h_getRandomInt(600,1300);
+			drugs.coke = h_getRandomInt(850,1800);
+		break;
+		
+		case "loc_car":
+			//location itself
+			currentLocation = locations.loc_jesse;
+			$('#market').append("<i class='fa fa-map-marker'></i> Location: A1A Car Wash");
+			
+			// drug-prices
+			drugs.acid = h_getRandomInt(800,1400);
+			drugs.coke = h_getRandomInt(900,1900);
+		break;
+		
+		case "loc_tuco":
+			//location itself
+			currentLocation = locations.loc_jesse;
+			$('#market').append("<i class='fa fa-map-marker'></i> Location: Tuco's Headquarters");
+			
+			// drug-prices
+			drugs.acid = h_getRandomInt(500,1000);
+			drugs.coke = h_getRandomInt(700,1500);
+		break;
+		
+		case "loc_pest":
+			//location itself
+			currentLocation = locations.loc_jesse;
+			$('#market').append("<i class='fa fa-map-marker'></i> Location: Vamonos Pest Control");
+			
+			// drug-prices
+			drugs.acid = h_getRandomInt(600,1200);
+			drugs.coke = h_getRandomInt(800,1600);
+		break;
+		
+		case "loc_schwartz":
+			//location itself
+			currentLocation = locations.loc_jesse;
+			$('#market').append("<i class='fa fa-map-marker'></i> Location: Schwartz Residence");
+			
+			// drug-prices
+			drugs.acid = h_getRandomInt(900,1200);
+			drugs.coke = h_getRandomInt(1000,2100);
+		break;
+		
+		case "loc_dea":
+			//location itself
+			currentLocation = locations.loc_jesse;
+			$('#market').append("<i class='fa fa-map-marker'></i> Location: DEA Field Office");
+			
+			// drug-prices
+			drugs.acid = h_getRandomInt(500,1200);
+			drugs.coke = h_getRandomInt(800,1600);
+		break;
+		
+		case "loc_pollos":
+			//location itself
+			currentLocation = locations.loc_jesse;
+			$('#market').append("<i class='fa fa-map-marker'></i> Location: Los Pollos Hermanos");
+			
+			// drug-prices
+			drugs.acid = h_getRandomInt(500,1200);
+			drugs.coke = h_getRandomInt(800,1600);
+		break;
+		
+		case "loc_gale":
+			//location itself
+			currentLocation = locations.loc_jesse;
+			$('#market').append("<i class='fa fa-map-marker'></i> Location: Gale's Apartment");
+			
+			// drug-prices
+			drugs.acid = h_getRandomInt(500,1200);
+			drugs.coke = h_getRandomInt(800,1600);
+		break;
+	}
+	
+	
+	
+	// general changes
+	//
+	// DRUGS
+	// change units to represent time passed
+	coke_unit = drugs.unit();
+	acid_unit = drugs.unit();
+	//
+	// display available units
+	$('#acidUnits').html(acid_unit);
+	$('#cokeUnits').html(coke_unit);
+	//			
+	// display drug costs per unit
+	$('#acidPerUnit').html("$"+drugs.acid);
+	$('#cokePerUnit').html("$"+drugs.coke);
+
+	sellPrice();
+		
 	log.info("Arrived in: "+currentLocation)
 	
 	newDay();			// prepare the new day
 } // END: changeCity
+
+
+
+/*
+	Show toggleQuotes
+*/
+function toggleQuotes()
+{
+	if(enableRandomQuotes == 1)
+	{
+		enableRandomQuotes = 0;
+		var n = noty({text: 'Random Breaking Bad Quotes are now disabled'}); 
+	}
+	else
+	{
+		enableRandomQuotes = 1;
+		var n = noty({text: 'Random Breaking Bad Quotes are now enabled'}); 
+	}
+	
+	// store in localSettings
+	localStorage.setItem("enableRandomQuotes", enableRandomQuotes);
+}
+
 
 
 /*
@@ -391,7 +520,20 @@ $('#btn').click(function(event)
 */
 $('#choose_city').click(function(event) 
 {	
-	changeCity(); 
+	// get target destination
+	targetDestination = $( "#travelTarget" ).val(); // get target destination
+	
+	if(targetDestination === null)
+	{
+		alert("Please choose a new location and then start travelling");
+		return;
+	}
+	else
+	{
+		//alert("current location "+currentLocation);
+		//alert("TargetDestination "+targetDestination);
+		changeCity();
+	}
 });
 
 
@@ -949,7 +1091,18 @@ var coke_unit = drugs.unit();
 var acid_unit = drugs.unit();
 
 var shark = {capital:10000};
-var locations = {ny: "nyc", lnd: "lnd"};  
+var locations = {
+		loc_white: "loc_white", 
+		loc_jesse: "loc_jesse", 
+		loc_school: "loc_school",
+		loc_car: "loc_car", 
+		loc_tuco: "loc_tuco", 
+		loc_pest: "loc_pest",
+		loc_schwartz: "loc_schwartz", 
+		loc_dea: "loc_dea", 
+		loc_pollos: "loc_pollos",
+		loc_gale: "loc_gale"
+	};  
 
 var acid = drugs.acid;
 var coke = drugs.coke;
@@ -957,13 +1110,21 @@ var coke = drugs.coke;
 $('#form_Drugs_sell').hide();
 $('#loanshark_div').hide();
 $('#form_Drugs_buy').hide();
-currentLocation = locations.ny; 
 
 
-// Setup for NYC
+currentLocation = locations.loc_white; 
+
+
+// show starting location
+$("#travelTarget option[value='loc_white']").attr('selected');
+
+
+// Setup for Startpoint - White residence
 //
-$('#market').append(' New York City');	// change city title
-// cost in nyc
+//$('#market').append(' New York City');	// change city title
+$('#market').append(' The White Residence');
+
+// cost
 drugs.acid = 700;
 drugs.coke = 1400;
 
@@ -976,11 +1137,11 @@ var start =
 		$('#listDrugs').html("Acid: " +  currentDrugs.acid + "<br>" + " Coke: " + currentDrugs.coke);
 		$('#pockets').html(pockets);
 
-		// how many units available
+		// display how many units available
 		$('#acidUnits').html(acid_unit);
 		$('#cokeUnits').html(coke_unit);
 		
-		// cost per unit
+		// display market buy-prices cost per unit
 		$('#acidPerUnit').html("$"+drugs.acid);
 		$('#cokePerUnit').html("$"+drugs.coke);	
 	} // play
