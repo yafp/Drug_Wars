@@ -110,9 +110,11 @@
 						<li class="dropdown">
 						  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> Options <span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#" title="Enables or disables the random quotes function of the game" onclick="toggleQuotes()"><i class="fa fa-comment"></i> Quotes </a></li>
+							<li><a href="#" title="Enables or disables the random quotes function of the game" onclick="toggleQuotes()" id="menuItemQuotes"><i class="fa fa-comment"></i> Quotes </a></li>
 							<li class="divider"></li>
 							<li><a href="index.html" title="Restart the entire game"><i class="fa fa-refresh"></i> Restart </a></li>
+							<li class="divider"></li>
+							<li><a href="#" title="Delete all data from localStorage" onclick="h_resetLocalStorage()"><i class="fa fa-trash-o"></i> Delete LocalStorage </a></li>
 						  </ul>
 						</li>
 					</ul>
@@ -249,13 +251,13 @@
 					<div id="div_Gameresult">
 						<h2><i class="fa fa-flag-checkered"></i> GAME OVER</h2>
 						<h3>Money</h3>
-						Cash: <p id="finalCashCount">0</p>
-						Bank: <p id="finalBankCount">0</p>
-						Debt: <p id="finalDebtCount">0</p>
-						Money per Day: <p id="finalMoneyPerDay">0</p>
+						<p id="finalCashCount">0</p>
+						<p id="finalBankCount">0</p>
+						<p id="finalDebtCount">0</p>
+						<p id="finalMoneyPerDay">0</p>
 						<h3>Luck</h3>			
-						Luck: <p id="finalLuckCount">0</p>						
-						Bad Luck: <p id="finalBadLuckCount">0</p>	
+						<p id="finalLuckCount">0</p>						
+						<p id="finalBadLuckCount">0</p>	
 						<h3>Result</h3>
 						<p id="finalScoreCount">0</p>
 						<br><br>
@@ -267,14 +269,6 @@
 					<div id="div_Highscore">
 						<h2><i class="fa fa-sitemap"></i> Local Highscore</h2>
 						<hr>
-						<!-- 15 Days -->
-						<h3>15 Days</h3>
-						<p>
-							<span id="score_15"></span>
-							<span id="player_15"></span>
-							<span id="moneyPerDay_15"></span>
-							<span id="date_15"></span>
-						</p>
 						<!-- 30 Days -->
 						<h3>30 Days</h3>
 						<p>
@@ -319,14 +313,12 @@
 							Name <input type="text" id="fname" name="fname" placeholder="Playername" value="Heisenberg">
 							&nbsp;&nbsp;Days 
 							<select id="gameLength">
-								<option value="15">15 Days</option>
 								<option value="30" selected>30 Days</option>
 								<option value="45">45 Days</option>
 								<option value="90">90 Days</option>
 								<option value="120">120 Days</option>
 							</select> 
-							<br>
-							<br>
+							<br><br>
 							<a id="button_StartGame" class="btn btn-primary btn-lg" role="button" onclick="initGame();"><i class="fa fa-play-circle"></i> Start</a>
 						</form> 
 					</div>

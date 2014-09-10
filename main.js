@@ -3,7 +3,7 @@
 */
 $( document ).ready(function() 
 {	
-	enableRandomQuotes=1;	// set default value for RandomQuotes on page-load 
+	enableRandomQuotes=1;					// set default value for RandomQuotes on page-load 
 
 	h_checkLocalStorageSupport();			// Check if LocalStorage is supported - if so - try to get name and setting for random quotes
 	h_loadHighscoreFromLocalStorage(); 		// load highscore values to highscore div
@@ -293,29 +293,34 @@ function changeCity()
 
 
 /*
-	Show toggleQuotes
+	toggleQuotes - changes the randomQuote setting and makes the menu-icon according to it
 */
 function toggleQuotes()
 {
 	if(enableRandomQuotes == 1)
 	{
 		enableRandomQuotes = 0;
+		iconText = '<span class="fa-stack fa-lg"><i class="fa fa-comment fa-stack-1x"></i><i class="fa fa-ban fa-stack-1x text-danger"></i></span> Quotes </a>';
 		var n = noty({text: 'Random Breaking Bad Quotes are now disabled'}); 
 	}
 	else
 	{
 		enableRandomQuotes = 1;
+		iconText = '<i class="fa fa-comment"></i> Quotes </a>';
 		var n = noty({text: 'Random Breaking Bad Quotes are now enabled'}); 
 	}
 	
-	// store in localSettings
+	// update icon
+	$('#menuItemQuotes').html(iconText); // update Icon
+	
+	// store in localStorage
 	localStorage.setItem("enableRandomQuotes", enableRandomQuotes);
 }
 
 
 
 /*
-	Show final score
+	Calculate final score values and display them at the end of the game. If result is higher then highscore result - it updates the highscore as well.
 */
 function gameEnded()
 {	
@@ -341,7 +346,6 @@ function gameEnded()
 	var finalMoneyPerDay = (cash + bank - debt) / maxDays;
 	finalMoneyPerDay = Math.round(finalMoneyPerDay)
 
-	
 	// add luck and badLuck modifiers to score
 	badLuckModifier =  (badLuckEvents * 5000);
 	log.debug("BadLuckModifier: "+badLuckModifier)
@@ -364,18 +368,6 @@ function gameEnded()
 	log.debug("Max Days: "+maxDays);			// check highscore - depends on maxDays
 	switch(maxDays) 
 	{
-		case "15":
-			log.debug("highscore_15");
-			if (finalScore > localStorage.getItem("highscore_15")) 
-			{
-				localStorage.setItem("highscore_15", finalScore);
-				localStorage.setItem("player_15", playersName);
-				localStorage.setItem("moneyPerDay_15", finalMoneyPerDay);
-				localStorage.setItem("date_15", Date());
-				log.info("New highscore_15 written");
-			}
-		break;
-		
 		case "30":
 			log.debug("highscore_30");
 			if (finalScore > localStorage.getItem("highscore_30")) 
@@ -430,18 +422,15 @@ function gameEnded()
 	// write values to endgame div
 	//
 	// money things
-	$('#finalCashCount').html(+finalCash);
-	$('#finalBankCount').html("+"+finalBank);
-	$('#finalDebtCount').html("-"+finalDebt);
+	$('#finalCashCount').html("Cash: "+finalCash);
+	$('#finalBankCount').html("Bank: +"+finalBank);
+	$('#finalDebtCount').html("Debt: -"+finalDebt);
+	$('#finalMoneyPerDay').html("Money per day: "+finalMoneyPerDay);
 	// luck-things
-	$('#finalLuckCount').html("-"+luckModifier);
-	$('#finalBadLuckCount').html("+"+badLuckModifier);
-
+	$('#finalLuckCount').html("Luck: -"+luckModifier);
+	$('#finalBadLuckCount').html("BadLuck: +"+badLuckModifier);
 	// final result:
 	$('#finalScoreCount').html(+finalScore);	
-	
-	// final money per day:
-	$('#finalMoneyPerDay').html(+finalMoneyPerDay);	
 	
 	$('#div_Gameresult').show();	// show result div
 } // END: gameEnded()

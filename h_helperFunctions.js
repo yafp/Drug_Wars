@@ -42,23 +42,70 @@ function h_updateAllUIElements()
 
 
 /*
-	HELPER: check browser support for localStorage
+	HELPER: delete all data from localStorage - kinda reset
+*/
+function h_resetLocalStorage()
+{	
+	// delete stored username
+	localStorage.removeItem("playersName");
+	// delete setting for random Quotes
+	localStorage.removeItem("enableRandomQuotes");
+	// delete highscore values
+	// 30
+	localStorage.removeItem("highscore_30");
+	localStorage.removeItem("player_30");
+	localStorage.removeItem("moneyPerDay_30");
+	localStorage.removeItem("date_30");
+	// 45
+	localStorage.removeItem("highscore_45");
+	localStorage.removeItem("player_45");
+	localStorage.removeItem("moneyPerDay_45");
+	localStorage.removeItem("date_45");
+	// 90
+	localStorage.removeItem("highscore_90");
+	localStorage.removeItem("player_90");
+	localStorage.removeItem("moneyPerDay_90");
+	localStorage.removeItem("date_90");
+	// 120
+	localStorage.removeItem("highscore_120");
+	localStorage.removeItem("player_120");
+	localStorage.removeItem("moneyPerDay_120");
+	localStorage.removeItem("date_120");
+	
+	// inform user
+	var n = noty({text: 'Deleted all game-related data from localStorage. Follow the white rabbit neo.'});
+	return;
+}
+
+
+
+/*
+	HELPER: check browser support for localStorage and if supported get some values from it
 */
 function h_checkLocalStorageSupport()
 {
-	if(typeof(Storage) !== "undefined") 
+	if(typeof(Storage) !== "undefined")  // if supported
 	{
+		// playername
 		document.getElementById("fname").innerHTML = localStorage.getItem("playersName"); 
 		lastName = localStorage.getItem("playersName"); 	// get the last name used in this game from local storage
-		
 		// set the name into the settings dialog
 		var elem = document.getElementById("fname");
 		elem.value = lastName;
 		
-		// get value for RandomQuotes
-		enableRandomQuotes = localStorage.getItem("enableRandomQuotes");
+		// get value for RandomQuotes & set menu icon according to it
+		enableRandomQuotes = localStorage.getItem("enableRandomQuotes"); // get value from localStorage
+		if(enableRandomQuotes == 1) // make quote icon in menu according to current setting
+		{
+			iconText = '<i class="fa fa-comment"></i> Quotes </a>';
+		}
+		else
+		{
+			iconText = '<span class="fa-stack fa-lg"><i class="fa fa-comment fa-stack-1x"></i><i class="fa fa-ban fa-stack-1x text-danger"></i></span> Quotes </a>';
+		}
+		$('#menuItemQuotes').html(iconText); // update Icon
 	} 
-	else 
+	else // no support for localStorage
 	{
 		alert("No support for Local storage found. This means: No highscore management possible.");
 	}
@@ -252,28 +299,6 @@ function h_updateMoneyUI()
 */
 function h_loadHighscoreFromLocalStorage() 
 {
-	
-	// 15 Days
-	highscore_15_score = localStorage.getItem("highscore_15");
-	if(highscore_15_score == null )
-	{
-		$('#score_15').html("<i>No highscore available yet</i>");
-	}
-	else
-	{
-		// get values
-		highscore_15_name = localStorage.getItem("player_15");
-		highscore_15_moneyPerDay = localStorage.getItem("moneyPerDay_15");
-		highscore_15_date = localStorage.getItem("date_15");
-		
-		// display values
-		$('#score_15').html("<b>"+highscore_15_score+"</b>");
-		$('#player_15').html("by "+highscore_15_name);
-		$('#moneyPerDay_15').html("("+highscore_15_moneyPerDay+" per Day)");	
-		$('#date_15').html("at "+highscore_15_date);
-	}
-	
-	
 	// 30 Days
 	highscore_30_score = localStorage.getItem("highscore_30");
 	if(highscore_30_score == null)
