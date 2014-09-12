@@ -8,7 +8,7 @@ $( document ).ready(function()
 	h_checkLocalStorageSupport();			// Check if LocalStorage is supported - if so - try to get name and setting for random quotes
 	h_loadHighscoreFromLocalStorage(); 		// load highscore values to highscore div
 	h_disableActionButtons();				// disable main buttons	
-	h_showSettingsOnly();					// show only the settings div		
+	h_showSettingsOnly();					// show only the settings div
 });
 
 
@@ -579,6 +579,7 @@ $('#drugBtn').click(function(event)
 
 		// update units of drugs you own
 		currentDrugs.acid = currentDrugs.acid + numUnits;
+		$('#acidInPockets').html(currentDrugs.acid);
 		
 		// update pockets
 		usedPockets = usedPockets+ numUnits;
@@ -628,6 +629,7 @@ $('#drugBtn').click(function(event)
 
 		// update units of drugs you own
 		currentDrugs.coke = currentDrugs.coke + numUnits;
+		$('#cokeInPockets').html(currentDrugs.coke);
 		
 		// update pockets
 		usedPockets = usedPockets+ numUnits;
@@ -687,6 +689,7 @@ $('#sellBtn').click(function(event)
 
 		// update units of drugs you own
 		currentDrugs.acid = currentDrugs.acid - numUnits;
+		$('#acidInPockets').html(currentDrugs.acid);
 
 		// update pockets
 		usedPockets = usedPockets - numUnits; // update pocket calculation
@@ -715,6 +718,7 @@ $('#sellBtn').click(function(event)
 
 		// update units of drugs you own
 		currentDrugs.coke = currentDrugs.coke - numUnits;
+		$('#cokeInPockets').html(currentDrugs.coke);
 		
 		// update pockets
 		usedPockets = usedPockets - numUnits; // update pocket calculation

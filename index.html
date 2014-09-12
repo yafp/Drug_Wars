@@ -105,17 +105,20 @@
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="#"><i class="fa fa-home"></i> Home</a></li>
-						<li><a href="https://github.com/macfidelity/Drug_Wars/wiki" target="new" title="Opens the online Github Wiki documentation about this game"><i class="fa fa-info"></i> Info</a></li>
 						<li><a href="#" title="Shows the local highscore" onclick="$('#div_Highscore').toggle();$('#div_Info').hide();$('#div_Settings').hide();$('#div_Gameresult').hide();"><i class="fa fa-sitemap"></i> Highscore</a></li>
 						<li class="dropdown">
-						  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> Options <span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#" title="Enables or disables the random quotes function of the game" onclick="toggleQuotes()" id="menuItemQuotes"><i class="fa fa-comment"></i> Quotes </a></li>
-							<li class="divider"></li>
-							<li><a href="index.html" title="Restart the entire game"><i class="fa fa-refresh"></i> Restart </a></li>
-							<li class="divider"></li>
-							<li><a href="#" title="Delete all data from localStorage" onclick="h_resetLocalStorage()"><i class="fa fa-trash-o"></i> Delete LocalStorage </a></li>
-						  </ul>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> Options <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li class="dropdown-header">Settings</li>
+								<li><a href="#" title="Enables or disables the random quotes function of the game" onclick="toggleQuotes()" id="menuItemQuotes"><i class="fa fa-comment"></i> Quotes </a></li>
+								<li><a href="#" title="Delete all data from localStorage" onclick="h_resetLocalStorage()"><i class="fa fa-trash-o"></i> Delete LocalStorage </a></li>
+								<li><a href="index.html" title="Restart the entire game"><i class="fa fa-refresh"></i> Start new game </a></li>
+								<li class="divider"></li>
+								<li class="dropdown-header"><i class="fa fa-github"></i> Development</li>
+								<li><a href="https://github.com/macfidelity/Drug_Wars" target="new" title="Visit project page"><i class="fa fa-code"></i> Code </a></li>
+								<li><a href="https://github.com/macfidelity/Drug_Wars/issues" target="new" title="Visit project page"><i class="fa fa-bug"></i> Issues </a></li>
+								<li><a href="https://github.com/macfidelity/Drug_Wars/wiki" target="new" title="Visit project page"><i class="fa fa-info"></i> Wiki </a></li>
+							</ul>
 						</li>
 					</ul>
 				</div><!--/.nav-collapse -->
@@ -126,30 +129,120 @@
 
 		<div class="container">
 			<div class="row" id="decision">
+			
+			
+			
 				<div class="col-md-6">
+					<!--STATUS-TABLE -->
+					<div id="div_StatusTable">
+						<h3><i class="fa fa-info"></i> Status (<span id="calendar"></span>)
+							<!-- Day Progress Meter -->
+							<div class="progress">
+								<div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+									<span class="sr-only">0% Complete</span>
+								</div>
+							</div>
+						</h3>
+						
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th><i class="fa fa-child" title="Health"></i> <span id="health"></span></th>	
+									<th><i class="fa fa-money" title="Cash"></i> <span id="inCash"></span></th>
+									<th><i class="fa fa-book" title="Debt"></i> <span id="debt"></span></th>
+									<th><i class="fa fa-bank" title="Bank"></i> <span id="inBank"></span></th>
+									<th hidden><i class="fa fa-archive" title="Drugs"></i> <span id="listDrugs" hidden></span></th>
+									<th><i class="fa fa-briefcase" title="Pockets"> </i> <span id="pockets"></span></th>
+									<th><i class="fa fa-bomb" title="Weapons"></i> <span id="weapons"></span></th>
+								</tr>
+							</thead>
+						</table>
+					</div> <!-- END div_StatusTable -->
+				
+				
+				
+					<!--THE MARKET -->
+					<div id="div_Market">
+						<h3 id="market"><i class="fa fa-map-marker"></i> Location:</h3>
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Drug</th>
+									<th>Pocket</th>
+									<th>Market</th>
+									<th>Buy</th>
+									<th>Sell</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Acid</td>
+									<td id="acidInPockets">0</td>
+									<td id="acidUnits"></td>
+									<td id="acidPerUnit"></td>
+									<td id="acidSell"></td>
+									
+								</tr>
+								<tr>
+									<td>Coke</td>
+									<td id="cokeInPockets">0</td>
+									<td id="cokeUnits"></td>
+									<td id="cokePerUnit"></td>
+									<td id="cokeSell"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div> <!-- market -->
+				
+				
+					<!-- ACTION BUTTONS -->		
 					<div id="div_ActionButtons">
-						<button type="button"  class="btn btn-default" id="choose_buyd"><i class="fa fa-shopping-cart"> Buy</i></button>
-						<button type="button"  class="btn btn-default" id="choose_selld"><i class="fa fa-share-alt"> Sell</i></button>
-						<button type="button"  class="btn btn-default" id="choose_loan"><i class="fa fa-money"> Money</i></button>
-						<button type="button"  class="btn btn-default" id="choose_city"><i class="fa fa-plane"> Travel</i></button>
-												
-						<!-- old travel -->
-						<select id="travelTarget">
-						<!--
-						<select id="travelTarget" class="form-control">
-						-->
-							<option value="loc_white" selected disabled>The White Residence</option>
-							<option value="loc_jesse">Jesse's House</option>
-							<option value="loc_school">J. P. Wynne High School</option>
-							<option value="loc_car">A1A Car Wash</option>
-							<option value="loc_tuco">Tuco's Headquarters</option>
-							<option value="loc_pest">Vamonos Pest Control</option>
-							<option value="loc_schwartz">Schwartz Residence</option>
-							<option value="loc_dea">DEA Field Office</option>
-							<option value="loc_pollos">Los Pollos Hermanos</option>
-							<option value="loc_gale">Gale's Apartment</option>
-						</select>
+						<h3><i class="fa fa-info"></i> Actions</h3>
+						
+	
+						<div class="btn-group btn-group-justified">
+							<div class="btn-group">
+								<button type="button"  class="btn btn-xs" id="choose_buyd"><i class="fa fa-shopping-cart"> Buy</i></button>
+							</div>
+							<div class="btn-group">
+								<button type="button"  class="btn btn-xs" id="choose_selld"><i class="fa fa-share-alt"> Sell</i></button>
+							</div>
+							<div class="btn-group">
+								<button type="button"  class="btn btn-xs" id="choose_loan"><i class="fa fa-money"> Money</i></button>
+							</div>
+						</div>
+						
+						<br>
+						
+						<!-- Travel section -->
+						<div class="btn-group btn-group-justified">
+							<div class="btn-group">
+								<span>Define next target:</span>
+							</div>
+							<div class="btn-group">
+								<select id="travelTarget">
+									<!--
+									<select id="travelTarget" class="form-control">
+									-->
+										<option value="loc_white" selected disabled>The White Residence</option>
+										<option value="loc_jesse">Jesse's House</option>
+										<option value="loc_school">J. P. Wynne High School</option>
+										<option value="loc_car">A1A Car Wash</option>
+										<option value="loc_tuco">Tuco's Headquarters</option>
+										<option value="loc_pest">Vamonos Pest Control</option>
+										<option value="loc_schwartz">Schwartz Residence</option>
+										<option value="loc_dea">DEA Field Office</option>
+										<option value="loc_pollos">Los Pollos Hermanos</option>
+										<option value="loc_gale">Gale's Apartment</option>
+									</select>
+							</div>
+							<div class="btn-group">
+								<button type="button" class="btn btn-xs" id="choose_city"><i class="fa fa-plane"> Travel</i></button>
+							</div>
+						</div>
 					</div>
+					<!-- END div_ActionButtons -->
 					
 					
 					<!-- LOAN SHARK -->
@@ -164,7 +257,6 @@
 							</div>
 						</form>
 
-						
 						<br>
 						<!--form_Loan_Payback -->
 						<form class="form-inline" role="form" id="form_Loan_Payback">
@@ -177,7 +269,6 @@
 								<button type="button" id="btn_payDebtAll" class="btn btn-default">Payback all $</button>
 							</div>
 						</form>
-						
 						
 						<br>
 						<!--BANK -->
@@ -193,6 +284,7 @@
 								<button type="button" id="btn_bank_depositMoneyAll" class="btn btn-default">Deposit all $</button>
 							</div>
 						</form>
+						
 						<br>
 						<!-- form_Bank_payout -->
 						<form class="form-inline" role="form" id="form_Bank_payOut">
@@ -310,8 +402,8 @@
 						<h2><i class="fa fa-cog"></i> Setup</h2>
 						<hr>
 						<form action="#">
-							Name <input type="text" id="fname" name="fname" placeholder="Playername" value="Heisenberg">
-							&nbsp;&nbsp;Days 
+							<input type="text" id="fname" name="fname" placeholder="Playername" value="Heisenberg">
+							<br> 
 							<select id="gameLength">
 								<option value="30" selected>30 Days</option>
 								<option value="45">45 Days</option>
@@ -324,85 +416,10 @@
 					</div>
 				</div> <!--END OF COL -->
 				
-	
-	
-				<div class="col-md-6">						
-					<!--STATUS-TABLE -->
-					<div id="div_StatusTable">
-						<h3><i class="fa fa-info"></i> Status (<span id="calendar"></span>)</h3>
-						
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th><i class="fa fa-child" title="Health"></i></th>	
-									<th><i class="fa fa-money" title="Cash"></i></th>
-									<th><i class="fa fa-book" title="Debt"></i></th>
-									<th><i class="fa fa-bank" title="Bank"></i></th>
-									<th><i class="fa fa-archive" title="Drugs"></i></th>
-									<th><i class="fa fa-briefcase" title="Pockets"></i></th>
-									<th><i class="fa fa-bomb" title="Weapons"></i></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td id="health"></td>
-									<td id="inCash"></td>
-									<td id="debt"></td>
-									<td id="inBank"></td>
-									<td id="listDrugs"></td>
-									<td id="pockets"></td>
-									<td id="weapons"></td>
-								</tr>
-							</tbody>
-							
-							<!-- Day Progress Meter -->
-							<div class="progress">
-							<div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-								<span class="sr-only">0% Complete</span>
-							</div>
-						</div>
-						</table>
-					 </div> <!-- END status_table -->
-				
-				
-					<!--THE MARKET -->
-					<div id="div_Market">
-						<h3 id="market"><i class="fa fa-map-marker"></i> Location:</h3>
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th>Drug</th>
-									<th>Units</th>
-									<th>$ Buy</th>
-									<th>$ Sell</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Acid</td>
-									<td id="acidUnits"></td>
-									<td id="acidPerUnit"></td>
-									<td id="acidSell"></td>
-								</tr>
-								<tr>
-									<td>Coke</td>
-									<td id="cokeUnits"></td>
-									<td id="cokePerUnit"></td>
-									<td id="cokeSell"></td>
-								</tr>
-							</tbody>
-						</table>
-					</div> <!-- market -->
-				</div> <!--END OF COL -->
 			</div> <!--END OF ROW -->
 		</div><!-- /.container -->
     
     
-		<!-- FOOTER -->
-		<div id="footer">
-			<a href="https://github.com/macfidelity/Drug_Wars" target="new"><i class="fa fa-github"></i> Github</a>
-		</div>
-
 
 		<!-- Bootstrap core JavaScript
 		================================================== -->
